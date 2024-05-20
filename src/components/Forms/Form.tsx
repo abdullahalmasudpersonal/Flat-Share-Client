@@ -15,12 +15,7 @@ type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
 } & TFormConfig;
 
-const PHForm = ({
-  children,
-  onSubmit,
-  resolver,
-  defaultValues,
-}: TFormProps) => {
+const Form = ({ children, onSubmit, resolver, defaultValues }: TFormProps) => {
   const formConfig: TFormConfig = {};
 
   if (resolver) {
@@ -45,4 +40,4 @@ const PHForm = ({
   );
 };
 
-export default PHForm;
+export default Form;

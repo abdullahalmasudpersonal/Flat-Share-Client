@@ -14,6 +14,14 @@ import Container from "@mui/material/Container";
 import Link from "next/link";
 import { z } from "zod";
 import { userLogin } from "@/services/actions/userLogin";
+import { storeUserInfo } from "@/services/auth.services";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FieldValues } from "react-hook-form";
+import Form from "@/components/Forms/Form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Input from "@/components/Forms/Input";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email!"),
@@ -21,14 +29,31 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const res = await userLogin(event);
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const handleLogin = async (values: FieldValues) => {
+    try {
+      const res = await userLogin(values);
+      console.log(res, values);
+
+      if (res?.data?.accessToken) {
+        storeUserInfo({ accessToken: res?.data?.accessToken });
+        toast.success(res?.message);
+        router.push("/");
+      } else {
+        setError(res.message);
+        // console.log(res);
+      }
+    } catch (err: any) {
+      console.log(err.message);
+    }
+    // event.preventDefault();
+    // const res = await userLogin(event);
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (
@@ -48,49 +73,51 @@ const LoginPage = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            type="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+        <Box sx={{ mt: 1 }}>
+          <Form
+            onSubmit={handleLogin}
+            resolver={zodResolver(validationSchema)}
+            defaultValues={{
+              email: "",
+              password: "",
+            }}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" /* variant="body2" */>Forgot password?</Link>
+            <Input
+              required
+              fullWidth
+              label="Email Address"
+              name="email"
+              type="email"
+            />
+            <Input
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" /* variant="body2" */>Forgot password?</Link>
+              </Grid>
+              <Grid item>
+                {"Don't have an account? "}
+                <Link href="/register" /* variant="body2" */>{"Sign Up"}</Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              {"Don't have an account? "}
-              <Link href="/register" /* variant="body2" */>{"Sign Up"}</Link>
-            </Grid>
-          </Grid>
+          </Form>
         </Box>
       </Box>
     </Container>
