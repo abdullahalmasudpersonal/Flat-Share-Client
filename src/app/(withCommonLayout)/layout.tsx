@@ -1,5 +1,6 @@
-import Footer from "@/components/Shared/Footer/Footer";
-import Navber from "@/components/Shared/Navber/Navber";
+
+import Footer from "@/components/shared/Footer/Footer";
+import Navber from "@/components/shared/Navber/Navber";
 import { Box } from "@mui/material";
 import React from "react";
 

@@ -3,7 +3,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
@@ -58,7 +57,7 @@ const LoginPage = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
+     {/*  <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -71,9 +70,9 @@ const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in With  Flat Share
         </Typography>
-        <Box sx={{ mt: 1 }}>
+        <Box sx={{ mt: 2 }}>
           <Form
             onSubmit={handleLogin}
             resolver={zodResolver(validationSchema)}
@@ -82,39 +81,54 @@ const LoginPage = () => {
               password: "",
             }}
           >
-            <Input
+              <Input
               required
               fullWidth
               label="Email Address"
               name="email"
               type="email"
             />
-            <Input
+            <Input sx={{mt:'15px', mb:'20px'}}
               required
               fullWidth
               name="password"
               label="Password"
               type="password"
-            />
-            <FormControlLabel
+            /> 
+          {/*   <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
+                 {error && (
+            <Box>
+              <Typography
+                sx={{
+                  backgroundColor: "red",
+                  padding: "1px",
+                  borderRadius: "2px",
+                  color: "white",
+                  marginTop: "5px",
+                }}
+              >
+                {error}
+              </Typography>
+            </Box>
+          )}
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" /* variant="body2" */>Forgot password?</Link>
+              <small>  <Link href="#">Forgot password?</Link></small>
               </Grid>
               <Grid item>
-                {"Don't have an account? "}
-                <Link href="/register" /* variant="body2" */>{"Sign Up"}</Link>
+               <small> {"Don't have an account? "}</small>
+                <small  style={{color:'purple'}}><Link href="/register">{"Sign Up"}</Link></small>
               </Grid>
             </Grid>
           </Form>
