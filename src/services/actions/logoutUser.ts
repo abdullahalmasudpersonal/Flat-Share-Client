@@ -1,11 +1,10 @@
-
-import { authkey } from '@/constants/authkey';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { deleteCookies } from './deleteCookise';
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { deleteCookies } from "./deleteCookise";
+import { authKey } from "@/contents/authkey";
 
 export const logoutUser = (router: AppRouterInstance) => {
-   localStorage.removeItem(authkey);
-   deleteCookies([authkey, 'accessToken']);
-   router.push('/');
-   router.refresh();
+  localStorage.removeItem(authKey);
+  deleteCookies([authKey, "accessToken"]);
+  router.push("/");
+  router.refresh();
 };
