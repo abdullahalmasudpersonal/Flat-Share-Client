@@ -50,26 +50,6 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: DashboardIcon,
         },
         {
-          title: "Specialties",
-          path: `${role}/specialties`,
-          icon: TryIcon,
-        },
-        {
-          title: "Doctors",
-          path: `${role}/doctors`,
-          icon: MedicalInformationIcon,
-        },
-        {
-          title: "Schedules",
-          path: `${role}/schedules`,
-          icon: CalendarMonthIcon,
-        },
-        {
-          title: "Appointments",
-          path: `${role}/appointments`,
-          icon: CalendarMonthIcon,
-        },
-        {
           title: "Reviews",
           path: `${role}/reviews`,
           icon: ReviewsIcon,

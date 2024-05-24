@@ -13,7 +13,7 @@ import { Avatar, Badge, Stack } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import SideBer from "../SideBer/SideBer";
-//import AccountMenu from "../AccountMenu/AccountMenu";
+import AccountMenu from "../AccountMenu/AccountMenu";
 
 const drawerWidth = 240;
 
@@ -95,7 +95,7 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
                   </IconButton>
                 </Badge>
                 <Avatar alt={data?.name} src={data?.profilePhoto} />
-                {/*  <AccountMenu /> */}
+                <AccountMenu />
               </Stack>
             </Box>
           </Toolbar>

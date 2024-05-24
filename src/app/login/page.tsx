@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import Link from "next/link";
 import { z } from "zod";
 import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/auth.services";
+import { getUserInfo, storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -28,6 +28,7 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
+  const { role } = getUserInfo() as any;
   const router = useRouter();
   const [error, setError] = useState("");
   const handleLogin = async (values: FieldValues) => {
@@ -38,7 +39,7 @@ const LoginPage = () => {
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         toast.success(res?.message);
-        router.push("/");
+        router.push(`/dashboard/${role}`);
       } else {
         setError(res.message);
         // console.log(res);
@@ -57,7 +58,7 @@ const LoginPage = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-     {/*  <CssBaseline /> */}
+      {/*  <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -70,7 +71,7 @@ const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in With  Flat Share
+          Sign in With Flat Share
         </Typography>
         <Box sx={{ mt: 2 }}>
           <Form
@@ -81,39 +82,40 @@ const LoginPage = () => {
               password: "",
             }}
           >
-              <Input
+            <Input
               required
               fullWidth
               label="Email Address"
               name="email"
               type="email"
             />
-            <Input sx={{mt:'15px', mb:'20px'}}
+            <Input
+              sx={{ mt: "15px", mb: "20px" }}
               required
               fullWidth
               name="password"
               label="Password"
               type="password"
-            /> 
-          {/*   <FormControlLabel
+            />
+            {/*   <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-                 {error && (
-            <Box>
-              <Typography
-                sx={{
-                  backgroundColor: "red",
-                  padding: "1px",
-                  borderRadius: "2px",
-                  color: "white",
-                  marginTop: "5px",
-                }}
-              >
-                {error}
-              </Typography>
-            </Box>
-          )}
+            {error && (
+              <Box>
+                <Typography
+                  sx={{
+                    backgroundColor: "red",
+                    padding: "1px",
+                    borderRadius: "2px",
+                    color: "white",
+                    marginTop: "5px",
+                  }}
+                >
+                  {error}
+                </Typography>
+              </Box>
+            )}
             <Button
               type="submit"
               fullWidth
@@ -124,11 +126,16 @@ const LoginPage = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-              <small>  <Link href="#">Forgot password?</Link></small>
+                <small>
+                  {" "}
+                  <Link href="#">Forgot password?</Link>
+                </small>
               </Grid>
               <Grid item>
-               <small> {"Don't have an account? "}</small>
-                <small  style={{color:'purple'}}><Link href="/register">{"Sign Up"}</Link></small>
+                <small> {"Don't have an account? "}</small>
+                <small style={{ color: "purple" }}>
+                  <Link href="/register">{"Sign Up"}</Link>
+                </small>
               </Grid>
             </Grid>
           </Form>
