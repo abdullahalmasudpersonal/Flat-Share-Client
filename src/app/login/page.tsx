@@ -21,6 +21,7 @@ import { FieldValues } from "react-hook-form";
 import Form from "@/components/Forms/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "@/components/Forms/Input";
+import { decodedToken } from "@/utils/jwt";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email!"),
@@ -28,18 +29,17 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  const { role } = getUserInfo() as any;
+  const user = getUserInfo() as any;
   const router = useRouter();
   const [error, setError] = useState("");
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await userLogin(values);
-      console.log(res, values);
 
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         toast.success(res?.message);
-        router.push(`/dashboard/${role}`);
+        router.push(`/dashboard`);
       } else {
         setError(res.message);
         // console.log(res);

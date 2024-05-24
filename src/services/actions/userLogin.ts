@@ -20,11 +20,10 @@ export const userLogin = async (data: FieldValues) => {
 
   //  const passwordChangeRequired = userInfo.data.needPasswordChange;
 
-  if (userInfo.data.accessToken) {
-    setAccessToken(userInfo.data.accessToken, {
-      redirect: "/dashboard",
-      // passwordChangeRequired,
-    });
-  }
+  // if (userInfo.data.accessToken) {
+  //   setAccessToken(userInfo.data.accessToken, {
+  //     redirect: `/dashboard/${userInfo.role}`,
+  //   });
+  // }
   return userInfo;
 };

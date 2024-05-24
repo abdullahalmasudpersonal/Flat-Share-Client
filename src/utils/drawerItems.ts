@@ -80,13 +80,13 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
     case USER_ROLE.SELLER:
       roleManues.push(
         {
-          title: "Appointments",
-          path: `${role}/appointments`,
+          title: "Dashboard",
+          path: `${role}`,
           icon: DashboardIcon,
         },
         {
-          title: "Prescriptions",
-          path: `${role}/prescriptions`,
+          title: "Post Ad",
+          path: `${role}/post-ad`,
           icon: DashboardIcon,
         },
         {
