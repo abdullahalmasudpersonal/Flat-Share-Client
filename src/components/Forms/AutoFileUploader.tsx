@@ -9,7 +9,7 @@ interface IFileUploadButton {
   accept?: string;
   sx?: SxProps;
   icon?: ReactElement<SvgIconProps>;
-  variant?: "contained" | "text";
+  variant?: "contained" | "text" | "outlined";
   onFileUpload: (file: File) => void;
 }
 
@@ -19,7 +19,7 @@ const AutoFileUploader = ({
   accept,
   sx,
   icon,
-  variant = "contained",
+  variant = "outlined",
   onFileUpload,
 }: IFileUploadButton) => {
   return (

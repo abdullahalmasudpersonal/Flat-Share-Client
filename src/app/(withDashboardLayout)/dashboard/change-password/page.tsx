@@ -92,7 +92,7 @@ const ChangePassword = () => {
           </Grid>
         </Grid>
 
-        <Button type="submit" sx={{ width: "100%", my: 2 }}>
+        <Button variant="contained" type="submit" sx={{ width: "100%", my: 2 }}>
           change Password
         </Button>
       </Form>

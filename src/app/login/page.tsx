@@ -2,9 +2,6 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -21,7 +18,6 @@ import { FieldValues } from "react-hook-form";
 import Form from "@/components/Forms/Form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "@/components/Forms/Input";
-import { decodedToken } from "@/utils/jwt";
 
 export const validationSchema = z.object({
   email: z.string().email("Please enter a valid email!"),
@@ -47,13 +43,6 @@ const LoginPage = () => {
     } catch (err: any) {
       console.log(err.message);
     }
-    // event.preventDefault();
-    // const res = await userLogin(event);
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
   };
 
   return (
