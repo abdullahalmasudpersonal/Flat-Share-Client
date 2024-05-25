@@ -85,7 +85,7 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
                   noWrap
                   component="div"
                 >
-                  Welcome to PH Health Care
+                  Welcome to Flat Share
                 </Typography>
               </Box>
               <Stack direction="row" gap={3}>
