@@ -11,6 +11,9 @@ import AutoFileUploader from "@/components/Forms/AutoFileUploader";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ProfileUpdateModal from "./components/ProfileUpdateModal";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import Link from "next/link";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import profileIcon from "@/assets/profile/person-icon.png";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,12 +51,21 @@ const Profile = () => {
                 borderRadius: 1,
               }}
             >
-              <Image
-                height={600}
-                width={600}
-                src={data?.profilePhoto}
-                alt="User Photo"
-              />
+              {data?.profiePhoto ? (
+                <Image
+                  height={600}
+                  width={600}
+                  src={data?.profilePhoto}
+                  alt="User Photo"
+                />
+              ) : (
+                <Image
+                  height={600}
+                  width={600}
+                  src={profileIcon}
+                  alt="User Photo"
+                />
+              )}
             </Box>
             <Box my={3} display="flex" justifyContent="center">
               {updating ? (
@@ -76,7 +88,21 @@ const Profile = () => {
             >
               Edit Profile
             </Button>
+
+            <Box my={3}>
+              <Link href="/dashboard/change-password">
+                <Button
+                  variant="contained"
+                  fullWidth
+                  endIcon={<LockResetIcon />}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Change password
+                </Button>
+              </Link>
+            </Box>
           </Grid>
+
           <Grid xs={12} md={8}>
             <UserProfileInfo data={data} />
           </Grid>

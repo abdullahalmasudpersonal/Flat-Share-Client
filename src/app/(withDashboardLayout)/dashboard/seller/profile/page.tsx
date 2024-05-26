@@ -11,6 +11,9 @@ import AutoFileUploader from "@/components/Forms/AutoFileUploader";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ProfileUpdateModal from "./components/ProfileUpdateModal";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import Link from "next/link";
+import profileIcon from "@/assets/profile/person-icon.png";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +41,7 @@ const Profile = () => {
         id={data?.id}
       />
       <Container sx={{ mt: 4 }}>
-        <Grid container spacing={4}>
+        <Grid container>
           <Grid xs={12} md={4}>
             <Box
               sx={{
@@ -46,14 +49,24 @@ const Profile = () => {
                 width: "100%",
                 overflow: "hidden",
                 borderRadius: 1,
+                border: "2px solid gray",
               }}
             >
-              <Image
-                height={600}
-                width={600}
-                src={data?.profilePhoto}
-                alt="User Photo"
-              />
+              {data?.profiePhoto ? (
+                <Image
+                  height={600}
+                  width={600}
+                  src={profileIcon}
+                  alt="User Photo"
+                />
+              ) : (
+                <Image
+                  height={600}
+                  width={600}
+                  src={data?.profilePhoto}
+                  alt="User Photo"
+                />
+              )}
             </Box>
             <Box my={3} display="flex" justifyContent="center">
               {updating ? (
@@ -76,6 +89,18 @@ const Profile = () => {
             >
               Edit Profile
             </Button>
+            <Box my={3}>
+              <Link href="/dashboard/change-password">
+                <Button
+                  variant="contained"
+                  fullWidth
+                  endIcon={<LockResetIcon />}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Change password
+                </Button>
+              </Link>
+            </Box>
           </Grid>
           <Grid xs={12} md={8}>
             <UserProfileInfo data={data} />

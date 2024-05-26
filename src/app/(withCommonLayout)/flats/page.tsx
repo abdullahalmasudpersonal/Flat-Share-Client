@@ -1,34 +1,33 @@
-// "use server"
-import { alpha, Box, Container, Stack } from '@mui/material';
-import React, { useState } from 'react';
-import FlatCard from './components/FlatCard';
-import { useGetAllFlatQuery } from '@/redux/api/flatApi';
+"use client";
+import { alpha, Box, Container, Stack } from "@mui/material";
+import React, { useState } from "react";
+import FlatCard from "./components/FlatCard";
+import { useGetAllFlatQuery } from "@/redux/api/flatApi";
 
-const FlatsPage = async () => {
-    // const query: Record<string, any> = {};
+const FlatsPage = () => {
+  // const query: Record<string, any> = {};
 
-    // const [page, setPage] = useState(1);
-    // const [limit, setLimit] = useState(5);
+  // const [page, setPage] = useState(1);
+  // const [limit, setLimit] = useState(5);
 
-    // query["page"] = page;
-    // query["limit"] = limit;
-    // const { data, isLoading } = useGetAllFlatQuery({ ...query });
+  // query["page"] = page;
+  // query["limit"] = limit;
+  // const { data, isLoading } = useGetAllFlatQuery({ ...query });
 
-    // const flats = data?.flat;
-    // const meta = data?.meta;
+  // const flats = data?.flat;
+  // const meta = data?.meta;
 
-    //console.log(doctors);
+  //console.log(doctors);
 
-    //const docto = flats.map((doctor: any) => doctor.profilePhoto);
-    // const res = await fetch('http://localhost:5000/api/v1/flat');
-    // const flats: Flat[] = await res.json();
+  //const docto = flats.map((doctor: any) => doctor.profilePhoto);
+  // const res = await fetch('http://localhost:5000/api/v1/flat');
+  // const flats: Flat[] = await res.json();
 
-    return (
-     <>
-     
-<FlatCard/>
+  return (
+    <>
+      <FlatCard />
 
-     {/*   
+      {/*   
       <Box
             id="hero"
             sx={(theme) => ({
@@ -55,8 +54,8 @@ const FlatsPage = async () => {
                 </Stack>
             </Container>
         </Box> */}
-     </>
-    );
+    </>
+  );
 };
 
 export default FlatsPage;
