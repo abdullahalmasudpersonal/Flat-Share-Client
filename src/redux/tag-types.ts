@@ -1,5 +1,4 @@
 export enum tagTypes {
-  specialties = "specialties",
   admin = "admin",
   user = "user",
   review = "review",

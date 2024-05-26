@@ -1,7 +1,7 @@
 import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
-export const postFlatApi = baseApi.injectEndpoints({
+export const flatApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     postFlat: build.mutation({
       query: (postData) => ({
@@ -11,7 +11,16 @@ export const postFlatApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.postFlat],
     }),
+    getAllFlat: build.query({
+      query: () => {
+        return {
+          url: "/flat",
+          method: "GET",
+        };
+      },
+      providesTags:[tagTypes.postFlat]
+    }),
   }),
 });
 
-export const { usePostFlatMutation } = postFlatApi;
+export const { usePostFlatMutation,useGetAllFlatQuery } = flatApi;

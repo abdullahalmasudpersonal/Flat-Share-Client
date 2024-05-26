@@ -12,7 +12,7 @@ import Form from "@/components/Forms/Form";
 import Input from "@/components/Forms/Input";
 import AutoFileUploader from "@/components/Forms/AutoFileUploader";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { usePostFlatMutation } from "@/redux/api/postFlatApi";
+import { usePostFlatMutation } from "@/redux/api/flatApi";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { getUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
