@@ -1,20 +1,24 @@
 "use client";
-import { Box, Button, Container, Grid } from "@mui/material";
-import React, { useState } from "react";
-import UserProfileInfo from "./components/UserProfileInfo";
 import {
   useGetMYProfileQuery,
   useUpdateMYProfileMutation,
 } from "@/redux/api/myProfile";
+import { Box, Button, Container } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Image from "next/image";
-import AutoFileUploader from "@/components/Forms/AutoFileUploader";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import ProfileUpdateModal from "./components/ProfileUpdateModal";
+import React, { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import profileIcon from "@/assets/profile/person-icon.png";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import AutoFileUploader from "@/components/Forms/AutoFileUploader";
+import ProfileUpdateModal from "./components/ProfileUpdateModal";
+import UserProfileInfo from "./components/UserProfileInfo";
+import Link from "next/link";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import profileAltLogo from "@/assets/profile/person-icon.png";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { data, isLoading } = useGetMYProfileQuery(undefined);
   const [updateMYProfile, { isLoading: updating }] =
     useUpdateMYProfileMutation();
@@ -47,20 +51,22 @@ const Profile = () => {
                 width: "100%",
                 overflow: "hidden",
                 borderRadius: 1,
+                boxShadow:
+                  "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
               }}
             >
-              {data?.profiePhoto ? (
+              {data?.profilePhoto ? (
                 <Image
-                  height={600}
-                  width={600}
+                  height={300}
+                  width={400}
                   src={data?.profilePhoto}
                   alt="User Photo"
                 />
               ) : (
                 <Image
-                  height={600}
-                  width={600}
-                  src={profileIcon}
+                  height={300}
+                  width={400}
+                  src={profileAltLogo}
                   alt="User Photo"
                 />
               )}
@@ -78,6 +84,7 @@ const Profile = () => {
                 />
               )}
             </Box>
+
             <Button
               variant="contained"
               fullWidth
@@ -86,6 +93,18 @@ const Profile = () => {
             >
               Edit Profile
             </Button>
+            <Box my={3}>
+              <Link href="/dashboard/change-password">
+                <Button
+                  variant="contained"
+                  fullWidth
+                  endIcon={<LockResetIcon />}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Change password
+                </Button>
+              </Link>
+            </Box>
           </Grid>
           <Grid xs={12} md={8}>
             <UserProfileInfo data={data} />

@@ -4,28 +4,31 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
 const AuthButton = () => {
-    const userInfo = getUserInfo();
-    const router = useRouter();
+  const userInfo = getUserInfo();
+  const router = useRouter();
 
-    const handleLogOut = () => {
-        logoutUser(router);
-    }
-    return (
+  const handleLogOut = () => {
+    logoutUser(router);
+  };
+  return (
+    <>
+      {userInfo?.userId ? (
         <>
-            {
-                userInfo?.userId ?
-                    <Button onClick={handleLogOut} color="error">
-                        logout
-                    </Button>
-                    :
-                    <Button component={Link} href="/login">
-                        Login
-                    </Button>
-            }
+          <Link href="/dashboard">
+            <Button color="primary">Dashboard</Button>
+          </Link>
+          <Button onClick={handleLogOut} color="error">
+            logout
+          </Button>
         </>
-    );
+      ) : (
+        <Button component={Link} href="/login">
+          Login
+        </Button>
+      )}
+    </>
+  );
 };
 
 export default AuthButton;
