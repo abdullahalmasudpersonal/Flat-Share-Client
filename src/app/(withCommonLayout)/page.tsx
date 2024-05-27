@@ -4,7 +4,10 @@ import Searching from "@/components/UI/HomePage/Searching/Searching";
 import Testimonials from "@/components/UI/HomePage/Testimonials/Testimonials";
 import CssBaseline from "@mui/material/CssBaseline";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const res = await fetch("http://localhost:5000/api/v1/flat");
+  const { data: flats } = await res.json();
+ // console.log(flats);
   return (
     <>
       <CssBaseline />
