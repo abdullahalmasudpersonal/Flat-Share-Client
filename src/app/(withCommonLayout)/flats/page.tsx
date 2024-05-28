@@ -1,10 +1,14 @@
-"use client";
-import { alpha, Box, Container, Stack } from "@mui/material";
-import React, { useState } from "react";
+//"use client";
+import { alpha, Box, Card, Container, Stack } from "@mui/material";
+import React from "react";
 import FlatCard from "./components/FlatCard";
 import { useGetAllFlatQuery } from "@/redux/api/flatApi";
+import CssBaseline from "@mui/material/CssBaseline";
 
-const FlatsPage = () => {
+const FlatsPage = async () => {
+  const res = await fetch("http://localhost:5000/api/v1/flat?page=1&limit=10");
+  const { data: flats } = await res.json();
+
   // const query: Record<string, any> = {};
 
   // const [page, setPage] = useState(1);
@@ -24,8 +28,15 @@ const FlatsPage = () => {
   // const flats: Flat[] = await res.json();
 
   return (
-    <>
-      <FlatCard />
+    <Box sx={{ margin: "120px auto " }}>
+      <Container>
+        <CssBaseline />
+        {flats.map((item: any) => (
+          <Card key={item.id}>
+            <FlatCard />
+          </Card>
+        ))}
+      </Container>
 
       {/*   
       <Box
@@ -54,7 +65,7 @@ const FlatsPage = () => {
                 </Stack>
             </Container>
         </Box> */}
-    </>
+    </Box>
   );
 };
 

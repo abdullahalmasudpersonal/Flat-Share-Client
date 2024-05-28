@@ -98,7 +98,9 @@ const Navber = () => {
                 px: 0,
               }}
             >
-              <Image src={logo} style={logoStyle} alt="logo of sitemark" />
+              <Link href="/">
+                <Image src={logo} style={logoStyle} alt="logo of sitemark" />
+              </Link>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <MenuItem
                   onClick={() => scrollToSection("features")}
@@ -120,9 +122,11 @@ const Navber = () => {
                   onClick={() => scrollToSection("highlights")}
                   sx={{ py: "6px", px: "12px" }}
                 >
-                  <Typography variant="body2" color="text.primary">
-                    Highlights
-                  </Typography>
+                  <Link href="/flats">
+                    <Typography variant="body2" color="text.primary">
+                      Flats
+                    </Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("pricing")}
