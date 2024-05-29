@@ -17,6 +17,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, Button, Container, Grid } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
+import Link from "next/link";
 
 const HomeFlat = async () => {
   const res = await fetch("http://localhost:5000/api/v1/flat?page=1&limit=03");
@@ -27,8 +28,8 @@ const HomeFlat = async () => {
       sx={{
         my: 10,
         py: 30,
-        backgroundColor: "rgba(20, 20, 20, 0.1)",
-        clipPath: "polygon(0 0, 100% 25%, 100% 100%, 0 75%)",
+        // backgroundColor: "rgba(20, 20, 20, 0.1)",
+        // clipPath: "polygon(0 0, 100% 25%, 100% 100%, 0 75%)",
       }}
     >
       <Box sx={{ textAlign: "center" }}>
@@ -95,7 +96,9 @@ const HomeFlat = async () => {
                   </Box>
 
                   <Box>
-                    <Button variant="contained">Details</Button>
+                    <Link href={`/flats/${item.id}`}>
+                      <Button variant="contained">Details</Button>
+                    </Link>
                   </Box>
                 </Box>
               </Card>

@@ -18,9 +18,21 @@ export const flatApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags:[tagTypes.postFlat]
+      providesTags: [tagTypes.postFlat],
+    }),
+
+    getSingleFlat: build.query({
+      query: (id: string | string[] | undefined) => ({
+        url: `/flat/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.postFlat],
     }),
   }),
 });
 
-export const { usePostFlatMutation,useGetAllFlatQuery } = flatApi;
+export const {
+  usePostFlatMutation,
+  useGetAllFlatQuery,
+  useGetSingleFlatQuery,
+} = flatApi;
