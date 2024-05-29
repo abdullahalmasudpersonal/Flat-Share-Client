@@ -17,6 +17,7 @@ import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
 import FlatAccordian from "../components/FlatAccordion";
+import Link from "next/link";
 
 type TParams = {
   params: {
@@ -116,7 +117,9 @@ const FlatDetailPage = ({ params }: TParams) => {
                   </Typography>
 
                   <Box mt="20px">
-                    <Button variant="contained">Booking Request</Button>
+                    <Link href={`/booking/${id}`}>
+                      <Button variant="contained">Booking Request</Button>
+                    </Link>
                   </Box>
                   <Box mt="20px">
                     <FlatAccordian data={data} />
