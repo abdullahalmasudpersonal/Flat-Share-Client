@@ -40,7 +40,6 @@ const PostAd = () => {
     console.log(values);
 
     const data = modifyPayload(values);
-    console.log("modify", data);
 
     try {
       const res = await postFlat(data).unwrap();
