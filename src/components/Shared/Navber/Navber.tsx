@@ -99,12 +99,12 @@ const Navber = () => {
               }}
             >
               <Link href="/">
-                <Image src={logo} style={logoStyle} alt="logo of sitemark" />
+                <Image src={logo} style={logoStyle} alt="logo of Flat Share" />
               </Link>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <MenuItem
                   onClick={() => scrollToSection("features")}
-                  sx={{ py: "6px", px: "12px" }}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Features
@@ -112,7 +112,7 @@ const Navber = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("testimonials")}
-                  sx={{ py: "6px", px: "12px" }}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Testimonials
@@ -120,7 +120,7 @@ const Navber = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("highlights")}
-                  sx={{ py: "6px", px: "12px" }}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Link href="/flats">
                     <Typography variant="body2" color="text.primary">
@@ -130,7 +130,7 @@ const Navber = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("pricing")}
-                  sx={{ py: "6px", px: "12px" }}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Pricing
@@ -138,11 +138,13 @@ const Navber = () => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => scrollToSection("faq")}
-                  sx={{ py: "6px", px: "12px" }}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
-                  <Typography variant="body2" color="text.primary">
-                    FAQ
-                  </Typography>
+                  <Link href="/about-us">
+                    <Typography variant="body2" color="text.primary">
+                      About Us
+                    </Typography>
+                  </Link>
                 </MenuItem>
               </Box>
             </Box>
@@ -156,27 +158,6 @@ const Navber = () => {
               {/*  <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
 
               <AuthButton />
-              {/*  {userInfo?.userId ? (
-                <Button color="primary" variant="text" size="small">
-                  Sign Out
-                </Button>
-              ) : (
-                <Box>
-                  <Link href="/login">
-                    <Button color="primary" variant="text" size="small">
-                      Sign in
-                    </Button>
-                  </Link>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    size="small"
-                    href="/material-ui/getting-started/templates/sign-up/"
-                  >
-                    Sign up
-                  </Button>
-                </Box>
-              )} */}
             </Box>
             <Box sx={{ display: { sm: "", md: "none" } }}>
               <Button

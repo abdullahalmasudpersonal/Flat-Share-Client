@@ -1,5 +1,14 @@
 //"use client";
-import { alpha, Box, Button, Card, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  alpha,
+  Box,
+  Button,
+  Card,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import FlatCard from "./components/FlatCard";
 import { useGetAllFlatQuery } from "@/redux/api/flatApi";
@@ -39,7 +48,7 @@ const FlatsPage = async () => {
   return (
     <>
       <Box sx={{ textAlign: "center" }}>
-        <Container sx={{ margin: "30px auto" }}>
+        <Container sx={{ margin: "130px auto" }}>
           <Grid container spacing={2}>
             {flats?.map((item: any) => (
               <Card

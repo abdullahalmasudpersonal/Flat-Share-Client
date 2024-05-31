@@ -16,14 +16,27 @@ const AuthButton = () => {
       {userInfo?.userId ? (
         <>
           <Link href="/dashboard">
-            <Button color="primary">Dashboard</Button>
+            <Button
+              sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
+              color="primary"
+            >
+              Dashboard
+            </Button>
           </Link>
-          <Button onClick={handleLogOut} color="error">
+          <Button
+            sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
+            onClick={handleLogOut}
+            color="error"
+          >
             logout
           </Button>
         </>
       ) : (
-        <Button component={Link} href="/login">
+        <Button
+          sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
+          component={Link}
+          href="/login"
+        >
           Login
         </Button>
       )}

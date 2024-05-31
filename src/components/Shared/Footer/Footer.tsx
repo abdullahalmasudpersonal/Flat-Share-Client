@@ -197,7 +197,7 @@ const Footer = () => {
           >
             <IconButton
               color="inherit"
-              href="https://github.com/mui"
+              href="https://github.com"
               aria-label="GitHub"
               sx={{ alignSelf: "center" }}
             >
@@ -205,7 +205,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
-              href="https://twitter.com/MaterialUI"
+              href="https://twitter.com"
               aria-label="X"
               sx={{ alignSelf: "center" }}
             >
@@ -213,7 +213,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
-              href="https://www.linkedin.com/company/mui/"
+              href="https://www.linkedin.com"
               aria-label="LinkedIn"
               sx={{ alignSelf: "center" }}
             >
