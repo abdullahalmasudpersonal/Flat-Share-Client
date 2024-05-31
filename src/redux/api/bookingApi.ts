@@ -9,8 +9,17 @@ export const bookingApi = baseApi.injectEndpoints({
         method: "POST",
         data: bookingData,
       }),
+      invalidatesTags: [tagTypes.bookingFlat],
+    }),
+    getBookingFlat: build.query({
+      query: () => ({
+        url: "/booking",
+        method: "GET",
+      }),
+      providesTags: [tagTypes.bookingFlat],
     }),
   }),
 });
 
-export const { useCreateBookingFlatMutation } = bookingApi;
+export const { useCreateBookingFlatMutation, useGetBookingFlatQuery } =
+  bookingApi;

@@ -16,9 +16,11 @@ import { usePostFlatMutation } from "@/redux/api/flatApi";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { getUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const PostAd = () => {
   const { userId } = getUserInfo();
+  const router = useRouter();
   ///const { data, isLoading } = useGetMYProfileQuery(undefined);
   const [postFlat, { isLoading: updating }] = usePostFlatMutation();
   const [rest, setReset] = React.useState();
@@ -45,6 +47,7 @@ const PostAd = () => {
       const res = await postFlat(data).unwrap();
       if (res?.id) {
         toast.success("Flat created successfully!!!");
+        router.push("/dashboard/seller/my-ad");
       }
     } catch (err: any) {
       console.error(err);

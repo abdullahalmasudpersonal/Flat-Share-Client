@@ -33,3 +33,16 @@ export type IGenericErrorResponse = {
   message: string;
   errorMessages: IGenericErrorMessage[];
 };
+
+export enum BookingStatus {
+  panding = "PENDING",
+  booked = "BOOKED",
+  rejected = "REJECTED",
+}
+
+export enum UserStatus {
+  blocked = "BLOCKED",
+  active = "ACTIVE",
+  pending = "PENDING",
+  deleted = "DELETED",
+}

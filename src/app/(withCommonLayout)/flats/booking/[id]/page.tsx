@@ -5,7 +5,14 @@ import { useCreateBookingFlatMutation } from "@/redux/api/bookingApi";
 
 import { useGetMYProfileQuery } from "@/redux/api/myProfile";
 import { getUserInfo, isLogedIn } from "@/services/auth.services";
-import { Box, Button, Checkbox, Container, FormControlLabel, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Typography,
+} from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -30,9 +37,8 @@ const BookingPage = ({ params }: TParams) => {
   const [bookingFlat] = useCreateBookingFlatMutation();
   const { data: userData, isLoading } = useGetMYProfileQuery(undefined);
 
-  const { name, email, flatId } = userData as UserData ?? '';
+  const { name, email, flatId } = (userData as UserData) ?? "";
   //console.log(name, email);
-
 
   const router = useRouter();
   if (!isLogedIn()) {
@@ -42,54 +48,77 @@ const BookingPage = ({ params }: TParams) => {
   const handleRequest = async (values: FieldValues) => {
     const bookingData = {
       userId: userId,
-      flatId: id
-    }
+      flatId: id,
+    };
+
     try {
       const res = await bookingFlat(bookingData).unwrap();
-      if (res?.id) {
+      console.log(res);
+      /*      if (res?.id) {
         toast.success("Flat booking request Successfully!!!");
-        router.push(`/dashboard/${role}/my-requests`);
-      }
+         router.push(`/dashboard/${role}/my-requests`);
+      } */
     } catch (err: any) {
       console.error(err);
     }
-  }
+  };
 
   return (
     <>
       <Container>
-        <Box my='120px' display='flex' justifyContent='center'>
-          {
-            isLoading ?
-              "Loading..."
-              :
-              <>
-                <Box border='1px solid gray' padding='20px' width='350px' height=''>
-                  <Typography textAlign='center' fontWeight='bold' fontSize='20px' mb='15px'>Booking Request</Typography>
-                  <Form onSubmit={handleRequest} defaultValues={{
-                    name: 'Abdullah',
-                    email: 'abdullah@gmail.com'
-                  }} >
-                    <Input
-                      sx={{ marginBottom: '15px' }}
-                      required
-                      fullWidth
-                      label="Name"
-                      name="name" />
-                    <Input
-                      sx={{ marginBottom: '15px' }}
-                      required
-                      fullWidth
-                      label="Email"
-                      name="email" />
-                    <FormControlLabel control={<Checkbox />} label="Terms and conditions" />
-                    <Box mt='15px'>
-                      <Button type="submit" fullWidth variant="contained" >Submit Request</Button>
-                    </Box>
-                  </Form>
-                </Box>
-              </>
-          }
+        <Box my="120px" display="flex" justifyContent="center">
+          {isLoading ? (
+            "Loading..."
+          ) : (
+            <>
+              <Box
+                border="1px solid gray"
+                padding="20px"
+                width="350px"
+                height=""
+              >
+                <Typography
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="20px"
+                  mb="15px"
+                >
+                  Booking Request
+                </Typography>
+                <Form
+                  onSubmit={handleRequest}
+                  defaultValues={{
+                    name: "Abdullah",
+                    email: "abdullah@gmail.com",
+                  }}
+                >
+                  <Input
+                    sx={{ marginBottom: "15px" }}
+                    required
+                    fullWidth
+                    label="Name"
+                    name="name"
+                  />
+                  <Input
+                    sx={{ marginBottom: "15px" }}
+                    required
+                    fullWidth
+                    label="Email"
+                    name="email"
+                  />
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Terms and conditions"
+                  />
+                  <Box mt="15px">
+                    <Button type="submit" fullWidth variant="contained">
+                      Submit Request
+                    </Button>
+                  </Box>
+                </Form>
+              </Box>
+            </>
+          )}
         </Box>
       </Container>
     </>
