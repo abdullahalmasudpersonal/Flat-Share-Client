@@ -17,7 +17,7 @@ import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
-import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
+import { formatLocalTime } from "@/components/shared/Date&Time/Date";
 
 type TParams = {
   params: {
