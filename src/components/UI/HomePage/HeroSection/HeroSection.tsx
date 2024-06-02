@@ -5,10 +5,10 @@ import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -42,6 +42,7 @@ const HeroSection = () => {
               alignSelf: "center",
               textAlign: "center",
               fontSize: "clamp(3.5rem, 10vw, 4rem)",
+              fontFamily: "cursive",
             }}
           >
             Find Your Flat-mate&nbsp;
@@ -49,6 +50,7 @@ const HeroSection = () => {
               component="span"
               variant="h1"
               sx={{
+                fontFamily: "cursive",
                 fontSize: "clamp(3.5rem, 10vw, 4rem)",
                 color: (theme) =>
                   theme.palette.mode === "light"
@@ -62,12 +64,13 @@ const HeroSection = () => {
           <Typography
             textAlign="center"
             color="text.secondary"
-            sx={{ alignSelf: "center", width: { sm: "100%", md: "80%" } }}
+            sx={{
+              alignSelf: "center",
+              width: { sm: "100%", md: "80%", fontFamily: "cursive" },
+            }}
           >
-            <span>
-              The BD's Number 1 Flatshare Site. Elevate your experience with
-              top-tier features and services.
-            </span>
+            The BD's Number 1 Flatshare Site. Elevate your experience with
+            top-tier features and services.
           </Typography>
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -88,9 +91,11 @@ const HeroSection = () => {
                 "aria-label": "Enter your email address",
               }}
             /> */}
-            <Button variant="contained" color="primary">
-              Share Your Flat
-            </Button>
+            <Link href={`/dashboard/seller/post-ad`}>
+              <Button variant="contained" color="primary">
+                Share Your Flat
+              </Button>
+            </Link>
           </Stack>
           {/* <Typography
             variant="caption"

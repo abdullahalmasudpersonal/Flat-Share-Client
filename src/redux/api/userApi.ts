@@ -25,6 +25,15 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
 
+    updateSingleSellerFormAdmin: build.mutation({
+      query: (data) => ({
+        url: `/user/seller/${data?.id}`,
+        method: "PATCH",
+        data: data?.body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
+
     getAllBuyer: build.query({
       query: () => ({
         url: "/user/buyer",
@@ -56,6 +65,7 @@ export const {
   useGetSingleUserQuery,
   useGetAllSellerQuery,
   useGetSingleSellerQuery,
+  useUpdateSingleSellerFormAdminMutation,
   useGetAllBuyerQuery,
   useGetSingleBuyerQuery,
   useUpdateSingleBuyerFormAdminMutation,
