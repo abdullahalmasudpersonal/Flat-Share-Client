@@ -70,9 +70,10 @@ const DataTable = (data: any) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>Flat Name</TableCell>
+            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Name</TableCell>
             <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Flat Name</TableCell>
             <TableCell align="right">Contact Number</TableCell>
             <TableCell align="right">Address</TableCell>
           </TableRow>
@@ -84,11 +85,11 @@ const DataTable = (data: any) => {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {data?.user?.username}
+                {data?.flat?.flatName}
               </TableCell>
+              <TableCell align="right">{data?.status}</TableCell>
+              <TableCell align="right">{data?.user?.username}</TableCell>
               <TableCell align="right">{data?.user?.email}</TableCell>
-              <TableCell align="right">{data?.flat?.flatName}</TableCell>
-              <TableCell align="right">{data?.carbs}</TableCell>
               <TableCell align="right">{data?.protein}</TableCell>
             </TableRow>
           ))}

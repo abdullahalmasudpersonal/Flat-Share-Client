@@ -56,6 +56,12 @@ const UserProfileInfo = ({ data }: any) => {
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
+            Status
+          </Typography>
+          <Typography>{data?.status}</Typography>
+        </StyledInformationBox>
+        <StyledInformationBox>
+          <Typography color="secondary" variant="caption">
             Bio
           </Typography>
           <Typography>{data?.userProfile?.bio}</Typography>

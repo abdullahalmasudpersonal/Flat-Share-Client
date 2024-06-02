@@ -21,6 +21,13 @@ export const flatApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.postFlat],
     }),
 
+    getSellerFlats: build.query({
+      query: () => ({
+        url: `/flat/seller`,
+        method: "GET",
+      }),
+    }),
+
     getSingleFlat: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/flat/${id}`,
@@ -34,5 +41,6 @@ export const flatApi = baseApi.injectEndpoints({
 export const {
   usePostFlatMutation,
   useGetAllFlatQuery,
+  useGetSellerFlatsQuery,
   useGetSingleFlatQuery,
 } = flatApi;
