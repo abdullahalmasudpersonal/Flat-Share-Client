@@ -18,7 +18,7 @@ import { Box, Button, Container, Grid, Tooltip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import Link from "next/link";
-import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import { formatLocalDate } from "@/components/shared/Date&Time/Date";
 
 const HomeFlat = async () => {
   const res = await fetch("http://localhost:5000/api/v1/flat?page=1&limit=03");
@@ -27,7 +27,8 @@ const HomeFlat = async () => {
   return (
     <Box
       sx={{
-        my: 10,
+        mt: 10,
+        mb:1,
         py: 30,
         bgcolor: purple[100],
         clipPath: "polygon(0 0, 100% 27%, 100% 100%, 0 75%)",
