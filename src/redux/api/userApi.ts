@@ -58,6 +58,22 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.user],
     }),
+    getMyUserProfileData: build.query({
+      query: (id: string | string[] | undefined) => ({
+        url: `/user/me/${id}`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
+    updateMyProfile: build.mutation({
+      query: (data) => ({
+        url: "/user/update-my-profile",
+        method: "PATCH",
+        data,
+        contentType: "multipart/form-data",
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -69,4 +85,6 @@ export const {
   useGetAllBuyerQuery,
   useGetSingleBuyerQuery,
   useUpdateSingleBuyerFormAdminMutation,
+  useGetMyUserProfileDataQuery,
+  useUpdateMyProfileMutation,
 } = userApi;

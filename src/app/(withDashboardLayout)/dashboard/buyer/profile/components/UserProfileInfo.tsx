@@ -22,7 +22,7 @@ const UserProfileInfo = ({ data }: any) => {
           <Typography color="secondary" variant="caption">
             Role
           </Typography>
-          <Typography>{data?.role}</Typography>
+          <Typography>{data?.userData?.role}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
@@ -34,13 +34,13 @@ const UserProfileInfo = ({ data }: any) => {
           <Typography color="secondary" variant="caption">
             Username
           </Typography>
-          <Typography>{data?.username}</Typography>
+          <Typography>{data?.userData?.username}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Email
           </Typography>
-          <Typography>{data?.email}</Typography>
+          <Typography>{data?.userData?.email}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
