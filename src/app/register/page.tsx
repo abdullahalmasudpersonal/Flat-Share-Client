@@ -46,6 +46,8 @@ export const defaultValues = {
   email: "",
   password: "",
   role: "",
+  gender: "",
+  contactNumber: "",
   user: {
     name: "",
     profession: "",
@@ -55,15 +57,21 @@ export const defaultValues = {
 
 const RegisterPage = () => {
   const [role, setRole] = useState("");
+  const [gender, setGender] = useState('');
   const router = useRouter();
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChangeRole = (event: SelectChangeEvent) => {
     setRole(event.target.value);
+  };
+  const handleChangeGender = (event: SelectChangeEvent) => {
+    setGender(event.target.value);
   };
 
   const handleRegister = async (values: FieldValues) => {
     values.role = role;
+    values.user.gender = gender;
     const data = modifyPayload(values);
+    console.log(values);
     try {
       const res = await registerUser(data);
       if (res?.data.id) {
@@ -90,6 +98,7 @@ const RegisterPage = () => {
       <Box
         sx={{
           marginTop: 8,
+          marginBottom: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -149,12 +158,36 @@ const RegisterPage = () => {
                 labelId="demo-select-small-label1"
                 value={role}
                 label="Purpose of opening account ?"
-                onChange={handleChange}
+                onChange={handleChangeRole}
               >
                 <MenuItem value="BUYER">BUYER</MenuItem>
                 <MenuItem value="SELLER">SELLER</MenuItem>
               </Select>
             </FormControl>
+            <FormControl sx={{ mb: "20px" }} fullWidth size="small">
+              <InputLabel id="demo-select-small-label2">
+                Gender
+              </InputLabel>
+              <Select
+                required
+                fullWidth
+                labelId="demo-select-small-label2"
+                value={gender}
+                label="Gender"
+                onChange={handleChangeGender}
+              >
+                <MenuItem value="MALE">MALE</MenuItem>
+                <MenuItem value="FEMALE">FEMALE</MenuItem>
+              </Select>
+            </FormControl>
+            <Input
+              sx={{ mb: "20px" }}
+              required
+              fullWidth
+              name="user.contactNumber"
+              label="Contact Number"
+              type="number"
+            />
             <Input
               sx={{ mb: "20px" }}
               required

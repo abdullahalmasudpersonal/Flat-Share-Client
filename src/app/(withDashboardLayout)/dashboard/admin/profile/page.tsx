@@ -22,7 +22,7 @@ const Profile = () => {
   const { data, isLoading } = useGetMYProfileQuery(undefined);
   const [updateMYProfile, { isLoading: updating }] =
     useUpdateMYProfileMutation();
-  console.log("data", data);
+ // console.log("data", data);
 
   const fileUploadHandler = (file: File) => {
     const formData = new FormData();

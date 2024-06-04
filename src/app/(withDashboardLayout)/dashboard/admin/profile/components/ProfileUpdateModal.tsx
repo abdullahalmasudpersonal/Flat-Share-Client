@@ -3,7 +3,7 @@ import Input from "@/components/Forms/Input";
 import FullScreenModal from "@/components/Shared/Modal/FullScreenModal";
 import {
   useGetMyUserProfileDataQuery,
-  useUpdateMyProfileMutation,
+  useUpdateUserProfileDataMutation,
 } from "@/redux/api/userApi";
 import { Button, Grid } from "@mui/material";
 import { FieldValues } from "react-hook-form";
@@ -21,21 +21,19 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
     isSuccess,
   } = useGetMyUserProfileDataQuery(id);
 
-  const [updateMyProfile, { isLoading: updating }] =
-    useUpdateMyProfileMutation();
+  const [updateUserProfileData, { isLoading: updating }] =
+    useUpdateUserProfileDataMutation();
 
   const submitHandler = async (values: FieldValues) => {
     const excludedFields: Array<keyof typeof values> = [
       "id",
       "userId",
-      "name",
-      "bio",
-      "profession",
-      "address",
+      "gender",
       "profilePhoto",
       "isDeleted",
       "createdAt",
       "updatedAt",
+      "user"
     ];
 
     const updatedValues = Object.fromEntries(
@@ -43,10 +41,9 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
         return !excludedFields.includes(key);
       })
     );
-
+    console.log("values", values);
     try {
-      const res = updateMyProfile({ body: updatedValues, id });
-      console.log("res", res);
+      updateUserProfileData({ body: updatedValues, id });
       await refetch();
       setOpen(false);
     } catch (error) {

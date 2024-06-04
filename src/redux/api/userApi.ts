@@ -74,6 +74,14 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.user],
     }),
+    updateUserProfileData: build.mutation({
+      query: (data) => ({
+        url: `/user/${data?.id}`,
+        method: "PATCH",
+        data: data.body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -87,4 +95,5 @@ export const {
   useUpdateSingleBuyerFormAdminMutation,
   useGetMyUserProfileDataQuery,
   useUpdateMyProfileMutation,
+  useUpdateUserProfileDataMutation
 } = userApi;
