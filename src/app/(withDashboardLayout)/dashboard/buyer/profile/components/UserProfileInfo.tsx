@@ -60,6 +60,12 @@ const UserProfileInfo = ({ data }: any) => {
           </Typography>
           <Typography>{data?.bio}</Typography>
         </StyledInformationBox>
+        <StyledInformationBox>
+          <Typography color="secondary" variant="caption">
+            Conact Number
+          </Typography>
+          <Typography>{data?.contactNumber}</Typography>
+        </StyledInformationBox>
       </Stack>
     </>
   );

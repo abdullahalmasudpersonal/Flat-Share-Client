@@ -10,11 +10,11 @@ import React, { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import AutoFileUploader from "@/components/Forms/AutoFileUploader";
-import ProfileUpdateModal from "./components/ProfileUpdateModal";
 import UserProfileInfo from "./components/UserProfileInfo";
 import Link from "next/link";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import profileAltLogo from "@/assets/profile/person-icon.png";
+import ProfileUpdateModal from "./components/ProfileUpdateModal";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
