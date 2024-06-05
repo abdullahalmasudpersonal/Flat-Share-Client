@@ -1,4 +1,4 @@
-//"use client";
+"use client";
 import {
   alpha,
   Box,
@@ -23,34 +23,15 @@ import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Link from "next/link";
 
-const FlatsPage = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/flat?page=1&limit=10");
-  const { data: flats } = await res.json();
-
-  // const query: Record<string, any> = {};
-
-  // const [page, setPage] = useState(1);
-  // const [limit, setLimit] = useState(5);
-
-  // query["page"] = page;
-  // query["limit"] = limit;
-  // const { data, isLoading } = useGetAllFlatQuery({ ...query });
-
-  // const flats = data?.flat;
-  // const meta = data?.meta;
-
-  //console.log(doctors);
-
-  //const docto = flats.map((doctor: any) => doctor.profilePhoto);
-  // const res = await fetch('http://localhost:5000/api/v1/flat');
-  // const flats: Flat[] = await res.json();
+const FlatsPage = () => {
+  const { data: flatData, isLoading } = useGetAllFlatQuery({});
 
   return (
     <>
       <Box sx={{ textAlign: "center" }}>
         <Container sx={{ margin: "130px auto" }}>
           <Grid container spacing={2}>
-            {flats?.map((item: any) => (
+            {flatData?.map((item: any) => (
               <Card
                 key={item.id}
                 sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px" }}

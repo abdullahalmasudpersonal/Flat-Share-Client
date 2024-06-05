@@ -33,18 +33,27 @@ export const userValidationSchema = z.object({
   address: z.string().min(2, "Please enter your address!"),
 });
 
-export const registerValidationSchema = z.object({
-  username: z.string().min(2, "Please enter your username!"),
-  Email: z.string().email("Please enter a valid email!"),
-  password: z.string().min(6, "Please enter password 6 carecter"),
-  role: z.boolean(),
-  user: userValidationSchema,
-});
+export const registerValidationSchema = z
+  .object({
+    username: z.string().min(2, "Please enter your username!"),
+    Email: z.string().email("Please enter a valid email!"),
+    password: z.string().min(6, "Please enter password 6 carecter"),
+    confirmPassword: z.string().min(6, "Please enter password 6 carecter"),
+    role: z.boolean(),
+    user: userValidationSchema,
+  })
+  .refine(({ password, confirmPassword }) => {
+    if (password !== confirmPassword) {
+      throw new Error("Passwords don't match");
+    }
+    return true;
+  });
 
 export const defaultValues = {
   username: "",
   email: "",
   password: "",
+  confirmPassword: "",
   role: "",
   gender: "",
   contactNumber: "",
@@ -57,7 +66,7 @@ export const defaultValues = {
 
 const RegisterPage = () => {
   const [role, setRole] = useState("");
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState("");
   const router = useRouter();
 
   const handleChangeRole = (event: SelectChangeEvent) => {
@@ -114,7 +123,7 @@ const RegisterPage = () => {
         <Box sx={{ mt: 2 }}>
           <Form
             onSubmit={handleRegister}
-            // resolver={zodResolver(registerValidationSchema)}
+            /*   resolver={zodResolver(registerValidationSchema)} */
             defaultValues={{}}
           >
             <Input
@@ -148,6 +157,14 @@ const RegisterPage = () => {
               label="Password"
               type="password"
             />
+            <Input
+              sx={{ mb: "20px" }}
+              required
+              fullWidth
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+            />
             <FormControl sx={{ mb: "20px" }} fullWidth size="small">
               <InputLabel id="demo-select-small-label1">
                 Purpose of opening account ?
@@ -165,9 +182,7 @@ const RegisterPage = () => {
               </Select>
             </FormControl>
             <FormControl sx={{ mb: "20px" }} fullWidth size="small">
-              <InputLabel id="demo-select-small-label2">
-                Gender
-              </InputLabel>
+              <InputLabel id="demo-select-small-label2">Gender</InputLabel>
               <Select
                 required
                 fullWidth

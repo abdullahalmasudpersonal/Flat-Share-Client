@@ -9,7 +9,7 @@ export const flatApi = baseApi.injectEndpoints({
         method: "POST",
         data: postData,
       }),
-      invalidatesTags: [tagTypes.postFlat],
+      invalidatesTags: [tagTypes.flat],
     }),
     getAllFlat: build.query({
       query: () => {
@@ -18,7 +18,7 @@ export const flatApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.postFlat],
+      providesTags: [tagTypes.flat],
     }),
 
     getSellerFlats: build.query({
@@ -26,6 +26,7 @@ export const flatApi = baseApi.injectEndpoints({
         url: `/flat/seller`,
         method: "GET",
       }),
+      providesTags: [tagTypes.flat],
     }),
 
     getSingleFlat: build.query({
@@ -33,7 +34,14 @@ export const flatApi = baseApi.injectEndpoints({
         url: `/flat/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.postFlat],
+      providesTags: [tagTypes.flat],
+    }),
+    deleteSingleFlat: build.mutation({
+      query: (id) => ({
+        url: `/flat/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.flat],
     }),
   }),
 });
@@ -43,4 +51,5 @@ export const {
   useGetAllFlatQuery,
   useGetSellerFlatsQuery,
   useGetSingleFlatQuery,
+  useDeleteSingleFlatMutation,
 } = flatApi;

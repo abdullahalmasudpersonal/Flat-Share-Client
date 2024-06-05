@@ -1,17 +1,10 @@
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import Grid from "@mui/material/Grid";
-import Link from "next/link";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Form from "@/components/Forms/Form";
 import Input from "@/components/Forms/Input";
-import AutoFileUploader from "@/components/Forms/AutoFileUploader";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { usePostFlatMutation } from "@/redux/api/flatApi";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { getUserInfo } from "@/services/auth.services";
@@ -21,16 +14,7 @@ import { useRouter } from "next/navigation";
 const PostAd = () => {
   const { userId } = getUserInfo();
   const router = useRouter();
-  ///const { data, isLoading } = useGetMYProfileQuery(undefined);
   const [postFlat, { isLoading: updating }] = usePostFlatMutation();
-  const [rest, setReset] = React.useState();
-
-  const fileUploadHandler = (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("data", JSON.stringify({}));
-    postFlat(formData);
-  };
 
   const handleSubmit = async (values: FieldValues) => {
     values.userId = userId;
@@ -39,8 +23,6 @@ const PostAd = () => {
     values.totalRooms = Number(values.totalRooms);
     values.rent = Number(values.rent);
     values.advanceAmount = Number(values.advanceAmount);
-    console.log(values);
-
     const data = modifyPayload(values);
 
     try {
@@ -48,9 +30,12 @@ const PostAd = () => {
       if (res?.id) {
         toast.success("Flat created successfully!!!");
         router.push("/dashboard/seller/my-ad");
-      }
+      } else
+        (err: any) => {
+          console.log("errs", err);
+        };
     } catch (err: any) {
-      console.error(err);
+      console.log("catch", err);
     }
   };
   return (
@@ -145,20 +130,6 @@ const PostAd = () => {
             type="number"
             size="small"
           />
-          <Box my={3}>
-            {updating ? (
-              <p>Uploading...</p>
-            ) : (
-              <AutoFileUploader
-                sx={{ width: "100%" }}
-                name="file"
-                label="Choose Your Flat Photo"
-                icon={<CloudUploadIcon />}
-                onFileUpload={fileUploadHandler}
-                variant="text"
-              />
-            )}
-          </Box>
           <Button type="submit" fullWidth variant="contained">
             Post Ad
           </Button>
