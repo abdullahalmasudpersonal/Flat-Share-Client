@@ -27,43 +27,6 @@ import { storeUserInfo } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import { userLogin } from "@/services/actions/userLogin";
 
-export const userValidationSchema = z.object({
-  name: z.string().min(2, "Please enter your name!"),
-  profession: z.string().min(2, "Please enter your profession!"),
-  address: z.string().min(2, "Please enter your address!"),
-});
-
-export const registerValidationSchema = z
-  .object({
-    username: z.string().min(2, "Please enter your username!"),
-    Email: z.string().email("Please enter a valid email!"),
-    password: z.string().min(6, "Please enter password 6 carecter"),
-    confirmPassword: z.string().min(6, "Please enter password 6 carecter"),
-    role: z.boolean(),
-    user: userValidationSchema,
-  })
-  .refine(({ password, confirmPassword }) => {
-    if (password !== confirmPassword) {
-      throw new Error("Passwords don't match");
-    }
-    return true;
-  });
-
-export const defaultValues = {
-  username: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  role: "",
-  gender: "",
-  contactNumber: "",
-  user: {
-    name: "",
-    profession: "",
-    address: "",
-  },
-};
-
 const RegisterPage = () => {
   const [role, setRole] = useState("");
   const [gender, setGender] = useState("");
@@ -93,7 +56,6 @@ const RegisterPage = () => {
         console.log(result);
         if (result?.data?.accessToken) {
           storeUserInfo({ accessToken: result?.data?.accessToken });
-          // toast.success(result?.message);
           router.push("/dashboard");
         }
       }
@@ -121,11 +83,7 @@ const RegisterPage = () => {
         </Typography>
 
         <Box sx={{ mt: 2 }}>
-          <Form
-            onSubmit={handleRegister}
-            /*   resolver={zodResolver(registerValidationSchema)} */
-            defaultValues={{}}
-          >
+          <Form onSubmit={handleRegister}>
             <Input
               sx={{ mb: "20px" }}
               name="user.name"
@@ -155,14 +113,6 @@ const RegisterPage = () => {
               fullWidth
               name="password"
               label="Password"
-              type="password"
-            />
-            <Input
-              sx={{ mb: "20px" }}
-              required
-              fullWidth
-              name="confirmPassword"
-              label="Confirm Password"
               type="password"
             />
             <FormControl sx={{ mb: "20px" }} fullWidth size="small">

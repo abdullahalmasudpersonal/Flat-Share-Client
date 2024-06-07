@@ -8,21 +8,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "next/link";
-import { z } from "zod";
 import { userLogin } from "@/services/actions/userLogin";
-import { getUserInfo, storeUserInfo } from "@/services/auth.services";
+import { storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import Form from "@/components/Forms/Form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "@/components/Forms/Input";
-
-export const validationSchema = z.object({
-  email: z.string().email("Please enter a valid email!"),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
 
 const LoginPage = () => {
   const router = useRouter();
@@ -59,14 +52,7 @@ const LoginPage = () => {
           Sign in With Flat Share
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Form
-            onSubmit={handleLogin}
-            resolver={zodResolver(validationSchema)}
-            defaultValues={{
-              email: "",
-              password: "",
-            }}
-          >
+          <Form onSubmit={handleLogin}>
             <Input
               required
               fullWidth
