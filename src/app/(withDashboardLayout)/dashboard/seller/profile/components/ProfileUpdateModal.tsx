@@ -33,7 +33,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
       "isDeleted",
       "createdAt",
       "updatedAt",
-      "user"
+      "user",
     ];
 
     const updatedValues = Object.fromEntries(
@@ -41,7 +41,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
         return !excludedFields.includes(key);
       })
     );
-    console.log("values", values);
+
     try {
       updateUserProfileData({ body: updatedValues, id });
       await refetch();

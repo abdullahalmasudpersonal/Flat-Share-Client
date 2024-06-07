@@ -46,7 +46,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 export default function FlatAccordian(data: any) {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
-  console.log(data?.data);
   const { description, utilitiesDescription, amenities } = data?.data || {};
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -87,7 +86,7 @@ export default function FlatAccordian(data: any) {
         <AccordionDetails>
           <Typography>{amenities}</Typography>
         </AccordionDetails>
-      </Accordion> 
+      </Accordion>
     </>
   );
 }

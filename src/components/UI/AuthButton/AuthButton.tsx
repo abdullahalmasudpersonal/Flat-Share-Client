@@ -1,6 +1,6 @@
 import { logoutUser } from "@/services/actions/logoutUser";
 import { getUserInfo } from "@/services/auth.services";
-import { Button } from "@mui/material";
+import { Button, MenuItem, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -15,30 +15,33 @@ const AuthButton = () => {
     <>
       {userInfo?.userId ? (
         <>
-          <Link href="/dashboard">
-            <Button
-              sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
-              color="primary"
-            >
-              Dashboard
-            </Button>
-          </Link>
-          <Button
-            sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
+          <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
+            <Link href="/dashboard">
+              <Typography variant="body2" color="primary">
+                Dashboard
+              </Typography>
+            </Link>
+          </MenuItem>
+          <MenuItem
             onClick={handleLogOut}
-            color="error"
+            sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
           >
-            logout
-          </Button>
+            <Typography variant="body2" color="error">
+              Logout
+            </Typography>
+          </MenuItem>
         </>
       ) : (
-        <Button
-          sx={{ borderRadius: "20px", py: "6px", px: "12px" }}
-          component={Link}
-          href="/login"
+        <MenuItem
+          onClick={handleLogOut}
+          sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
         >
-          Login
-        </Button>
+          <Link href="/login">
+            <Typography variant="body2" color="primary">
+              Login
+            </Typography>
+          </Link>
+        </MenuItem>
       )}
     </>
   );

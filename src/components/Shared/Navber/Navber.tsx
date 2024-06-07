@@ -106,7 +106,7 @@ const Navber = () => {
                   onClick={() => scrollToSection("features")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
-                  <Typography variant="body2" color="text.primary">
+                  <Typography variant="body2" color="primary">
                     Features
                   </Typography>
                 </MenuItem>
@@ -114,7 +114,7 @@ const Navber = () => {
                   onClick={() => scrollToSection("testimonials")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
-                  <Typography variant="body2" color="text.primary">
+                  <Typography variant="body2" color="primary">
                     Testimonials
                   </Typography>
                 </MenuItem>
@@ -123,7 +123,7 @@ const Navber = () => {
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Link href="/flats">
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="primary">
                       Flats
                     </Typography>
                   </Link>
@@ -132,7 +132,7 @@ const Navber = () => {
                   onClick={() => scrollToSection("pricing")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
-                  <Typography variant="body2" color="text.primary">
+                  <Typography variant="body2" color="primary">
                     Pricing
                   </Typography>
                 </MenuItem>
@@ -141,7 +141,7 @@ const Navber = () => {
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Link href="/about-us">
-                    <Typography variant="body2" color="text.primary">
+                    <Typography variant="body2" color="primary">
                       About Us
                     </Typography>
                   </Link>

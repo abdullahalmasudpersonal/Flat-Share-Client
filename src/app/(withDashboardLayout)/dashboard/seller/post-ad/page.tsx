@@ -66,7 +66,7 @@ const PostAd = () => {
             required
             name="squareFeet"
             sx={{ width: "100%", marginBottom: "15px" }}
-            label="squareFeet"
+            label="Square Feet"
             type="number"
             size="small"
           />
