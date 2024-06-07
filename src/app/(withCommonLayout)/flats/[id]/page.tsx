@@ -6,6 +6,12 @@ import {
   CardMedia,
   Container,
   Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -18,6 +24,7 @@ import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
 import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
+import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
 
 type TParams = {
   params: {
@@ -35,11 +42,80 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const FlatDetailPage = ({ params }: TParams) => {
   const id = params?.id;
-  const { data, isLoading } = useGetSingleFlatQuery(id);
-  // console.log(useGetSingleFlatQuery(id));
+  const { data: flatData, isLoading } = useGetSingleFlatQuery(id);
+  const { data: myBookingData, isLoading: commingData } =
+    useGetBookingFlatQuery({});
+
+  const res = myBookingData?.map((data: any) => <>{data}</>);
+
+  console.log(myBookingData?.map((data: any) => <>{data}</>));
+  // console.log(myBookingData);
+  //  console.log(myBookingData?.flatId);
+
   return (
     <Box marginTop="120px" marginBottom="120px">
       <Container>
+        <Box>
+          {isLoading ? (
+            "Loading..."
+          ) : (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Flat Name</TableCell>
+                    <TableCell align="right">Status</TableCell>
+                    <TableCell align="right">SquareFeet</TableCell>
+                    <TableCell align="right">Total Bedroom</TableCell>
+                    <TableCell align="right">Total Room</TableCell>
+                    <TableCell align="right">Rent</TableCell>
+                    <TableCell align="right">Advance Amount</TableCell>
+                    <TableCell align="right">Address</TableCell>
+                    <TableCell align="right">Availability</TableCell>
+                    <TableCell align="center">Details</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {myBookingData?.map((data: any) => (
+                    <TableRow
+                      key={data?.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {data?.flatId}
+                      </TableCell>
+                      <TableCell align="right">{data?.status}</TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.squareFeet}
+                      </TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.totalBedrooms}
+                      </TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.totalRooms}
+                      </TableCell>
+                      <TableCell align="right">{data?.flat?.rent}</TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.advanceAmount}
+                      </TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.location}
+                      </TableCell>
+                      <TableCell align="right">
+                        {data?.flat?.availability ? "Yes" : "NO"}
+                      </TableCell>
+                      <TableCell align="center">
+                        {/*   <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
+                        <Button variant="contained">Details</Button>
+                        {/* </Link> */}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Grid
             container
@@ -55,28 +131,30 @@ const FlatDetailPage = ({ params }: TParams) => {
                   <CardMedia
                     component="img"
                     height="194"
-                    image={data?.flatPhoto}
+                    image={flatData?.flatPhoto}
                     alt="Paella dish"
                   />
                 </Grid>
                 <Grid item xs={8}>
                   <Typography fontSize="21px" fontWeight="bold">
-                    {data?.flatName}
+                    {flatData?.flatName}
                   </Typography>
                   <Box display="flex" mt="8px" mx="-2px">
                     <QueryBuilderIcon fontSize="small" sx={{ color: "gray" }} />
                     <Typography fontWeight="500">
-                      &nbsp;{formatLocalTime(data?.createdAt)}
+                      &nbsp;{formatLocalTime(flatData?.createdAt)}
                     </Typography>
                   </Box>
                   <Box display="flex" mt="8px" mx="-5px">
                     <LocationOnIcon sx={{ color: "gray" }} />
-                    <Typography fontWeight="500">{data?.location}</Typography>
+                    <Typography fontWeight="500">
+                      {flatData?.location}
+                    </Typography>
                   </Box>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Available:</Typography>
                     &nbsp;
-                    {data?.availability ? (
+                    {flatData?.availability ? (
                       <>
                         {"Yes"}&nbsp;
                         <CheckCircleIcon
@@ -97,23 +175,23 @@ const FlatDetailPage = ({ params }: TParams) => {
                   </Typography>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Flat Size:</Typography>
-                    &nbsp;{data?.squareFeet}&nbsp;Square Feet
+                    &nbsp;{flatData?.squareFeet}&nbsp;Square Feet
                   </Typography>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Bed Rooms:</Typography>
-                    &nbsp;{data?.totalBedrooms}
+                    &nbsp;{flatData?.totalBedrooms}
                   </Typography>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Total Rooms:</Typography>
-                    &nbsp;{data?.totalRooms}
+                    &nbsp;{flatData?.totalRooms}
                   </Typography>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Rent:</Typography>
-                    &nbsp;{data?.rent}&nbsp;Tk
+                    &nbsp;{flatData?.rent}&nbsp;Tk
                   </Typography>
                   <Typography display="flex" mt="8px">
                     <Typography fontWeight="500">Advance Amount:</Typography>
-                    &nbsp;{data?.advanceAmount}&nbsp;Tk
+                    &nbsp;{flatData?.advanceAmount}&nbsp;Tk
                   </Typography>
 
                   <Box mt="20px">
@@ -122,7 +200,7 @@ const FlatDetailPage = ({ params }: TParams) => {
                     </Link>
                   </Box>
                   <Box mt="20px">
-                    <FlatAccordian data={data} />
+                    <FlatAccordian data={flatData} />
                   </Box>
                 </Grid>
               </>

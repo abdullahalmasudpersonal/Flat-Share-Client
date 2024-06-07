@@ -13,6 +13,7 @@ const SideBer = () => {
   useEffect(() => {
     const { role } = getUserInfo() as any;
     setUserRole(role);
+    const user = getUserInfo();
   }, []);
 
   return (

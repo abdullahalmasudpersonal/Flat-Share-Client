@@ -95,5 +95,5 @@ export const {
   useUpdateSingleBuyerFormAdminMutation,
   useGetMyUserProfileDataQuery,
   useUpdateMyProfileMutation,
-  useUpdateUserProfileDataMutation
+  useUpdateUserProfileDataMutation,
 } = userApi;

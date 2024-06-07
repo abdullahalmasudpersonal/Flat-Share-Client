@@ -7,6 +7,7 @@ import {
   Container,
   Grid,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -19,9 +20,10 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import { red } from "@mui/material/colors";
+import { purple, red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Link from "next/link";
+import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
 
 const FlatsPage = () => {
   const { data: flatData, isLoading } = useGetAllFlatQuery({});
@@ -38,17 +40,22 @@ const FlatsPage = () => {
               >
                 <CardHeader
                   avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      R
-                    </Avatar>
+                    <Avatar
+                      sx={{ bgcolor: purple[700] }}
+                      aria-label="recipe"
+                    ></Avatar>
                   }
                   action={
                     <IconButton aria-label="settings">
                       <MoreVertIcon />
                     </IconButton>
                   }
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
+                  title={
+                    item?.flatName?.length > 28
+                      ? item?.flatName.substring(0, 28) + "..."
+                      : item?.flatName
+                  }
+                  subheader={formatLocalDate(item?.createdAt)}
                 />
                 <CardMedia
                   component="img"
@@ -57,29 +64,24 @@ const FlatsPage = () => {
                   alt="Paella dish"
                 />
                 <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {item?.description}
-                  </Typography>
+                  <Tooltip title={item?.description} arrow>
+                    <Typography variant="body2" color="text.secondary">
+                      {item?.description?.length > 170
+                        ? item?.description.substring(0, 170) + "..."
+                        : item?.description}
+                    </Typography>
+                  </Tooltip>
                 </CardContent>
-                <Box
-                  //  display="flex"
-                  // justifyContent="start"
-                  margin="0"
-                  padding="0 10px"
-                >
-                  {/*  <PriceCheckIcon /> */}
-
+                <Box margin="0" padding="0 10px">
                   <Typography textAlign="start">
                     Price: {item?.rent} TK
                   </Typography>
 
                   <Box>
                     <Typography textAlign="start">
-                      Bedrooms: {item?.totalRooms}
+                      Bedrooms: {item?.totalBedrooms}
                     </Typography>
                   </Box>
-
-                  {/*       <Box>Bedrooms {item?.bedRooms} TK</Box> */}
                 </Box>
                 <Box
                   display="flex"

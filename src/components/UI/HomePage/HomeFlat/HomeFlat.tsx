@@ -85,25 +85,15 @@ const HomeFlat = () => {
                     </Typography>
                   </Tooltip>
                 </CardContent>
-                <Box
-                  //  display="flex"
-                  // justifyContent="start"
-                  margin="0"
-                  padding="0 10px"
-                >
-                  {/*  <PriceCheckIcon /> */}
-
+                <Box margin="0" padding="0 10px">
                   <Typography textAlign="start">
                     Price: {item?.rent} TK
                   </Typography>
-
                   <Box>
                     <Typography textAlign="start">
-                      Bedrooms: {item?.totalRooms}
+                      Bedrooms: {item?.totalBedrooms}
                     </Typography>
                   </Box>
-
-                  {/*       <Box>Bedrooms {item?.bedRooms} TK</Box> */}
                 </Box>
                 <Box
                   display="flex"

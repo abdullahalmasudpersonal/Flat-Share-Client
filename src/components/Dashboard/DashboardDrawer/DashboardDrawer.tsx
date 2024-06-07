@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-//import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import { Avatar, Badge, Stack } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { useGetSingleUserQuery } from "@/redux/api/userApi";

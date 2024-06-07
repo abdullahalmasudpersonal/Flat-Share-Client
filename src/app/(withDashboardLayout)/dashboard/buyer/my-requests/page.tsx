@@ -1,11 +1,24 @@
-"use client"
+"use client";
 import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import Link from "next/link";
 import React from "react";
 
 const MyRequest = () => {
   const { data, isLoading } = useGetBookingFlatQuery({});
+
+  const res = data?.map((data: any) => <>{data?.flat?.flatName}</>);
+  console.log(res);
 
   return (
     <>
@@ -39,27 +52,21 @@ const MyRequest = () => {
                   </TableCell>
                   <TableCell align="right">{data?.status}</TableCell>
                   <TableCell align="right">{data?.flat?.squareFeet}</TableCell>
-                  <TableCell align="right">{data?.flat?.totalBedrooms}</TableCell>
                   <TableCell align="right">
-                    {data?.flat?.totalRooms}
+                    {data?.flat?.totalBedrooms}
                   </TableCell>
-                  <TableCell align="right">
-                    {data?.flat?.rent}
-                  </TableCell>
+                  <TableCell align="right">{data?.flat?.totalRooms}</TableCell>
+                  <TableCell align="right">{data?.flat?.rent}</TableCell>
                   <TableCell align="right">
                     {data?.flat?.advanceAmount}
                   </TableCell>
+                  <TableCell align="right">{data?.flat?.location}</TableCell>
                   <TableCell align="right">
-                    {data?.flat?.location}
-                  </TableCell>
-                  <TableCell align="right">
-                    {data?.flat?.availability ?
-                      "Yes" : "NO"
-                    }
+                    {data?.flat?.availability ? "Yes" : "NO"}
                   </TableCell>
                   <TableCell align="center">
-                  {/*   <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
-                      <Button variant="contained">Details</Button>
+                    {/*   <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
+                    <Button variant="contained">Details</Button>
                     {/* </Link> */}
                   </TableCell>
                 </TableRow>

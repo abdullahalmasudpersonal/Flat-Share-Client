@@ -25,20 +25,17 @@ export const validationSchema = z.object({
 });
 
 const LoginPage = () => {
-  const user = getUserInfo() as any;
   const router = useRouter();
   const [error, setError] = useState("");
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await userLogin(values);
-
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
         toast.success(res?.message);
         router.push(`/dashboard`);
       } else {
         setError(res.message);
-        // console.log(res);
       }
     } catch (err: any) {
       console.log(err.message);
@@ -47,7 +44,6 @@ const LoginPage = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      {/*  <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -86,10 +82,6 @@ const LoginPage = () => {
               label="Password"
               type="password"
             />
-            {/*   <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             {error && (
               <Box>
                 <Typography

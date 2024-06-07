@@ -2,6 +2,7 @@
 import Form from "@/components/Forms/Form";
 import Input from "@/components/Forms/Input";
 import { useCreateBookingFlatMutation } from "@/redux/api/bookingApi";
+import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 
 import { useGetMYProfileQuery } from "@/redux/api/myProfile";
 import { getUserInfo, isLogedIn } from "@/services/auth.services";
@@ -11,11 +12,13 @@ import {
   Checkbox,
   Container,
   FormControlLabel,
+  TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -32,32 +35,34 @@ interface UserData {
 }
 
 const BookingPage = ({ params }: TParams) => {
+  const [isChecked, setIsChecked] = useState(false);
   const { userId, role } = getUserInfo();
   const id = params?.id;
+  const { data: flatData } = useGetSingleFlatQuery(id);
   const [bookingFlat] = useCreateBookingFlatMutation();
   const { data: userData, isLoading } = useGetMYProfileQuery(undefined);
-
-  const { name, email, flatId } = (userData as UserData) ?? "";
-  //console.log(name, email);
 
   const router = useRouter();
   if (!isLogedIn()) {
     return router.push("/login");
   }
 
+  const handleCheckboxChange = (event: any) => {
+    setIsChecked(event.target.checked);
+  };
+
   const handleRequest = async (values: FieldValues) => {
     const bookingData = {
       userId: userId,
       flatId: id,
     };
-
     try {
       const res = await bookingFlat(bookingData).unwrap();
       console.log(res);
-      /*      if (res?.id) {
+      if (res?.id) {
+        router.push(`/dashboard/buyer/my-requests`);
         toast.success("Flat booking request Successfully!!!");
-         router.push(`/dashboard/${role}/my-requests`);
-      } */
+      }
     } catch (err: any) {
       console.error(err);
     }
@@ -85,33 +90,68 @@ const BookingPage = ({ params }: TParams) => {
                 >
                   Booking Request
                 </Typography>
-                <Form
-                  onSubmit={handleRequest}
-                  defaultValues={{
-                    name: "Abdullah",
-                    email: "abdullah@gmail.com",
-                  }}
-                >
-                  <Input
+                <Form onSubmit={handleRequest} defaultValues={userData}>
+                  <Tooltip title={flatData?.flatName} arrow>
+                    <TextField
+                      required
+                      fullWidth
+                      label="Flat Name"
+                      value={flatData?.flatName}
+                      sx={{ marginBottom: "15px" }}
+                      size="small"
+                      // disabled
+                    >
+                      {flatData?.flatName}
+                    </TextField>
+                  </Tooltip>
+                  <TextField
                     sx={{ marginBottom: "15px" }}
                     required
                     fullWidth
                     label="Name"
-                    name="name"
+                    size="small"
+                    value={userData?.name}
                   />
-                  <Input
+                  <TextField
                     sx={{ marginBottom: "15px" }}
                     required
                     fullWidth
                     label="Email"
-                    name="email"
+                    size="small"
+                    value={userData?.email}
+                  />
+                  <TextField
+                    sx={{ marginBottom: "15px" }}
+                    required
+                    fullWidth
+                    label="Contact Number"
+                    size="small"
+                    value={userData?.contactNumber}
+                  />
+                  <TextField
+                    sx={{ marginBottom: "15px" }}
+                    required
+                    fullWidth
+                    label="Address"
+                    size="small"
+                    value={userData?.address}
                   />
                   <FormControlLabel
-                    control={<Checkbox />}
+                    control={
+                      <Checkbox
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                      />
+                    }
                     label="Terms and conditions"
                   />
                   <Box mt="15px">
-                    <Button type="submit" fullWidth variant="contained">
+                    <Button
+                      disabled={!isChecked}
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                    >
                       Submit Request
                     </Button>
                   </Box>
