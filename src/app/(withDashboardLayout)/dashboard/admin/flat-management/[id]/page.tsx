@@ -1,5 +1,4 @@
 "use client";
-import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import {
   Box,
   Button,
@@ -23,6 +22,7 @@ import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
 import UpdateFlatModal from "../components/UpdateFlatModal";
 import { useState } from "react";
+import { useGetSingleFlatQuery } from "../../../../../../redux/api/flatApi";
 
 const StyledInformationBox = styled(Box)(({ theme }) => ({
   background: "#f4f7fe",

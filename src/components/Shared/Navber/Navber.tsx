@@ -11,10 +11,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
-import logo from "@/assets/logo/flatShareLogo.png";
-import { getUserInfo } from "@/services/auth.services";
+import logo from "../../../assets/logo/flatShareLogo.png";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { getUserInfo } from "../../../services/auth.services";
 
 const logoStyle = {
   width: "140px",
@@ -29,10 +29,9 @@ const logoStyle = {
 
 const Navber = () => {
   const userInfo = getUserInfo();
-  const AuthButton = dynamic(
-    () => import("@/components/UI/AuthButton/AuthButton"),
-    { ssr: false }
-  );
+  const AuthButton = dynamic(() => import("../../UI/AuthButton/AuthButton"), {
+    ssr: false,
+  });
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {

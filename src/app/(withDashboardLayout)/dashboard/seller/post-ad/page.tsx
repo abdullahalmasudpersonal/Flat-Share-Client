@@ -3,13 +3,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { Button, Typography } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
-import { usePostFlatMutation } from "@/redux/api/flatApi";
-import { modifyPayload } from "@/utils/modifyPayload";
-import { getUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Form from "../../../../../components/Forms/Form";
+import Input from "../../../../../components/Forms/Input";
+import { getUserInfo } from "../../../../../services/auth.services";
+import { usePostFlatMutation } from "../../../../../redux/api/flatApi";
+import { modifyPayload } from "../../../../../utils/modifyPayload";
 
 const PostAd = () => {
   const { userId } = getUserInfo();

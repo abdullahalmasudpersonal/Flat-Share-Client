@@ -1,9 +1,5 @@
 "use client";
 import {
-  useDeleteSingleFlatMutation,
-  useGetAllFlatQuery,
-} from "@/redux/api/flatApi";
-import {
   Box,
   Button,
   DialogActions,
@@ -20,6 +16,10 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "sonner";
+import {
+  useDeleteSingleFlatMutation,
+  useGetAllFlatQuery,
+} from "../../../../../redux/api/flatApi";
 
 const style = {
   position: "absolute" as "absolute",

@@ -1,7 +1,7 @@
 "use server";
-import { authKey } from "@/contents/authkey";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { authKey } from "../../contents/authkey";
 
 const setAccessToken = (token: string, option?: any) => {
   cookies().set(authKey, token);

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import flatShare from "@/assets/landing_page/ShareFlat.jpg";
+import flatShare from "../../../assets/landing_page/ShareFlat.jpg";
 import FacebookIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/X";

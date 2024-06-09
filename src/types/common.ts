@@ -1,6 +1,6 @@
-import { USER_ROLE } from "@/contents/role";
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { USER_ROLE } from "../contents/role";
 
 export type IMeta = {
   page: number;

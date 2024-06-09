@@ -1,10 +1,19 @@
-"use client"
-import { useGetSellerFlatsQuery } from "@/redux/api/flatApi";
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+"use client";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import React from "react";
+import { useGetSellerFlatsQuery } from "../../../../../redux/api/flatApi";
 
 const MyAd = () => {
-  const { data: flatData, isLoading } = useGetSellerFlatsQuery({})
+  const { data: flatData, isLoading } = useGetSellerFlatsQuery({});
   return (
     <>
       {isLoading ? (
@@ -37,17 +46,11 @@ const MyAd = () => {
                   <TableCell align="right">{data?.squareFeet}</TableCell>
                   <TableCell align="right">{data?.totalBedrooms}</TableCell>
                   <TableCell align="right">{data?.totalRooms}</TableCell>
+                  <TableCell align="right">{data?.location}</TableCell>
+                  <TableCell align="right">{data?.rent}</TableCell>
+                  <TableCell align="right">{data?.advanceAmount}</TableCell>
                   <TableCell align="right">
-                    {data?.location}
-                  </TableCell>
-                  <TableCell align="right">
-                    {data?.rent}
-                  </TableCell>
-                  <TableCell align="right">
-                    {data?.advanceAmount}
-                  </TableCell>
-                  <TableCell align="right">
-                    {data?.availability ? "Yes":"No" }
+                    {data?.availability ? "Yes" : "No"}
                   </TableCell>
                   <TableCell align="center">
                     {/*  <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}

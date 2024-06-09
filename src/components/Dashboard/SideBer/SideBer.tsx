@@ -1,12 +1,12 @@
 import { Box, List, Stack } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import assets from "@/assets/logo/flatShareLogo.png";
-import { drawerItems } from "@/utils/drawerItems";
-import { UserRole } from "@/types";
+import assets from "../../../assets/logo/flatShareLogo.png";
 import SideBerItem from "./SideBerItem";
-import { getUserInfo } from "@/services/auth.services";
 import { useEffect, useState } from "react";
+import { drawerItems } from "../../../utils/drawerItems";
+import { UserRole } from "../../../types";
+import { getUserInfo } from "../../../services/auth.services";
 
 const SideBer = () => {
   const [userRole, setUserRole] = useState("");

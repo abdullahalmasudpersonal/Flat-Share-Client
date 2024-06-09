@@ -1,9 +1,4 @@
 "use client";
-import Form from "@/components/Forms/Form";
-import { useCreateBookingFlatMutation } from "@/redux/api/bookingApi";
-import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
-import { useGetMYProfileQuery } from "@/redux/api/myProfile";
-import { getUserInfo, isLogedIn } from "@/services/auth.services";
 import {
   Box,
   Button,
@@ -18,6 +13,11 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
+import { useGetSingleFlatQuery } from "../../../../../redux/api/flatApi";
+import { useCreateBookingFlatMutation } from "../../../../../redux/api/bookingApi";
+import { useGetMYProfileQuery } from "../../../../../redux/api/myProfile";
+import { getUserInfo, isLogedIn } from "../../../../../services/auth.services";
+import Form from "../../../../../components/Forms/Form";
 
 type TParams = {
   params: {

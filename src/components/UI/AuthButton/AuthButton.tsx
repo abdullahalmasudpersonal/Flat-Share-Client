@@ -1,8 +1,8 @@
-import { logoutUser } from "@/services/actions/logoutUser";
-import { getUserInfo } from "@/services/auth.services";
 import { Button, MenuItem, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getUserInfo } from "../../../services/auth.services";
+import { logoutUser } from "../../../services/actions/logoutUser";
 
 const AuthButton = () => {
   const userInfo = getUserInfo();

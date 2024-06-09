@@ -1,9 +1,5 @@
 "use client";
 import {
-  useGetSingleBuyerQuery,
-  useUpdateSingleBuyerFormAdminMutation,
-} from "@/redux/api/userApi";
-import {
   Box,
   Button,
   Container,
@@ -18,10 +14,15 @@ import {
 import Image from "next/image";
 import React from "react";
 import UserProfileInfo from "../components/UserProfileInfo";
-import profileAltLogo from "@/assets/profile/person-icon.png";
+//import profileAltLogo from "@/assets/profile/person-icon.png";
+import profileAltLogo from "../../../../../../assets/profile/person-icon.png";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import {
+  useGetSingleBuyerQuery,
+  useUpdateSingleBuyerFormAdminMutation,
+} from "../../../../../../redux/api/userApi";
 
 type TParams = {
   params: {

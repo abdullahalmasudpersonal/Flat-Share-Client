@@ -1,5 +1,4 @@
 "use client";
-import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import {
   Box,
   Button,
@@ -22,8 +21,9 @@ import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
-import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
+import { useGetSingleFlatQuery } from "../../../../redux/api/flatApi";
+import { useGetBookingFlatQuery } from "../../../../redux/api/bookingApi";
+import { formatLocalTime } from "../../../../components/Shared/Date&Time/Date";
 
 type TParams = {
   params: {

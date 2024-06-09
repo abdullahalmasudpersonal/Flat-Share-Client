@@ -1,9 +1,9 @@
 import { Box, Card, Container, Grid, Typography } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import React from "react";
-import EveryThreeMinsImg from "@/assets/WhyUseSpace/EveryThreeMins.svg";
-import KeysImg from "@/assets/WhyUseSpace/Keys.svg";
-import WelcomeImg from "@/assets/WhyUseSpace/Welcome.svg";
+import EveryThreeMinsImg from "../../../../assets/WhyUseSpace/EveryThreeMins.svg";
+import KeysImg from "../../../../assets/WhyUseSpace/Keys.svg";
+import WelcomeImg from "../../../../assets/WhyUseSpace/Welcome.svg";
 import Image from "next/image";
 
 const WhyUseSpace = () => {

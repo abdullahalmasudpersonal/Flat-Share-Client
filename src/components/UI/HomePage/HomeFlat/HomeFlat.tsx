@@ -12,8 +12,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box, Button, Container, Grid, Tooltip } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Link from "next/link";
-import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
-import { useGetAllFlatQuery } from "@/redux/api/flatApi";
+import { useGetAllFlatQuery } from "../../../../redux/api/flatApi";
+import { formatLocalDate } from "../../../Shared/Date&Time/Date";
 
 const HomeFlat = () => {
   const { data: flatData, isLoading } = useGetAllFlatQuery({});

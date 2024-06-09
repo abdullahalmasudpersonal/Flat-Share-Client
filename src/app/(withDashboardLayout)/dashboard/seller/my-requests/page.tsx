@@ -1,6 +1,6 @@
 "use client";
+import { useGetBookingFlatQuery } from "../../../../../redux/api/bookingApi";
 import DataTable from "./components/DataTable";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
 
 const MyRequest = () => {
   const { data, isLoading } = useGetBookingFlatQuery({});

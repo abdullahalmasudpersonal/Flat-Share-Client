@@ -1,10 +1,3 @@
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
-import FullScreenModal from "@/components/Shared/Modal/FullScreenModal";
-import {
-  useGetSingleFlatQuery,
-  useUpdateFlatMutation,
-} from "@/redux/api/flatApi";
 import {
   Button,
   FormControl,
@@ -16,6 +9,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
+import FullScreenModal from "../../../../../../components/Shared/Modal/FullScreenModal";
+import Form from "../../../../../../components/Forms/Form";
+import Input from "../../../../../../components/Forms/Input";
+import {
+  useGetSingleFlatQuery,
+  useUpdateFlatMutation,
+} from "../../../../../../redux/api/flatApi";
 
 type TProps = {
   open: boolean;

@@ -5,8 +5,8 @@ import {
   ListItemText,
 } from "@mui/material";
 import Link from "next/link";
-import { DrawerItem } from "@/types";
 import { usePathname } from "next/navigation";
+import { DrawerItem } from "../../../types";
 
 type IProps = {
   item: DrawerItem;

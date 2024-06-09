@@ -1,12 +1,12 @@
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
-import FullScreenModal from "@/components/Shared/Modal/FullScreenModal";
+import { Button, Grid } from "@mui/material";
+import { FieldValues } from "react-hook-form";
+import FullScreenModal from "../../../../../../components/Shared/Modal/FullScreenModal";
+import Input from "../../../../../../components/Forms/Input";
+import Form from "../../../../../../components/Forms/Form";
 import {
   useGetMyUserProfileDataQuery,
   useUpdateUserProfileDataMutation,
-} from "@/redux/api/userApi";
-import { Button, Grid } from "@mui/material";
-import { FieldValues } from "react-hook-form";
+} from "../../../../../../redux/api/userApi";
 
 type TProps = {
   open: boolean;
@@ -33,7 +33,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
       "isDeleted",
       "createdAt",
       "updatedAt",
-      "user"
+      "user",
     ];
 
     const updatedValues = Object.fromEntries(
@@ -41,7 +41,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
         return !excludedFields.includes(key);
       })
     );
-    console.log("values", values);
+
     try {
       updateUserProfileData({ body: updatedValues, id });
       await refetch();

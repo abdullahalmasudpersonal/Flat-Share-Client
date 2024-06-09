@@ -1,11 +1,9 @@
-import { DrawerItem, UserRole } from "@/types";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
-import { USER_ROLE } from "@/contents/role";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import SignpostIcon from "@mui/icons-material/Signpost";
 import RequestPageIcon from "@mui/icons-material/RequestPage";
@@ -13,6 +11,8 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PaymentIcon from "@mui/icons-material/Payment";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
+import { DrawerItem, UserRole } from "../types";
+import { USER_ROLE } from "../contents/role";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleManues: DrawerItem[] = [];
