@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import { PaletteMode } from "@mui/material";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,7 +15,6 @@ import logo from "@/assets/logo/flatShareLogo.png";
 import { getUserInfo } from "@/services/auth.services";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-//import ToggleColorMode from './ToggleColorMode';
 
 const logoStyle = {
   width: "140px",

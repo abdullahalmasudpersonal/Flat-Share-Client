@@ -17,9 +17,6 @@ import React from "react";
 const MyRequest = () => {
   const { data, isLoading } = useGetBookingFlatQuery({});
 
-  const res = data?.map((data: any) => <>{data?.flat?.flatName}</>);
-  console.log(res);
-
   return (
     <>
       {isLoading ? (

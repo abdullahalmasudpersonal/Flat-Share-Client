@@ -8,13 +8,11 @@ import {
 } from "@/utils/local-storage";
 
 export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
-  //   console.log(accessToken);
   return setToLocalStorage(authKey, accessToken);
 };
 
 export const getUserInfo = () => {
   const authToken = getFromLocalStorage(authKey);
-  //   console.log(authToken);
   if (authToken) {
     const decodedData: any = decodedToken(authToken);
     return {
@@ -39,7 +37,7 @@ export const removeUser = () => {
 
 export const getNewAccessToken = async () => {
   return await axiosInstance({
-    url: "http://localhost:5000/api/v1/auth/refresh-token",
+    url: "https://assignment-09-server.vercel.app/api/v1/auth/refresh-token",
     method: "POST",
     headers: { "Content-Type": "application/json" },
     withCredentials: true,

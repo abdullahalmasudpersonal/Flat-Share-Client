@@ -3,7 +3,6 @@ import { useGetAllBuyerQuery } from "@/redux/api/userApi";
 import {
   Button,
   Paper,
-  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -11,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
 import Link from "next/link";
 
 const AllBuyerPage = () => {

@@ -1,4 +1,4 @@
-import { Box, List, Stack, Typography } from "@mui/material";
+import { Box, List, Stack } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import assets from "@/assets/logo/flatShareLogo.png";
@@ -31,7 +31,6 @@ const SideBer = () => {
         href="/"
       >
         <Image width={170} height={40} src={assets} alt="logo" />
-        {/*  <Typography>PH Health Care</Typography> */}
       </Stack>
       <List>
         {drawerItems(userRole as UserRole).map((item, index) => (

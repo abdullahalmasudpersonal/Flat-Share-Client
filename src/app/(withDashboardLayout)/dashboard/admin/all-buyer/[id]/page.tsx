@@ -1,5 +1,8 @@
 "use client";
-import { useGetSingleBuyerQuery, useUpdateSingleBuyerFormAdminMutation } from "@/redux/api/userApi";
+import {
+  useGetSingleBuyerQuery,
+  useUpdateSingleBuyerFormAdminMutation,
+} from "@/redux/api/userApi";
 import {
   Box,
   Button,
@@ -10,12 +13,10 @@ import {
   MenuItem,
   Modal,
   Select,
-  SelectChangeEvent,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import UserProfileInfo from "../components/UserProfileInfo";
 import profileAltLogo from "@/assets/profile/person-icon.png";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -35,7 +36,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  // border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -49,7 +49,8 @@ const BuyerDetailPage = ({ params }: TParams) => {
   const id = params?.id;
   const { data, isLoading } = useGetSingleBuyerQuery(id);
 
-  const [updateSingleBuyerFormAdmin, { isLoading: updateSellerIsloading }] = useUpdateSingleBuyerFormAdminMutation(undefined);
+  const [updateSingleBuyerFormAdmin, { isLoading: updateSellerIsloading }] =
+    useUpdateSingleBuyerFormAdminMutation(undefined);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -63,10 +64,13 @@ const BuyerDetailPage = ({ params }: TParams) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
-      const res = await updateSingleBuyerFormAdmin({ id: data?.id, body: values })
+      const res = await updateSingleBuyerFormAdmin({
+        id: data?.id,
+        body: values,
+      });
       if (res?.data) {
         toast.success("Update single buyer!");
-        setOpen(false)
+        setOpen(false);
       }
     } catch (err: any) {
       console.log(err);
@@ -101,7 +105,6 @@ const BuyerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.role}
                     label="Role"
-                  /* onChange={handleChange} */
                   >
                     <MenuItem value="BUYER">BUYER</MenuItem>
                     <MenuItem value="SELLER">SELLER</MenuItem>
@@ -117,7 +120,6 @@ const BuyerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.status}
                     label="Status"
-                  /* onChange={handleChange} */
                   >
                     <MenuItem value="BLOCKED">BLOCKED</MenuItem>
                     <MenuItem value="ACTIVE">ACTIVE</MenuItem>

@@ -1,9 +1,7 @@
 "use client";
 import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
 import { useCreateBookingFlatMutation } from "@/redux/api/bookingApi";
 import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
-
 import { useGetMYProfileQuery } from "@/redux/api/myProfile";
 import { getUserInfo, isLogedIn } from "@/services/auth.services";
 import {
@@ -16,7 +14,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { pink } from "@mui/material/colors";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FieldValues } from "react-hook-form";
@@ -27,12 +24,6 @@ type TParams = {
     id: string;
   };
 };
-
-interface UserData {
-  name?: string;
-  email?: string;
-  flatId?: string;
-}
 
 const BookingPage = ({ params }: TParams) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -58,7 +49,6 @@ const BookingPage = ({ params }: TParams) => {
     };
     try {
       const res = await bookingFlat(bookingData).unwrap();
-      console.log(res);
       if (res?.id) {
         router.push(`/dashboard/buyer/my-requests`);
         toast.success("Flat booking request Successfully!!!");

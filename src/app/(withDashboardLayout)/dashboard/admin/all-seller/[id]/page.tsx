@@ -1,7 +1,6 @@
 "use client";
 import {
   useGetSingleBuyerQuery,
-  useUpdateSingleBuyerFormAdminMutation,
   useUpdateSingleSellerFormAdminMutation,
 } from "@/redux/api/userApi";
 import {
@@ -37,7 +36,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  // border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -107,7 +105,6 @@ const SellerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.role}
                     label="Role"
-                    /* onChange={handleChange} */
                   >
                     <MenuItem value="BUYER">BUYER</MenuItem>
                     <MenuItem value="SELLER">SELLER</MenuItem>
@@ -123,7 +120,6 @@ const SellerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.status}
                     label="Status"
-                    /* onChange={handleChange} */
                   >
                     <MenuItem value="BLOCKED">BLOCKED</MenuItem>
                     <MenuItem value="ACTIVE">ACTIVE</MenuItem>
