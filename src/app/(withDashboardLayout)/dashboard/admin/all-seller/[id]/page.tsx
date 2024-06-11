@@ -1,10 +1,5 @@
 "use client";
 import {
-  useGetSingleBuyerQuery,
-  useUpdateSingleBuyerFormAdminMutation,
-  useUpdateSingleSellerFormAdminMutation,
-} from "@/redux/api/userApi";
-import {
   Box,
   Button,
   Container,
@@ -18,11 +13,16 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import profileAltLogo from "@/assets/profile/person-icon.png";
+//import profileAltLogo from "@/assets/profile/person-icon.png";
+import profileAltLogo from "../../../../../../assets/profile/person-icon.png";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import UserProfileInfo from "../components/UserProfileInfo";
+import {
+  useGetSingleBuyerQuery,
+  useUpdateSingleSellerFormAdminMutation,
+} from "../../../../../../redux/api/userApi";
 
 type TParams = {
   params: {
@@ -37,7 +37,6 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  // border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -107,7 +106,6 @@ const SellerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.role}
                     label="Role"
-                    /* onChange={handleChange} */
                   >
                     <MenuItem value="BUYER">BUYER</MenuItem>
                     <MenuItem value="SELLER">SELLER</MenuItem>
@@ -123,7 +121,6 @@ const SellerDetailPage = ({ params }: TParams) => {
                     labelId="demo-select-small-label"
                     defaultValue={data?.status}
                     label="Status"
-                    /* onChange={handleChange} */
                   >
                     <MenuItem value="BLOCKED">BLOCKED</MenuItem>
                     <MenuItem value="ACTIVE">ACTIVE</MenuItem>

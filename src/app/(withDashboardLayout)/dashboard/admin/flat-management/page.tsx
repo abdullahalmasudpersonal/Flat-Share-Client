@@ -1,9 +1,4 @@
 "use client";
-import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
-import {
-  useDeleteSingleFlatMutation,
-  useGetAllFlatQuery,
-} from "@/redux/api/flatApi";
 import {
   Box,
   Button,
@@ -21,6 +16,10 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "sonner";
+import {
+  useDeleteSingleFlatMutation,
+  useGetAllFlatQuery,
+} from "../../../../../redux/api/flatApi";
 
 const style = {
   position: "absolute" as "absolute",
@@ -105,18 +104,10 @@ const FlatManagementPage = () => {
               <TableRow>
                 <TableCell>SL</TableCell>
                 <TableCell>Flat Name</TableCell>
-                {/*  <TableCell align="right">SquareFeet</TableCell>
-                <TableCell align="right">Total Bedroom</TableCell>
-                <TableCell align="right">Total Room</TableCell> */}
-                {/*  <TableCell align="right">Rent</TableCell>
-                <TableCell align="right">Advance Amount</TableCell> */}
-                {/* <TableCell align="right">Address</TableCell> */}
                 <TableCell align="right">Availability</TableCell>
                 <TableCell align="right">Owner</TableCell>
-                {/*   <TableCell align="right">Time</TableCell> */}
                 <TableCell align="right">Booking Request</TableCell>
                 <TableCell align="center">Details</TableCell>
-                {/*    <TableCell align="center">Edit</TableCell> */}
                 <TableCell align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -132,32 +123,18 @@ const FlatManagementPage = () => {
                   <TableCell component="th" scope="row">
                     {data?.flatName}
                   </TableCell>
-                  {/* <TableCell align="right">{data?.squareFeet}</TableCell>
-                  <TableCell align="right">{data?.totalBedrooms}</TableCell>
-                  <TableCell align="right">{data?.totalRooms}</TableCell> */}
-                  {/*   <TableCell align="right">{data?.rent}</TableCell>
-                  <TableCell align="right">{data?.advanceAmount}</TableCell> */}
-                  {/*  <TableCell align="right">{data?.location}</TableCell> */}
                   <TableCell align="right">
                     {data?.availability ? "Yes" : "No"}
                   </TableCell>
                   <TableCell align="right">{data?.user?.email}</TableCell>
-                  {/* <TableCell align="right">
-                    {formatLocalTime(data?.createdAt)}
-                  </TableCell> */}
                   <TableCell align="right">{data?.booking?.length}</TableCell>
                   <TableCell align="center">
                     <Link href={`/dashboard/admin/flat-management/${data?.id}`}>
                       <Button variant="contained">Details</Button>
                     </Link>
                   </TableCell>
-                  {/*   <TableCell align="center">
-                <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> 
-                    <Button variant="contained">Edit</Button>
-                  </Link> 
-                  </TableCell> */}
+
                   <TableCell align="center">
-                    {/*  <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
                     <Button
                       onClick={() => handleOpen(data?.id)}
                       variant="contained"
@@ -172,7 +149,6 @@ const FlatManagementPage = () => {
                     >
                       Delete
                     </Button>
-                    {/*  </Link> */}
                   </TableCell>
                 </TableRow>
               ))}

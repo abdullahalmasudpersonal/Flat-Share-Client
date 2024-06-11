@@ -1,29 +1,25 @@
 "use client";
 import {
-  alpha,
   Box,
   Button,
   Card,
   Container,
   Grid,
-  Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
 import React from "react";
-import FlatCard from "./components/FlatCard";
-import { useGetAllFlatQuery } from "@/redux/api/flatApi";
-import CssBaseline from "@mui/material/CssBaseline";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import { purple, red } from "@mui/material/colors";
+import IconButton from "@mui/material/IconButton";
+import { purple } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Link from "next/link";
-import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import { useGetAllFlatQuery } from "../../../redux/api/flatApi";
+import { formatLocalDate } from "../../../components/Shared/Date&Time/Date";
 
 const FlatsPage = () => {
   const { data: flatData, isLoading } = useGetAllFlatQuery({});

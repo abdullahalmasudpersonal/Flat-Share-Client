@@ -1,5 +1,4 @@
 "use client";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
 import {
   Box,
   Button,
@@ -11,14 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import Link from "next/link";
 import React from "react";
+import { useGetBookingFlatQuery } from "../../../../../redux/api/bookingApi";
 
 const MyRequest = () => {
   const { data, isLoading } = useGetBookingFlatQuery({});
-
-  const res = data?.map((data: any) => <>{data?.flat?.flatName}</>);
-  console.log(res);
 
   return (
     <>

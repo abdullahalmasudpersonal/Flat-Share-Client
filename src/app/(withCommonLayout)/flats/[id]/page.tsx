@@ -1,5 +1,4 @@
 "use client";
-import { useGetSingleFlatQuery } from "@/redux/api/flatApi";
 import {
   Box,
   Button,
@@ -14,7 +13,6 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -23,8 +21,9 @@ import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
-import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
+import { useGetSingleFlatQuery } from "../../../../redux/api/flatApi";
+import { useGetBookingFlatQuery } from "../../../../redux/api/bookingApi";
+import { formatLocalTime } from "../../../../components/Shared/Date&Time/Date";
 
 type TParams = {
   params: {
@@ -32,25 +31,11 @@ type TParams = {
   };
 };
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 const FlatDetailPage = ({ params }: TParams) => {
   const id = params?.id;
   const { data: flatData, isLoading } = useGetSingleFlatQuery(id);
   const { data: myBookingData, isLoading: commingData } =
     useGetBookingFlatQuery({});
-
-  const res = myBookingData?.map((data: any) => <>{data}</>);
-
-  console.log(myBookingData?.map((data: any) => <>{data}</>));
-  // console.log(myBookingData);
-  //  console.log(myBookingData?.flatId);
 
   return (
     <Box marginTop="120px" marginBottom="120px">

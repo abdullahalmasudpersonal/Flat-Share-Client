@@ -8,14 +8,14 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "next/link";
-import { userLogin } from "@/services/actions/userLogin";
-import { storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
+import { userLogin } from "../../services/actions/userLogin";
+import { storeUserInfo } from "../../services/auth.services";
+import Form from "../../components/Forms/Form";
+import Input from "../../components/Forms/Input";
 
 const LoginPage = () => {
   const router = useRouter();

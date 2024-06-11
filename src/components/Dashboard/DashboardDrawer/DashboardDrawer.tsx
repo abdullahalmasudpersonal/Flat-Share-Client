@@ -10,9 +10,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Avatar, Badge, Stack } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import { useGetSingleUserQuery } from "@/redux/api/userApi";
 import SideBer from "../SideBer/SideBer";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import { useGetSingleUserQuery } from "../../../redux/api/userApi";
 
 const drawerWidth = 240;
 

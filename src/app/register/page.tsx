@@ -13,19 +13,18 @@ import {
   Typography,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
 import { FieldValues } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerUser } from "@/services/actions/registerUser";
-import { modifyPayload } from "@/utils/modifyPayload";
 import { toast } from "sonner";
-import { storeUserInfo } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
-import { userLogin } from "@/services/actions/userLogin";
+import { modifyPayload } from "../../utils/modifyPayload";
+import { registerUser } from "../../services/actions/registerUser";
+import { userLogin } from "../../services/actions/userLogin";
+import { storeUserInfo } from "../../services/auth.services";
+import Input from "../../components/Forms/Input";
+import Form from "../../components/Forms/Form";
 
 const RegisterPage = () => {
   const [role, setRole] = useState("");

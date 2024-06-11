@@ -1,20 +1,21 @@
 "use client";
-import {
-  useGetMYProfileQuery,
-  useUpdateMYProfileMutation,
-} from "@/redux/api/myProfile";
 import { Box, Button, Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import Image from "next/image";
 import React, { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import AutoFileUploader from "@/components/Forms/AutoFileUploader";
 import ProfileUpdateModal from "./components/ProfileUpdateModal";
 import UserProfileInfo from "./components/UserProfileInfo";
 import Link from "next/link";
 import LockResetIcon from "@mui/icons-material/LockReset";
-import profileAltLogo from "@/assets/profile/person-icon.png";
+//import profileAltLogo from "@/assets/profile/person-icon.png";
+import profileAltLogo from "../../../../../assets/profile/person-icon.png";
+import {
+  useGetMYProfileQuery,
+  useUpdateMYProfileMutation,
+} from "../../../../../redux/api/myProfile";
+import AutoFileUploader from "../../../../../components/Forms/AutoFileUploader";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +23,6 @@ const Profile = () => {
   const { data, isLoading } = useGetMYProfileQuery(undefined);
   const [updateMYProfile, { isLoading: updating }] =
     useUpdateMYProfileMutation();
- // console.log("data", data);
 
   const fileUploadHandler = (file: File) => {
     const formData = new FormData();

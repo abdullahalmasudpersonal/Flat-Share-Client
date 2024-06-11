@@ -4,12 +4,12 @@ import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 import { z } from "zod";
 import KeyIcon from "@mui/icons-material/Key";
-import { useChangePasswordMutation } from "@/redux/api/authApi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { logoutUser } from "@/services/actions/logoutUser";
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
+import { useChangePasswordMutation } from "../../../../redux/api/authApi";
+import { logoutUser } from "../../../../services/actions/logoutUser";
+import Input from "../../../../components/Forms/Input";
+import Form from "../../../../components/Forms/Form";
 
 const validationSchema = z.object({
   oldPassword: z.string().min(6, "Must be at least 6 characters long"),

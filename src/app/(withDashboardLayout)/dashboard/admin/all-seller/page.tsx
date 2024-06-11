@@ -1,5 +1,4 @@
 "use client";
-import { useGetAllSellerQuery } from "@/redux/api/userApi";
 import {
   Button,
   Paper,
@@ -12,6 +11,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import { useGetAllSellerQuery } from "../../../../../redux/api/userApi";
 
 const AllSellerPage = () => {
   const { data: buyerData, isLoading } = useGetAllSellerQuery({});

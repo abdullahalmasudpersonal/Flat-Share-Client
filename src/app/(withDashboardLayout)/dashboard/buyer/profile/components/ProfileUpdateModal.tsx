@@ -1,12 +1,12 @@
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
-import FullScreenModal from "@/components/Shared/Modal/FullScreenModal";
+import { Button, Grid } from "@mui/material";
+import { FieldValues } from "react-hook-form";
 import {
   useGetMyUserProfileDataQuery,
   useUpdateUserProfileDataMutation,
-} from "@/redux/api/userApi";
-import { Button, Grid } from "@mui/material";
-import { FieldValues } from "react-hook-form";
+} from "../../../../../../redux/api/userApi";
+import FullScreenModal from "../../../../../../components/Shared/Modal/FullScreenModal";
+import Form from "../../../../../../components/Forms/Form";
+import Input from "../../../../../../components/Forms/Input";
 
 type TProps = {
   open: boolean;
@@ -33,7 +33,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
       "isDeleted",
       "createdAt",
       "updatedAt",
-      "user"
+      "user",
     ];
 
     const updatedValues = Object.fromEntries(

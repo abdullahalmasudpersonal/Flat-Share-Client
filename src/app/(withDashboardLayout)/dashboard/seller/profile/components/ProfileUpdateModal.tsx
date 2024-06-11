@@ -1,12 +1,12 @@
-import Form from "@/components/Forms/Form";
-import Input from "@/components/Forms/Input";
-import FullScreenModal from "@/components/Shared/Modal/FullScreenModal";
+import { Button, Grid } from "@mui/material";
+import { FieldValues } from "react-hook-form";
+import FullScreenModal from "../../../../../../components/Shared/Modal/FullScreenModal";
+import Input from "../../../../../../components/Forms/Input";
 import {
   useGetMyUserProfileDataQuery,
   useUpdateUserProfileDataMutation,
-} from "@/redux/api/userApi";
-import { Button, Grid } from "@mui/material";
-import { FieldValues } from "react-hook-form";
+} from "../../../../../../redux/api/userApi";
+import Form from "../../../../../../components/Forms/Form";
 
 type TProps = {
   open: boolean;
