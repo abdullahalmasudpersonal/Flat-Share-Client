@@ -11,10 +11,11 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { useGetAllSellerQuery } from "../../../../../redux/api/userApi";
+import { useGetAllSellerQuery } from "../../../../../redux/api/sellerApi";
 
 const AllSellerPage = () => {
-  const { data: buyerData, isLoading } = useGetAllSellerQuery({});
+  const { data: sellerData, isLoading } = useGetAllSellerQuery({});
+  
   return (
     <>
       {isLoading ? (
@@ -26,30 +27,26 @@ const AllSellerPage = () => {
               <TableRow>
                 <TableCell>Name</TableCell>
                 <TableCell align="right">Email</TableCell>
-                <TableCell align="right">Role</TableCell>
-                <TableCell align="right">Status</TableCell>
                 <TableCell align="right">Profession</TableCell>
                 <TableCell align="right">Address</TableCell>
                 <TableCell align="center">Details</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {buyerData?.map((data: any) => (
+              {sellerData?.map((data: any) => (
                 <TableRow
                   key={data?.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {data?.userProfile?.name}
+                    {data?.name}
                   </TableCell>
                   <TableCell align="right">{data?.email}</TableCell>
-                  <TableCell align="right">{data?.role}</TableCell>
-                  <TableCell align="right">{data?.status}</TableCell>
                   <TableCell align="right">
-                    {data?.userProfile?.profession}
+                    {data?.profession}
                   </TableCell>
                   <TableCell align="right">
-                    {data?.userProfile?.address}
+                    {data?.address}
                   </TableCell>
                   <TableCell align="center">
                     <Link href={`/dashboard/admin/all-seller/${data?.id}`}>

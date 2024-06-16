@@ -1,14 +1,18 @@
 export enum tagTypes {
-  admin = "admin",
   user = "user",
+  admin = "admin",
+  seller = "seller",
+  buyer = "buyer",
   review = "review",
   flat = "flat",
   bookingFlat = "bookingFlat",
 }
 
 export const tagTypesList = [
-  tagTypes.admin,
   tagTypes.user,
+  tagTypes.admin,
+  tagTypes.seller,
+  tagTypes.buyer,
   tagTypes.review,
   tagTypes.flat,
   tagTypes.bookingFlat,

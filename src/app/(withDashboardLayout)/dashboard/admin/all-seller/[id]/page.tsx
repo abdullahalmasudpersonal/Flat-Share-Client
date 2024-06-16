@@ -19,10 +19,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import UserProfileInfo from "../components/UserProfileInfo";
-import {
-  useGetSingleBuyerQuery,
-  useUpdateSingleSellerFormAdminMutation,
-} from "../../../../../../redux/api/userApi";
+import { useGetSingleSellerQuery, useUpdateSingleSellerMutation } from "../../../../../../redux/api/sellerApi";
 
 type TParams = {
   params: {
@@ -48,10 +45,11 @@ type Inputs = {
 
 const SellerDetailPage = ({ params }: TParams) => {
   const id = params?.id;
-  const { data, isLoading } = useGetSingleBuyerQuery(id);
-
-  const [updateSingleSellerFormAdmin, { isLoading: updateSellerIsloading }] =
-    useUpdateSingleSellerFormAdminMutation(undefined);
+  const { data, isLoading } = useGetSingleSellerQuery
+    (id);
+ // console.log(data?.user);
+  const [updateSingleSeller, { isLoading: updateSellerIsloading }] =
+  useUpdateSingleSellerMutation(undefined);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -63,30 +61,30 @@ const SellerDetailPage = ({ params }: TParams) => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
-    try {
-      const res = await updateSingleSellerFormAdmin({
-        id: data?.id,
-        body: values,
-      });
-      if (res?.data) {
-        toast.success("Update single seller!");
-        setOpen(false);
-      }
-    } catch (err: any) {
-      console.log(err);
-    }
-  };
-
+    const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
+     try {
+       const res = await updateSingleSeller({
+         id: data?.user?.id,
+         body: values,
+       });
+       if (res?.data) {
+         toast.success("Update single seller!");
+         setOpen(false);
+       }
+     } catch (err: any) {
+       console.log(err);
+     }
+   };
+ 
   return (
     <>
-      <Modal
+       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+         <Box sx={style}>
           <Typography
             id="modal-modal-title"
             variant="h6"
@@ -104,7 +102,7 @@ const SellerDetailPage = ({ params }: TParams) => {
                     id="role"
                     {...register("role")}
                     labelId="demo-select-small-label"
-                    defaultValue={data?.role}
+                    defaultValue={data?.user?.role}
                     label="Role"
                   >
                     <MenuItem value="BUYER">BUYER</MenuItem>
@@ -119,7 +117,7 @@ const SellerDetailPage = ({ params }: TParams) => {
                     id="status"
                     {...register("status")}
                     labelId="demo-select-small-label"
-                    defaultValue={data?.status}
+                    defaultValue={data?.user?.status}
                     label="Status"
                   >
                     <MenuItem value="BLOCKED">BLOCKED</MenuItem>
@@ -134,8 +132,8 @@ const SellerDetailPage = ({ params }: TParams) => {
               </Button>
             </form>
           </Box>
-        </Box>
-      </Modal>
+        </Box> 
+      </Modal>  
 
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={4}>
@@ -151,11 +149,11 @@ const SellerDetailPage = ({ params }: TParams) => {
                   "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
               }}
             >
-              {data?.userProfile?.profilePhoto ? (
+              {data?.profilePhoto ? (
                 <Image
                   height={300}
                   width={400}
-                  src={data?.userProfile?.profilePhoto}
+                  src={data?.profilePhoto}
                   alt="User Photo"
                 />
               ) : (

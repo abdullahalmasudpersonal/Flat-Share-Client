@@ -32,12 +32,6 @@ const UserProfileInfo = ({ data }: any) => {
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
-            Username
-          </Typography>
-          <Typography>{data?.userData?.username}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
             Email
           </Typography>
           <Typography>{data?.userData?.email}</Typography>
@@ -65,6 +59,12 @@ const UserProfileInfo = ({ data }: any) => {
             Conact Number
           </Typography>
           <Typography>{data?.contactNumber}</Typography>
+        </StyledInformationBox>
+        <StyledInformationBox>
+          <Typography color="secondary" variant="caption">
+            Gender
+          </Typography>
+          <Typography>{data?.gender}</Typography>
         </StyledInformationBox>
       </Stack>
     </>

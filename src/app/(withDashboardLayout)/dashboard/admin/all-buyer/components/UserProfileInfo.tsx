@@ -22,19 +22,13 @@ const UserProfileInfo = ({ data }: any) => {
           <Typography color="secondary" variant="caption">
             Role
           </Typography>
-          <Typography>{data?.role}</Typography>
+          <Typography>{data?.user?.role}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Name
           </Typography>
-          <Typography>{data?.userProfile?.name}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
-            Username
-          </Typography>
-          <Typography>{data?.username}</Typography>
+          <Typography>{data?.name}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
@@ -46,25 +40,25 @@ const UserProfileInfo = ({ data }: any) => {
           <Typography color="secondary" variant="caption">
             Profession
           </Typography>
-          <Typography>{data?.userProfile?.profession}</Typography>
+          <Typography>{data?.profession}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Address
           </Typography>
-          <Typography>{data?.userProfile?.address}</Typography>
+          <Typography>{data?.address}</Typography>
         </StyledInformationBox>
-        <StyledInformationBox>
+         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Status
           </Typography>
-          <Typography>{data?.status}</Typography>
-        </StyledInformationBox>
+          <Typography>{data?.user?.status}</Typography>
+        </StyledInformationBox> 
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Bio
           </Typography>
-          <Typography>{data?.userProfile?.bio}</Typography>
+          <Typography>{data?.bio}</Typography>
         </StyledInformationBox>
       </Stack>
     </>

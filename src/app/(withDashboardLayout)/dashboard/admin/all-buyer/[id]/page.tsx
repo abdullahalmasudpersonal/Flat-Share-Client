@@ -19,10 +19,7 @@ import profileAltLogo from "../../../../../../assets/profile/person-icon.png";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {
-  useGetSingleBuyerQuery,
-  useUpdateSingleBuyerFormAdminMutation,
-} from "../../../../../../redux/api/userApi";
+import { useGetSingleBuyerQuery, useUpdateSingleBuyerMutation } from "../../../../../../redux/api/buyerApi";
 
 type TParams = {
   params: {
@@ -50,8 +47,8 @@ const BuyerDetailPage = ({ params }: TParams) => {
   const id = params?.id;
   const { data, isLoading } = useGetSingleBuyerQuery(id);
 
-  const [updateSingleBuyerFormAdmin, { isLoading: updateSellerIsloading }] =
-    useUpdateSingleBuyerFormAdminMutation(undefined);
+  const [updateSingleBuyer, { isLoading: updateSellerIsloading }] =
+    useUpdateSingleBuyerMutation(undefined);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -65,8 +62,8 @@ const BuyerDetailPage = ({ params }: TParams) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
-      const res = await updateSingleBuyerFormAdmin({
-        id: data?.id,
+      const res = await updateSingleBuyer({
+        id: data?.user?.id,
         body: values,
       });
       if (res?.data) {
@@ -104,7 +101,7 @@ const BuyerDetailPage = ({ params }: TParams) => {
                     id="role"
                     {...register("role")}
                     labelId="demo-select-small-label"
-                    defaultValue={data?.role}
+                    defaultValue={data?.user?.role}
                     label="Role"
                   >
                     <MenuItem value="BUYER">BUYER</MenuItem>
@@ -119,7 +116,7 @@ const BuyerDetailPage = ({ params }: TParams) => {
                     id="status"
                     {...register("status")}
                     labelId="demo-select-small-label"
-                    defaultValue={data?.status}
+                    defaultValue={data?.user?.status}
                     label="Status"
                   >
                     <MenuItem value="BLOCKED">BLOCKED</MenuItem>
@@ -151,11 +148,11 @@ const BuyerDetailPage = ({ params }: TParams) => {
                   "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
               }}
             >
-              {data?.userProfile?.profilePhoto ? (
+              {data?.profilePhoto ? (
                 <Image
                   height={300}
                   width={400}
-                  src={data?.userProfile?.profilePhoto}
+                  src={data?.profilePhoto}
                   alt="User Photo"
                 />
               ) : (

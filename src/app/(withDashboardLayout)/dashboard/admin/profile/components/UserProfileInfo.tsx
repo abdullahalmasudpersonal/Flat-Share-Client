@@ -12,12 +12,14 @@ const StyledInformationBox = styled(Box)(({ theme }) => ({
 }));
 
 const UserProfileInfo = ({ data }: any) => {
+  console.log(data);
+  console.log(data);
   return (
     <>
       <Typography variant="h5" color="primary.main" mb={2}>
         Personal Information
       </Typography>
-      <Stack direction={{ xs: "column", md: "row" }} gap={2} flexWrap={"wrap"}>
+       <Stack direction={{ xs: "column", md: "row" }} gap={2} flexWrap={"wrap"}>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
             Role
@@ -32,33 +34,9 @@ const UserProfileInfo = ({ data }: any) => {
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
-            Username
-          </Typography>
-          <Typography>{data?.userData?.username}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
             Email
           </Typography>
-          <Typography>{data?.userData?.email}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
-            Profession
-          </Typography>
-          <Typography>{data?.profession}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
-            Address
-          </Typography>
-          <Typography>{data?.address}</Typography>
-        </StyledInformationBox>
-        <StyledInformationBox>
-          <Typography color="secondary" variant="caption">
-            Bio
-          </Typography>
-          <Typography>{data?.bio}</Typography>
+          <Typography>{data?.email}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">
@@ -66,7 +44,7 @@ const UserProfileInfo = ({ data }: any) => {
           </Typography>
           <Typography>{data?.contactNumber}</Typography>
         </StyledInformationBox>
-      </Stack>
+      </Stack> 
     </>
   );
 };

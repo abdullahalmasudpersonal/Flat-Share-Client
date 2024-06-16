@@ -31,18 +31,20 @@ const Profile = () => {
 
     updateMYProfile(formData);
   };
+  console.log(data);
+  console.log(data?.profilePhoto);
 
-  if (isLoading) {
+   if (isLoading) {
     <p>Loading...</p>;
-  }
+  } 
 
   return (
     <>
-      <ProfileUpdateModal
+     {/*  <ProfileUpdateModal
         open={isModalOpen}
         setOpen={setIsModalOpen}
         id={data?.id}
-      />
+      /> */}
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={4}>
           <Grid xs={12} md={4}>
@@ -72,7 +74,7 @@ const Profile = () => {
                 />
               )}
             </Box>
-            <Box my={3} display="flex" justifyContent="center">
+           {/*  <Box my={3} display="flex" justifyContent="center">
               {updating ? (
                 <p>Uploading...</p>
               ) : (
@@ -84,7 +86,7 @@ const Profile = () => {
                   variant="outlined"
                 />
               )}
-            </Box>
+            </Box> */}
 
             <Button
               variant="contained"
@@ -108,7 +110,7 @@ const Profile = () => {
             </Box>
           </Grid>
           <Grid xs={12} md={8}>
-            <UserProfileInfo data={data} />
+           <UserProfileInfo data={data} /> 
           </Grid>
         </Grid>
       </Container>
