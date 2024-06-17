@@ -19,7 +19,8 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import UserProfileInfo from "../components/UserProfileInfo";
-import { useGetSingleSellerQuery, useUpdateSingleSellerMutation } from "../../../../../../redux/api/sellerApi";
+import { useGetSingleSellerQuery } from "../../../../../../redux/api/sellerApi";
+import { useUpdateUserStatusMutation } from "../../../../../../redux/api/userApi";
 
 type TParams = {
   params: {
@@ -48,8 +49,8 @@ const SellerDetailPage = ({ params }: TParams) => {
   const { data, isLoading } = useGetSingleSellerQuery
     (id);
  // console.log(data?.user);
-  const [updateSingleSeller, { isLoading: updateSellerIsloading }] =
-  useUpdateSingleSellerMutation(undefined);
+  const [updateUserStatus, { isLoading: updateSellerIsloading }] =
+  useUpdateUserStatusMutation(undefined);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -63,7 +64,7 @@ const SellerDetailPage = ({ params }: TParams) => {
 
     const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
      try {
-       const res = await updateSingleSeller({
+       const res = await updateUserStatus({
          id: data?.user?.id,
          body: values,
        });

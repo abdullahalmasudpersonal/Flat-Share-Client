@@ -12,8 +12,6 @@ const StyledInformationBox = styled(Box)(({ theme }) => ({
 }));
 
 const UserProfileInfo = ({ data }: any) => {
-  console.log(data);
-  console.log(data);
   return (
     <>
       <Typography variant="h5" color="primary.main" mb={2}>
@@ -24,7 +22,7 @@ const UserProfileInfo = ({ data }: any) => {
           <Typography color="secondary" variant="caption">
             Role
           </Typography>
-          <Typography>{data?.userData?.role}</Typography>
+          <Typography>{data?.role}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
           <Typography color="secondary" variant="caption">

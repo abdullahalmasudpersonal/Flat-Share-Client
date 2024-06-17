@@ -2,11 +2,9 @@ import { Button, Grid } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 import FullScreenModal from "../../../../../../components/Shared/Modal/FullScreenModal";
 import Input from "../../../../../../components/Forms/Input";
-import {
-  useGetMyUserProfileDataQuery,
-  useUpdateUserProfileDataMutation,
-} from "../../../../../../redux/api/userApi";
 import Form from "../../../../../../components/Forms/Form";
+import { useGetMYProfileQuery } from "../../../../../../redux/api/myProfile";
+import { useUpdateSingleSellerMutation } from "../../../../../../redux/api/sellerApi";
 
 type TProps = {
   open: boolean;
@@ -19,21 +17,23 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
     data: userProfileData,
     refetch,
     isSuccess,
-  } = useGetMyUserProfileDataQuery(id);
+  } = useGetMYProfileQuery({});
 
-  const [updateUserProfileData, { isLoading: updating }] =
-    useUpdateUserProfileDataMutation();
+  const [updateSingleSeller, { isLoading: updating }] =
+    useUpdateSingleSellerMutation();
 
   const submitHandler = async (values: FieldValues) => {
     const excludedFields: Array<keyof typeof values> = [
       "id",
-      "userId",
+      "email",
+      "role",
+      "status",
       "gender",
       "profilePhoto",
+      "averageRating",
       "isDeleted",
       "createdAt",
       "updatedAt",
-      "user",
     ];
 
     const updatedValues = Object.fromEntries(
@@ -43,7 +43,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
     );
 
     try {
-      updateUserProfileData({ body: updatedValues, id });
+      updateSingleSeller({ body: updatedValues, id });
       await refetch();
       setOpen(false);
     } catch (error) {

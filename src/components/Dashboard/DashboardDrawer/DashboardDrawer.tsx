@@ -12,14 +12,14 @@ import { Avatar, Badge, Stack } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SideBer from "../SideBer/SideBer";
 import AccountMenu from "../AccountMenu/AccountMenu";
-import { useGetSingleUserQuery } from "../../../redux/api/userApi";
+import { useGetMYProfileQuery } from "../../../redux/api/myProfile";
 
 const drawerWidth = 240;
 
 const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const { data, isLoading } = useGetSingleUserQuery({});
+  const { data, isLoading } = useGetMYProfileQuery({});
 
   const handleDrawerClose = () => {
     setIsClosing(true);

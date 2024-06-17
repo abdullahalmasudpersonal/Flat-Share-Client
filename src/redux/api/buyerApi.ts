@@ -23,7 +23,7 @@ export const buyerApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: data.body,
       }),
-      invalidatesTags: [tagTypes.buyer],
+      invalidatesTags: [tagTypes.user],
     }),
   }),
 });

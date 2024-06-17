@@ -37,11 +37,11 @@ const Profile = () => {
 
   return (
     <>
-     {/*  <ProfileUpdateModal
+     <ProfileUpdateModal
         open={isModalOpen}
         setOpen={setIsModalOpen}
         id={data?.id}
-      /> */}
+      />  
       <Container sx={{ mt: 4 }}>
         <Grid container spacing={4}>
           <Grid xs={12} md={4}>
@@ -71,7 +71,7 @@ const Profile = () => {
                 />
               )}
             </Box>
-            {/* <Box my={3} display="flex" justifyContent="center">
+            <Box my={3} display="flex" justifyContent="center">
               {updating ? (
                 <p>Uploading...</p>
               ) : (
@@ -83,23 +83,22 @@ const Profile = () => {
                   variant="outlined"
                 />
               )}
-            </Box> */}
+            </Box>
 
-            {/* <Button
+          <Button
               variant="contained"
               fullWidth
               endIcon={<ModeEditIcon />}
               onClick={() => setIsModalOpen(true)}
             >
               Edit Profile
-            </Button> */}
+            </Button> 
             <Box my={3}>
               <Link href="/dashboard/change-password">
                 <Button
                   variant="contained"
                   fullWidth
                   endIcon={<LockResetIcon />}
-                  onClick={() => setIsModalOpen(true)}
                 >
                   Change password
                 </Button>

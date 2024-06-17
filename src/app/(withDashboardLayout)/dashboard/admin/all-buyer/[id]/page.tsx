@@ -19,7 +19,8 @@ import profileAltLogo from "../../../../../../assets/profile/person-icon.png";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useGetSingleBuyerQuery, useUpdateSingleBuyerMutation } from "../../../../../../redux/api/buyerApi";
+import { useGetSingleBuyerQuery } from "../../../../../../redux/api/buyerApi";
+import { useUpdateUserStatusMutation } from "../../../../../../redux/api/userApi";
 
 type TParams = {
   params: {
@@ -47,8 +48,8 @@ const BuyerDetailPage = ({ params }: TParams) => {
   const id = params?.id;
   const { data, isLoading } = useGetSingleBuyerQuery(id);
 
-  const [updateSingleBuyer, { isLoading: updateSellerIsloading }] =
-    useUpdateSingleBuyerMutation(undefined);
+  const [updateUserStatus, { isLoading: updateSellerIsloading }] =
+  useUpdateUserStatusMutation(undefined);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -62,7 +63,7 @@ const BuyerDetailPage = ({ params }: TParams) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
-      const res = await updateSingleBuyer({
+      const res = await updateUserStatus({
         id: data?.user?.id,
         body: values,
       });

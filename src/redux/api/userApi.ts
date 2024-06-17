@@ -3,43 +3,15 @@ import { baseApi } from "./baseApi";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getSingleUser: build.query({
-      query: () => ({
-        url: "/user/me",
-        method: "GET",
-      }),
-      providesTags: [tagTypes.user],
-    }),
-    getMyUserProfileData: build.query({
-      query: (id: string | string[] | undefined) => ({
-        url: `/user/me/${id}`,
-        method: "GET",
-      }),
-      providesTags: [tagTypes.user],
-    }),
-    updateMyProfile: build.mutation({
+    updateUserStatus: build.mutation({
       query: (data) => ({
-        url: "/user/update-my-profile",
+        url: `/user/update-user-status/${data?.id}`,
         method: "PATCH",
-        data,
-        contentType: "multipart/form-data",
+        data: data?.body,
       }),
-      invalidatesTags: [tagTypes.user],
-    }),
-    updateUserProfileData: build.mutation({
-      query: (data) => ({
-        url: `/user/${data?.id}`,
-        method: "PATCH",
-        data: data.body,
-      }),
-      invalidatesTags: [tagTypes.user],
+      invalidatesTags: [tagTypes.buyer, tagTypes.seller],
     }),
   }),
 });
 
-export const {
-  useGetSingleUserQuery,
-  useGetMyUserProfileDataQuery,
-  useUpdateMyProfileMutation,
-  useUpdateUserProfileDataMutation,
-} = userApi;
+export const { useUpdateUserStatusMutation } = userApi;
