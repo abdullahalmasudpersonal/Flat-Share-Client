@@ -16,11 +16,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { FieldValues } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
-import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { modifyPayload } from "../../utils/modifyPayload";
-import { registerUser } from "../../services/actions/registerUser";
+import { registerBuyer, registerSeller } from "../../services/actions/registerUser";
 import { userLogin } from "../../services/actions/userLogin";
 import { storeUserInfo } from "../../services/auth.services";
 import Input from "../../components/Forms/Input";
@@ -39,23 +38,39 @@ const RegisterPage = () => {
   };
 
   const handleRegister = async (values: FieldValues) => {
-    values.role = role;
-    values.user.gender = gender;
-    const data = modifyPayload(values);
-    console.log(values);
     try {
-      const res = await registerUser(data);
-      if (res?.data.id) {
-        toast.success(res?.message);
+      values.prifileData.gender = gender;
+      const data = modifyPayload(values);
 
-        const result = await userLogin({
-          password: values.password,
-          email: values.email,
-        });
-        console.log(result);
-        if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
-          router.push("/dashboard");
+      if (role === 'SELLER') {
+        const res = await registerSeller(data);
+        if (res?.data.id) {
+          toast.success(res?.message);
+
+          const result = await userLogin({
+            password: values.password,
+            email: values.prifileData.email,
+          });
+          if (result?.data?.accessToken) {
+            storeUserInfo({ accessToken: result?.data?.accessToken });
+            router.push("/dashboard");
+          }
+        }
+      }
+
+      if (role === 'BUYER') {
+        const res = await registerBuyer(data);
+        if (res?.data.id) {
+          toast.success(res?.message);
+
+          const result = await userLogin({
+            password: values.password,
+            email: values.prifileData.email,
+          });
+          if (result?.data?.accessToken) {
+            storeUserInfo({ accessToken: result?.data?.accessToken });
+            router.push("/dashboard");
+          }
         }
       }
     } catch (err: any) {
@@ -85,25 +100,25 @@ const RegisterPage = () => {
           <Form onSubmit={handleRegister}>
             <Input
               sx={{ mb: "20px" }}
-              name="user.name"
+              name="prifileData.name"
               required
               fullWidth
               label="Name"
             />
 
-            <Input
+            {/*             <Input
               sx={{ mb: "20px" }}
               required
               fullWidth
               label="Username"
               name="username"
-            />
+            /> */}
             <Input
               sx={{ mb: "20px" }}
               required
               fullWidth
               label="Email"
-              name="email"
+              name="prifileData.email"
               type="email"
             />
             <Input
@@ -148,7 +163,7 @@ const RegisterPage = () => {
               sx={{ mb: "20px" }}
               required
               fullWidth
-              name="user.contactNumber"
+              name="prifileData.contactNumber"
               label="Contact Number"
               type="number"
             />
@@ -156,7 +171,7 @@ const RegisterPage = () => {
               sx={{ mb: "20px" }}
               required
               fullWidth
-              name="user.profession"
+              name="prifileData.profession"
               label="Profession"
               type="string"
             />
@@ -164,7 +179,7 @@ const RegisterPage = () => {
               sx={{ mb: "20px" }}
               required
               fullWidth
-              name="user.address"
+              name="prifileData.address"
               label="Address"
               type="string"
             />
