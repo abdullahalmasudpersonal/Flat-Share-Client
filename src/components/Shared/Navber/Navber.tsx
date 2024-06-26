@@ -15,6 +15,8 @@ import logo from "../../../assets/logo/flatShareLogo.png";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { getUserInfo } from "../../../services/auth.services";
+import { ToggleColorMode } from "../ThemeColor/ThemeColor";
+import { PaletteMode } from "@mui/material";
 
 const logoStyle = {
   width: "140px",
@@ -22,12 +24,12 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-/*   interface AppAppBarProps {
-    mode: PaletteMode;
-    toggleColorMode: () => void;
-  } */
+interface AppAppBarProps {
+  mode: PaletteMode;
+  toggleColorMode: () => void;
+}
 
-const Navber = () => {
+const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
   const userInfo = getUserInfo();
   const AuthButton = dynamic(() => import("../../UI/AuthButton/AuthButton"), {
     ssr: false,
@@ -99,7 +101,7 @@ const Navber = () => {
                 <Image src={logo} style={logoStyle} alt="logo of Flat Share" />
               </Link>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem
+                {/* <MenuItem
                   onClick={() => scrollToSection("features")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
@@ -114,7 +116,7 @@ const Navber = () => {
                   <Typography variant="body2" color="primary">
                     Testimonials
                   </Typography>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection("highlights")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
@@ -125,14 +127,14 @@ const Navber = () => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem
+                {/*  <MenuItem
                   onClick={() => scrollToSection("pricing")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
                   <Typography variant="body2" color="primary">
                     Pricing
                   </Typography>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection("faq")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
@@ -152,7 +154,7 @@ const Navber = () => {
                 alignItems: "center",
               }}
             >
-              {/*  <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
+              {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
 
               <AuthButton />
             </Box>
@@ -185,7 +187,7 @@ const Navber = () => {
                   >
                     {/*    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
                   </Box>
-                  <MenuItem onClick={() => scrollToSection("features")}>
+                  {/*   <MenuItem onClick={() => scrollToSection("features")}>
                     Features
                   </MenuItem>
                   <MenuItem onClick={() => scrollToSection("testimonials")}>
@@ -199,7 +201,7 @@ const Navber = () => {
                   </MenuItem>
                   <MenuItem onClick={() => scrollToSection("faq")}>
                     FAQ
-                  </MenuItem>
+                  </MenuItem> */}
                   <Divider />
                   <MenuItem>
                     <Button

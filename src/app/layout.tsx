@@ -3,6 +3,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Toaster } from "sonner";
 import Providers from "../lib/Providers/Providers";
+import "aos/dist/aos.css";
 
 export const metadata: Metadata = {
   title: "Flat Share",

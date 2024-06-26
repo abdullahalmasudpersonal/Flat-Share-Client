@@ -11,6 +11,10 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useGetSellerFlatsQuery } from "../../../../../redux/api/flatApi";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
+import Image from "next/image";
+import Link from "next/link";
 
 const MyAd = () => {
   const { data: flatData, isLoading } = useGetSellerFlatsQuery({});
@@ -30,6 +34,8 @@ const MyAd = () => {
                 <TableCell align="right">Address</TableCell>
                 <TableCell align="right">Rent</TableCell>
                 <TableCell align="right">Advance Amount</TableCell>
+                <TableCell align="right">Image</TableCell>
+                <TableCell align="right">Public</TableCell>
                 <TableCell align="right">Availability</TableCell>
                 <TableCell align="center">Details</TableCell>
               </TableRow>
@@ -50,12 +56,43 @@ const MyAd = () => {
                   <TableCell align="right">{data?.rent}</TableCell>
                   <TableCell align="right">{data?.advanceAmount}</TableCell>
                   <TableCell align="right">
+                    {data?.flatPhoto ? (
+                      <Image
+                        width={100}
+                        height={100}
+                        src={data?.flatPhoto}
+                        alt="flat image"
+                      />
+                    ) : (
+                      "Please upload image & get public"
+                    )}
+                  </TableCell>
+                  <TableCell align="right">
+                    {data?.flatPhoto ? (
+                      <>
+                        {"Yes"}&nbsp;
+                        <CheckCircleIcon
+                          fontSize="small"
+                          sx={{ color: "green" }}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {"No"}&nbsp;
+                        <DoNotDisturbIcon
+                          fontSize="small"
+                          sx={{ color: "red" }}
+                        />
+                      </>
+                    )}
+                  </TableCell>
+                  <TableCell align="right">
                     {data?.availability ? "Yes" : "No"}
                   </TableCell>
                   <TableCell align="center">
-                    {/*  <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
-                    <Button variant="contained">Details</Button>
-                    {/*  </Link> */}
+                    <Link href={`/dashboard/seller/my-ad/${data?.id}`}>
+                      <Button variant="contained">Details</Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}

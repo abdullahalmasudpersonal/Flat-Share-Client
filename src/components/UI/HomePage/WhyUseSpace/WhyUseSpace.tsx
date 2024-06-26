@@ -1,15 +1,28 @@
+"use client";
 import { Box, Card, Container, Grid, Typography } from "@mui/material";
 import { purple } from "@mui/material/colors";
-import React from "react";
+import React, { useEffect } from "react";
 import EveryThreeMinsImg from "../../../../assets/WhyUseSpace/EveryThreeMins.svg";
 import KeysImg from "../../../../assets/WhyUseSpace/Keys.svg";
 import WelcomeImg from "../../../../assets/WhyUseSpace/Welcome.svg";
 import Image from "next/image";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const WhyUseSpace = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <>
-      <Typography textAlign="center" variant="h3" fontFamily="serif" mb={10}>
+      <Typography
+        data-aos="fade-down"
+        textAlign="center"
+        variant="h3"
+        fontFamily="serif"
+        mb={10}
+      >
         Why use Spare{" "}
         <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}>
           Flat?
@@ -20,6 +33,7 @@ const WhyUseSpace = () => {
           <Container sx={{ margin: "30px auto" }}>
             <Grid container spacing={2}>
               <Card
+                data-aos="fade-down"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",
@@ -54,6 +68,7 @@ const WhyUseSpace = () => {
                 </Box>
               </Card>
               <Card
+                data-aos="fade-down"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",
@@ -83,6 +98,7 @@ const WhyUseSpace = () => {
                 </Box>
               </Card>
               <Card
+                data-aos="fade-down"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",

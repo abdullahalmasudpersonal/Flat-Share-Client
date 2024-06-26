@@ -1,15 +1,23 @@
+"use client";
 import { Box, Card, Container, Grid, Typography } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import user from "../../../../assets/SuccesStories/user.png";
 import user2 from "../../../../assets/SuccesStories/user2.png";
 import user3 from "../../../../assets/SuccesStories/user3.png";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const SuccessStories = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
     <>
       <Typography
+        data-aos="fade-up"
         textAlign="center"
         variant="h3"
         fontFamily="serif"
@@ -25,6 +33,7 @@ const SuccessStories = () => {
         <Container sx={{ margin: "30px auto" }}>
           <Grid container spacing={2}>
             <Card
+              data-aos="fade-right"
               sx={{
                 maxWidth: 345,
                 margin: "auto",
@@ -64,6 +73,7 @@ const SuccessStories = () => {
               </Box>
             </Card>
             <Card
+              data-aos="fade-up"
               sx={{
                 maxWidth: 345,
                 margin: "auto",
@@ -102,6 +112,7 @@ const SuccessStories = () => {
               </Box>
             </Card>
             <Card
+              data-aos="fade-left"
               sx={{
                 maxWidth: 345,
                 margin: "auto",

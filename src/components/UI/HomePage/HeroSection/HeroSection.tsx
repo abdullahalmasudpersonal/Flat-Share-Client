@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,20 +7,28 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
+import "./HeroSection.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HeroSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <Box
-      id="hero"
+      //   id="hero"
       sx={(theme) => ({
         width: "100%",
         backgroundImage:
           theme.palette.mode === "light"
             ? "linear-gradient(180deg, #efcefd, #FFF)"
             : `linear-gradient(#02294F, ${alpha("#090E10", 0.0)})`,
-        backgroundSize: "100% 20%",
+        backgroundSize: "100% 40%",
         backgroundRepeat: "no-repeat",
       })}
+      /*       sx={{ backgroundColor: "purple" }} */
     >
       <Container
         sx={{
@@ -33,6 +41,7 @@ const HeroSection = () => {
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
           <Typography
+            data-aos="fade-down-left"
             variant="h1"
             sx={{
               display: "flex",
@@ -60,6 +69,7 @@ const HeroSection = () => {
             </Typography>
           </Typography>
           <Typography
+            data-aos="fade-right"
             textAlign="center"
             color="text.secondary"
             sx={{
@@ -78,7 +88,13 @@ const HeroSection = () => {
             sx={{ pt: 0, width: { xs: "100%", sm: "auto" } }}
           >
             <Link href={`/dashboard/seller/post-ad`}>
-              <Button variant="contained" color="primary">
+              <Button
+                data-aos="fade-down-right"
+                className="glow-on-hover"
+                sx={{ padding: "13px 50px", fontSize: "15px" }}
+                // variant="contained"
+                //color="primary"
+              >
                 Share Your Flat
               </Button>
             </Link>

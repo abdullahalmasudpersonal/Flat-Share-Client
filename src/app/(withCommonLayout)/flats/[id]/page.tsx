@@ -5,16 +5,8 @@ import {
   CardMedia,
   Container,
   Grid,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
@@ -24,6 +16,7 @@ import Link from "next/link";
 import { useGetSingleFlatQuery } from "../../../../redux/api/flatApi";
 import { useGetBookingFlatQuery } from "../../../../redux/api/bookingApi";
 import { formatLocalTime } from "../../../../components/Shared/Date&Time/Date";
+import { getUserInfo } from "@/services/auth.services";
 
 type TParams = {
   params: {
@@ -32,75 +25,14 @@ type TParams = {
 };
 
 const FlatDetailPage = ({ params }: TParams) => {
+  const userInfo = getUserInfo();
+  const disabledRequest = !(userInfo?.role === "buyer");
   const id = params?.id;
   const { data: flatData, isLoading } = useGetSingleFlatQuery(id);
-  const { data: myBookingData, isLoading: commingData } =
-    useGetBookingFlatQuery({});
 
   return (
     <Box marginTop="120px" marginBottom="120px">
       <Container>
-        <Box>
-          {isLoading ? (
-            "Loading..."
-          ) : (
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Flat Name</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                    <TableCell align="right">SquareFeet</TableCell>
-                    <TableCell align="right">Total Bedroom</TableCell>
-                    <TableCell align="right">Total Room</TableCell>
-                    <TableCell align="right">Rent</TableCell>
-                    <TableCell align="right">Advance Amount</TableCell>
-                    <TableCell align="right">Address</TableCell>
-                    <TableCell align="right">Availability</TableCell>
-                    <TableCell align="center">Details</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {myBookingData?.map((data: any) => (
-                    <TableRow
-                      key={data?.id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {data?.flatId}
-                      </TableCell>
-                      <TableCell align="right">{data?.status}</TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.squareFeet}
-                      </TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.totalBedrooms}
-                      </TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.totalRooms}
-                      </TableCell>
-                      <TableCell align="right">{data?.flat?.rent}</TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.advanceAmount}
-                      </TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.location}
-                      </TableCell>
-                      <TableCell align="right">
-                        {data?.flat?.availability ? "Yes" : "NO"}
-                      </TableCell>
-                      <TableCell align="center">
-                        {/*   <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
-                        <Button variant="contained">Details</Button>
-                        {/* </Link> */}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
-        </Box>
         <Box sx={{ flexGrow: 1 }}>
           <Grid
             container
@@ -180,9 +112,9 @@ const FlatDetailPage = ({ params }: TParams) => {
                   </Typography>
 
                   <Box mt="20px">
-                    <Link href={`/flats/booking/${id}`}>
-                      <Button variant="contained">Booking Request</Button>
-                    </Link>
+                    <Button variant="contained" disabled={disabledRequest}>
+                      <Link href={`/flats/booking/${id}`}>Booking Request</Link>
+                    </Button>
                   </Box>
                   <Box mt="20px">
                     <FlatAccordian data={flatData} />
