@@ -33,7 +33,7 @@ const WhyUseSpace = () => {
           <Container sx={{ margin: "30px auto" }}>
             <Grid container spacing={2}>
               <Card
-                data-aos="fade-down"
+                data-aos="fade-right"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",
@@ -68,7 +68,7 @@ const WhyUseSpace = () => {
                 </Box>
               </Card>
               <Card
-                data-aos="fade-down"
+                data-aos="fade-right"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",
@@ -98,7 +98,7 @@ const WhyUseSpace = () => {
                 </Box>
               </Card>
               <Card
-                data-aos="fade-down"
+                data-aos="fade-right"
                 sx={{
                   maxWidth: 345,
                   margin: "auto",

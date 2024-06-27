@@ -17,6 +17,7 @@ import dynamic from "next/dynamic";
 import { getUserInfo } from "../../../services/auth.services";
 import { ToggleColorMode } from "../ThemeColor/ThemeColor";
 import { PaletteMode } from "@mui/material";
+import Aos from "aos";
 
 const logoStyle = {
   width: "140px",
@@ -30,6 +31,9 @@ interface AppAppBarProps {
 }
 
 const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
+  React.useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   const userInfo = getUserInfo();
   const AuthButton = dynamic(() => import("../../UI/AuthButton/AuthButton"), {
     ssr: false,
@@ -55,8 +59,9 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
   };
 
   return (
-    <div>
+    <>
       <AppBar
+        data-aos="fade-down"
         position="fixed"
         sx={{
           boxShadow: 0,
@@ -233,7 +238,7 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
           </Toolbar>
         </Container>
       </AppBar>
-    </div>
+    </>
   );
 };
 

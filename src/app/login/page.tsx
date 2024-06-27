@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { userLogin } from "../../services/actions/userLogin";
-import { storeUserInfo } from "../../services/auth.services";
+import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
 
@@ -25,8 +25,9 @@ const LoginPage = () => {
       const res = await userLogin(values);
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
+        const { role } = getUserInfo();
         toast.success(res?.message);
-        router.push(`/dashboard`);
+        router.push(`/dashboard/${role}`);
       } else {
         setError(res.message);
       }

@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Button,
@@ -7,11 +8,17 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
+import Aos from "aos";
+import { useEffect } from "react";
 
 const Searching = () => {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <>
       <Box
+        data-aos="fade-right"
         sx={{
           margin: "20px",
           display: "flex",
@@ -46,16 +53,19 @@ const Searching = () => {
             defaultValue="location"
           >
             <FormControlLabel
+              data-aos="flip-up"
               value="location"
               control={<Radio />}
               label="Location"
             />
             <FormControlLabel
+              data-aos="flip-right"
               value="rent"
               control={<Radio />}
               label="Price range"
             />
             <FormControlLabel
+              data-aos="flip-down"
               value="totalBedrooms"
               control={<Radio />}
               label="Number of bedrooms"
