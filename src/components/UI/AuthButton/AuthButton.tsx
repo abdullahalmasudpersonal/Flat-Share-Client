@@ -16,7 +16,7 @@ const AuthButton = () => {
       {userInfo?.userId ? (
         <>
           <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
-            <Link href="/dashboard">
+            <Link href={`/dashboard/${userInfo?.role}`}>
               <Typography variant="body2" color="primary">
                 Dashboard
               </Typography>
@@ -32,9 +32,7 @@ const AuthButton = () => {
           </MenuItem>
         </>
       ) : (
-        <MenuItem
-          sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
-        >
+        <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
           <Link href="/login">
             <Typography variant="body2" color="primary">
               Login

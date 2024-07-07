@@ -43,7 +43,7 @@ const UpdateFlatModal = ({ open, setOpen, id }: TProps) => {
 
     const excludedFields: Array<keyof typeof values> = [
       "id",
-      "userId",
+      "email",
       "profilePhoto",
       "isDeleted",
       "createdAt",

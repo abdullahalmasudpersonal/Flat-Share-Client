@@ -27,6 +27,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import FlatAccordian from "../components/FlatAccordion";
 import UpdateFlatModal from "../components/UpdateFlatModal";
+import AutoFileUploader from "@/components/Forms/AutoFileUploader";
 
 type TParams = {
   params: {
@@ -50,12 +51,16 @@ const MyFlatDetailPage = ({ params }: TParams) => {
   const { data: flatDetail, isLoading } = useGetSingleFlatQuery(id);
   const [updateFlat, { isLoading: updating }] = useUpdateFlatMutation();
 
-  const fileUploadHandler = (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("data", JSON.stringify({}));
-    updateFlat(formData);
-  };
+  // const fileUploadHandler = (file: File) => {
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   formData.append("data", JSON.stringify({}));
+  //   updateFlat({ formData, id });
+  // };
+
+  if (isLoading) {
+    <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -99,21 +104,15 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                 />
               ) : (
                 ""
-                /*   <Image
-                                      height={300}
-                                      width={400}
-                                      src={flatDetail?.flatPhoto}
-                                      alt="User Photo"
-                                  /> */
               )}
             </Box>
-            {/* <Box my={3} display="flex" justifyContent="center">
+            {/*    <Box my={3} display="flex" justifyContent="center">
               {updating ? (
                 <p>Uploading...</p>
               ) : (
                 <AutoFileUploader
                   name="file"
-                  label="Choose Your Profile Photo"
+                  label="Choose Your Flat Photo"
                   icon={<CloudUploadIcon />}
                   onFileUpload={fileUploadHandler}
                   variant="outlined"
@@ -201,75 +200,6 @@ const MyFlatDetailPage = ({ params }: TParams) => {
             </Box>
           </Grid>
         </Grid>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>SL</TableCell>
-                <TableCell>Flat Name</TableCell>
-                <TableCell align="right">Availability</TableCell>
-                <TableCell align="right">Owner</TableCell>
-                <TableCell align="right">Booking Request</TableCell>
-                <TableCell align="center">Details</TableCell>
-                <TableCell align="center">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {/*   {flatDetail?.map((data: any, index: number) => ( */}
-              <TableRow
-                key={flatDetail?.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row"></TableCell>
-                <TableCell component="th" scope="row">
-                  {flatDetail?.flatName}
-                </TableCell>
-                {/* <TableCell align="right">{flatDetail?.squareFeet}</TableCell>
-                  <TableCell align="right">{flatDetail?.totalBedrooms}</TableCell>
-                  <TableCell align="right">{flatDetail?.totalRooms}</TableCell> */}
-                {/*   <TableCell align="right">{flatDetail?.rent}</TableCell>
-                  <TableCell align="right">{flatDetail?.advanceAmount}</TableCell> */}
-                {/*  <TableCell align="right">{flatDetail?.location}</TableCell> */}
-                <TableCell align="right">
-                  {flatDetail?.availability ? "Yes" : "No"}
-                </TableCell>
-                <TableCell align="right">{flatDetail?.user?.email}</TableCell>
-                {/* <TableCell align="right">
-                    {formatLocalTime(flatDetail?.createdAt)}
-                  </TableCell> */}
-                <TableCell align="right">
-                  {flatDetail?.booking?.length}
-                </TableCell>
-                <TableCell align="center">
-                  <Link
-                    href={`/dashboard/admin/flat-management/${flatDetail?.id}`}
-                  >
-                    <Button variant="contained">Details</Button>
-                  </Link>
-                </TableCell>
-                <TableCell align="center">
-                  {/*  <Link href={`/dashboard/admin/all-buyer/${flatDetail?.id}`}> */}
-                  {/* <Button
-                      onClick={() => handleOpen(data?.id)}
-                      variant="contained"
-                      sx={{
-                        backgroundColor: "warning.main",
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "warning.dark",
-                          color: "#e2e2e2",
-                        },
-                      }}
-                    >
-                      Delete
-                    </Button> */}
-                  {/*  </Link> */}
-                </TableCell>
-              </TableRow>
-              {/*      ))} */}
-            </TableBody>
-          </Table>
-        </TableContainer>
       </Container>
     </>
   );
