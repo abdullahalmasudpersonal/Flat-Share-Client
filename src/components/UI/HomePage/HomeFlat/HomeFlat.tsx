@@ -48,12 +48,12 @@ const HomeFlat = () => {
         </Typography>
       </Box>
       <Box sx={{ textAlign: "center" }}>
-        <Container sx={{ margin: "30px auto" }}>
+        <Container sx={{ margin: "0px auto" }}>
           <Grid container spacing={2}>
             {flatData?.slice(0, 3)?.map((item: any) =>
               item?.flatPhoto ? (
                 <Card
-                  data-aos="fade-down-right"
+                  data-aos="flip-down"
                   key={item.id}
                   sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px" }}
                 >

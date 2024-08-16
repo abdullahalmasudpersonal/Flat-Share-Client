@@ -16,6 +16,7 @@ import { userLogin } from "../../services/actions/userLogin";
 import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
+import AccordionUsage from "./credential";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -40,7 +41,7 @@ const LoginPage = () => {
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 19,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -108,6 +109,9 @@ const LoginPage = () => {
             </Grid>
           </Form>
         </Box>
+      </Box>
+      <Box sx={{ marginTop: 4 }}>
+        <AccordionUsage />
       </Box>
     </Container>
   );
