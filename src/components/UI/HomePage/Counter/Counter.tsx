@@ -10,7 +10,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 const Counter = () => {
     return (
         <Box>
-            <Typography data-aos="fade-left"
+            <Typography  data-aos="fade-down" 
                 textAlign="center"
                 variant="h3"
                 fontFamily="serif"
@@ -19,8 +19,8 @@ const Counter = () => {
             </Typography>
             <Container sx={{ margin: "0px auto" }}>
                 <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="zoom-in">
+                    <Grid container spacing={2} data-aos="zoom-in">
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
                             <CardContent>
                                 <Box sx={{ display: 'grid', alignItems: 'center', justifyContent: 'center', }}>
                                     <Box sx={{ display: 'inline-block', backgroundColor: '#ffddef', padding: '18px', borderRadius: '50%', border: '1px solid purple' }}>
@@ -31,7 +31,7 @@ const Counter = () => {
                                 <Typography textAlign='center' color='gray'>Communities</Typography>
                             </CardContent>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="zoom-in">
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
                             <CardContent>
                                 <Box sx={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}>
                                     <Box sx={{ display: 'inline-block', backgroundColor: '#ffddef', padding: '18px', borderRadius: '50%', border: '1px solid purple' }}>
@@ -42,7 +42,7 @@ const Counter = () => {
                                 <Typography textAlign='center' color='gray'>Flats/Rooms</Typography>
                             </CardContent>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="zoom-in">
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
                             <CardContent>
                                 <Box sx={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}>
                                     <Box sx={{ display: 'inline-block', backgroundColor: '#ffddef', padding: '18px', borderRadius: '50%', border: '1px solid purple' }}>
@@ -53,7 +53,7 @@ const Counter = () => {
                                 <Typography textAlign='center' color='gray'>Country</Typography>
                             </CardContent>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="zoom-in">
+                        <Grid item xs={12} sm={6} md={4} lg={3}/*  data-aos="zoom-in" */>
                             <CardContent>
                                 <Box sx={{ display: 'grid', alignItems: 'center', justifyContent: 'center' }}>
                                     <Box sx={{ display: 'inline-block', backgroundColor: '#ffddef', padding: '18px', borderRadius: '50%', border: '1px solid purple' }}>

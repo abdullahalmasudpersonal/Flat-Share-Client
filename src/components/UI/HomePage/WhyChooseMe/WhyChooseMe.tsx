@@ -25,8 +25,8 @@ const WhyChooseMe = () => {
             </Typography>
             <Container sx={{ margin: "0px auto" }}>
                 <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2} >
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="fade-down-left" >
+                    <Grid container spacing={2} data-aos="fade-down">
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="fade-down-left" */ >
                             <Card >
                                 <CardContent>
                                     <Typography variant="h5" component="div">
@@ -38,7 +38,7 @@ const WhyChooseMe = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="fade-down-left"  >
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="fade-down-left" */  >
                             <Card>
                                 <CardContent>
                                     <Typography variant="h5" component="div">
@@ -50,7 +50,7 @@ const WhyChooseMe = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="fade-down-left" >
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="fade-down-left" */ >
                             <Card>
                                 <CardContent>
                                     <Typography variant="h5" component="div">
@@ -62,7 +62,7 @@ const WhyChooseMe = () => {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3} data-aos="fade-down-left"  >
+                        <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="fade-down-left" */  >
                             <Card>
                                 <CardContent>
                                     <Typography variant="h5" component="div">
