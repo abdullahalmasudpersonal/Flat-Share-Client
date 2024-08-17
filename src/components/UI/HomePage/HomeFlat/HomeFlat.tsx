@@ -52,7 +52,7 @@ const HomeFlat = () => {
             {flatData?.slice(0, 3)?.map((item: any) =>
               item?.flatPhoto ? (
                 <Card
-                  data-aos="flip-down"
+                  data-aos="fade-down"
                   key={item.id}
                   sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px" }}
                 >

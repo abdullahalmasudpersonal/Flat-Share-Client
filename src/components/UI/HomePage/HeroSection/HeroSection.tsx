@@ -28,7 +28,7 @@ const HeroSection = () => {
         backgroundSize: "100% 40%",
         backgroundRepeat: "no-repeat",
       })}
-      /*       sx={{ backgroundColor: "purple" }} */
+    /*       sx={{ backgroundColor: "purple" }} */
     >
       <Container
         sx={{
@@ -92,8 +92,8 @@ const HeroSection = () => {
                 data-aos="fade-down-right"
                 className="glow-on-hover"
                 sx={{ padding: "13px 50px", fontSize: "15px" }}
-                // variant="contained"
-                //color="primary"
+              // variant="contained"
+              //color="primary"
               >
                 Share Your Flat
               </Button>
