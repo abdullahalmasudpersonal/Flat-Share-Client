@@ -11,12 +11,17 @@ const HomePage = async () => {
   return (
     <>
       <HeroSection />
+      {/* No Problems */}
       <Searching />
+      {/* No Problems */}
       <HomeFlat />
+      {/* No Problems */}
       <Counter />
+      {/* No Problems */}
       <WhyChooseMe />
+      {/* No Problems */}
       <WhyUseSpace />
-      <SuccessStories />
+      {/* <SuccessStories /> */}
     </>
   );
 };

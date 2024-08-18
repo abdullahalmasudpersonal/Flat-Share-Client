@@ -85,7 +85,7 @@ const HeroSection = () => {
             alignSelf="center"
             spacing={1}
             useFlexGap
-            sx={{ pt: 0, width: { xs: "100%", sm: "auto" } }}
+          // sx={{ pt: 0, width: { xs: "100%", sm: "auto" } }}
           >
             <Link href={`/dashboard/seller/post-ad`}>
               <Button

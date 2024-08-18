@@ -44,13 +44,14 @@ const Searching = () => {
           </Button>
         </Box>
       </Box>
-      <Box display="flex" justifyContent="center">
-        <FormControl>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl sx={{ display: 'flex' }}>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
             defaultValue="location"
+
           >
             <FormControlLabel
               data-aos="flip-up"
