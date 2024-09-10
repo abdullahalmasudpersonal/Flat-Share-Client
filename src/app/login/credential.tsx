@@ -50,6 +50,20 @@ export default function AccordionUsage() {
                     <Typography>Password: 123456</Typography>
                 </AccordionDetails>
             </Accordion>
+
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2-content"
+                    id="panel2-header"
+                >
+                    Admin
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography>Email: abdullah@gmail.com</Typography>
+                    <Typography>Password: 123456</Typography>
+                </AccordionDetails>
+            </Accordion>
         </div>
     );
 }
