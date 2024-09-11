@@ -32,6 +32,7 @@ const SuccessStories = () => {
       <Box sx={{ textAlign: "center" }}>
         <Container sx={{ margin: "30px auto" }}>
           <Grid container spacing={2}>
+
             <Card
               data-aos="fade-right"
               sx={{
@@ -72,6 +73,7 @@ const SuccessStories = () => {
                 </Typography>
               </Box>
             </Card>
+
             <Card
               data-aos="fade-up"
               sx={{
@@ -111,8 +113,9 @@ const SuccessStories = () => {
                 </Typography>
               </Box>
             </Card>
+
             <Card
-              data-aos="fade-left"
+              data-aos="fade-down"
               sx={{
                 maxWidth: 345,
                 margin: "auto",
@@ -151,6 +154,7 @@ const SuccessStories = () => {
                 </Typography>
               </Box>
             </Card>
+
           </Grid>
         </Container>
       </Box>
