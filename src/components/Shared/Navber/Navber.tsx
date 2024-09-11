@@ -163,6 +163,8 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
 
               <AuthButton />
             </Box>
+
+
             <Box sx={{ display: { sm: "", md: "none" } }}>
               <Button
                 variant="text"
@@ -208,30 +210,44 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     FAQ
                   </MenuItem> */}
                   <Divider />
-                  <MenuItem>
-                    <Button
-                      color="primary"
-                      variant="contained"
-                      component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
-                      target="_blank"
-                      sx={{ width: "100%" }}
-                    >
-                      Sign up
-                    </Button>
-                  </MenuItem>
+
+
                   <MenuItem>
                     <Button
                       color="primary"
                       variant="outlined"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-in/"
-                      target="_blank"
+                      href="/flats"
+                      sx={{ width: "100%" }}
+                    >
+                      Flat
+                    </Button>
+                  </MenuItem>
+
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      component="a"
+                      href="/about-us"
+                      sx={{ width: "100%" }}
+                    >
+                      About
+                    </Button>
+                  </MenuItem>
+
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component="a"
+                      href="/login"
                       sx={{ width: "100%" }}
                     >
                       Sign in
                     </Button>
                   </MenuItem>
+
                 </Box>
               </Drawer>
             </Box>
