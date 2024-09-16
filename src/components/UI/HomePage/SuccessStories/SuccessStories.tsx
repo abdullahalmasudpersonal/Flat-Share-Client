@@ -21,6 +21,7 @@ const SuccessStories = () => {
         textAlign="center"
         variant="h3"
         fontFamily="serif"
+        fontSize='clamp(2rem,8vw, 3rem)'
         mb={10}
         mt={10}
       >

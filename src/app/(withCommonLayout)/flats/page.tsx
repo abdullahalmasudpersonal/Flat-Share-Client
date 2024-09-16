@@ -26,14 +26,14 @@ const FlatsPage = () => {
 
   return (
     <>
-      <Box sx={{ textAlign: "center" }}>
-        <Container sx={{ margin: "130px auto" }}>
-          <Grid container spacing={2}>
+      <Box sx={{ margin: "130px auto" }}>
+        <Container >
+          <Grid container gap={1} sx={{ display: 'flex', justifyContent: 'space-between' }} >
             {flatData?.map((item: any) =>
               item?.flatPhoto ? (
                 <Card
                   key={item.id}
-                  sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px" }}
+                  sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px", textAlign: "center" }}
                 >
                   <CardHeader
                     avatar={

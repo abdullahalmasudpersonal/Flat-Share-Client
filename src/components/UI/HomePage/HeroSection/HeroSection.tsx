@@ -10,6 +10,7 @@ import Link from "next/link";
 import "./HeroSection.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { gray } from "@/components/Shared/ThemeColor/getLPTheme";
 
 const HeroSection = () => {
   useEffect(() => {
@@ -36,45 +37,43 @@ const HeroSection = () => {
           flexDirection: "column",
           alignItems: "center",
           pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          pb: { xs: 5, sm: 6 },
         }}
       >
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "70%" } }}>
+        <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "90%" } }}>
           <Typography
             data-aos="fade-down-left"
             variant="h1"
             sx={{
-              display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignSelf: "center",
               textAlign: "center",
-              fontSize: "clamp(3.5rem, 10vw, 4rem)",
+              fontSize: "clamp(2.5rem, 6vw, 4rem)",
               fontFamily: "cursive",
             }}
           >
-            Find Your Flat-mate&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={{
-                fontFamily: "cursive",
-                fontSize: "clamp(3.5rem, 10vw, 4rem)",
-                color: (theme) =>
-                  theme.palette.mode === "light"
-                    ? "primary.main"
-                    : "primary.light",
-              }}
-            >
-              Today!
-            </Typography>
+            Find Your Flat-mate <Typography sx={{
+              display: 'inline',
+              fontFamily: "cursive",
+              fontSize: "clamp(2.5rem, 6vw, 4rem)",
+              color: (theme) =>
+                theme.palette.mode === "light"
+                  ? "primary.main"
+                  : "primary.light",
+            }}>Today!</Typography>
+
           </Typography>
+
           <Typography
             data-aos="fade-right"
             textAlign="center"
-            color="text.secondary"
+            color='rgb(21, 13, 12)'
+            // color="text.secondary"
             sx={{
+              mt: -2,
+              mb: 2,
               alignSelf: "center",
-              width: { sm: "100%", md: "80%", fontFamily: "cursive" },
+              width: { sm: "80%", md: "80%", fontFamily: "cursive" },
             }}
           >
             The BD&rsquo;s Number 1 Flatshare Site. Elevate your experience with

@@ -15,6 +15,7 @@ const WhyChooseMe = () => {
                 textAlign="center"
                 variant="h3"
                 fontFamily="serif"
+                fontSize='clamp(2rem,8vw, 3rem)'
                 mt={10}
                 mb={10}
             >

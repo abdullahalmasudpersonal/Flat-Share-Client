@@ -10,10 +10,11 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 const Counter = () => {
     return (
         <Box>
-            <Typography  data-aos="fade-down" 
+            <Typography data-aos="fade-down"
                 textAlign="center"
                 variant="h3"
                 fontFamily="serif"
+                fontSize='clamp(2rem,8vw, 3rem)'
                 mb={10}>Flat Share Of
                 <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}> Numbers</Box>
             </Typography>

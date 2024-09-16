@@ -16,12 +16,12 @@ const HomePage = async () => {
       {/* No Problems */}
       <HomeFlat />
       {/* No Problems */}
+      <WhyUseSpace />
+      {/* No Problems */}
       <Counter />
       {/* No Problems */}
       <WhyChooseMe />
       {/* No Problems */}
-      <WhyUseSpace />
-
       <SuccessStories />
     </>
   );
