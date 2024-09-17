@@ -26,7 +26,7 @@ const Searching = () => {
         }}
       >
         <TextField
-          sx={{width:{xs: '100%',sm: '60%', md: '50%',  lg: '40%', xl:'40%',}  }}
+          sx={{ width: { xs: '100%', sm: '60%', md: '50%', lg: '30%', xl: '30%', } }}
           id="outlined-basic"
           hiddenLabel
           size="medium"
@@ -44,20 +44,31 @@ const Searching = () => {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', /* fontSize:{xs: '5px', sm: '10px', md: '10px',} */ }}>
-        <FormControl sx={{ display: 'flex' , fontSize:'5px'}}>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', paddingBottom: '30px' }}>
+        <FormControl sx={{ display: 'flex', fontSize: '5px' }}>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
             defaultValue="location"
-
+            sx={{
+              '& .MuiSvgIcon-root': {
+                fontSize: 24,
+              },
+              '@media (max-width: 500px)': {
+                '& .MuiSvgIcon-root': {
+                  fontSize: 15,
+                },
+              },
+            }}
           >
             <FormControlLabel
               data-aos="flip-up"
               value="location"
               control={<Radio />}
               label="Location"
+
             />
             <FormControlLabel
               data-aos="flip-right"
@@ -69,7 +80,8 @@ const Searching = () => {
               data-aos="flip-down"
               value="totalBedrooms"
               control={<Radio />}
-              label="Number of bedrooms"
+              label="Bedrooms"
+              sx={{ margin: '0px' }}
             />
           </RadioGroup>
         </FormControl>

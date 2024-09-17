@@ -32,13 +32,23 @@ const AuthButton = () => {
           </MenuItem>
         </>
       ) : (
-        <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
-          <Link href="/login">
-            <Typography variant="body2" color="primary">
-              Login
-            </Typography>
-          </Link>
-        </MenuItem>
+        <>
+          <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
+            <Link href="/register">
+              <Typography variant="body2" color="primary">
+                Register
+              </Typography>
+            </Link>
+          </MenuItem>
+
+          <MenuItem sx={{ py: "6px", px: "12px", borderRadius: "20px" }}>
+            <Link href="/login">
+              <Typography variant="body2" color="primary">
+                Login
+              </Typography>
+            </Link>
+          </MenuItem>
+        </>
       )}
     </>
   );

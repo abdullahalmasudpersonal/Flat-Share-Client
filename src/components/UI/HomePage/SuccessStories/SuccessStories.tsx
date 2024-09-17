@@ -30,8 +30,9 @@ const SuccessStories = () => {
           Stories
         </Box>
       </Typography>
+
       <Box sx={{ textAlign: "center" }}>
-        <Container sx={{ margin: "30px auto" }}>
+        <Container sx={{ margin: "30px auto 0px", paddingBottom: '40px' }}>
           <Grid container spacing={2}>
 
             <Card

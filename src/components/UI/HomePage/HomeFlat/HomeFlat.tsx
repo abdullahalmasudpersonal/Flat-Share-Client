@@ -27,7 +27,7 @@ const HomeFlat = () => {
   return (
     <Box
       sx={{
-        my: 10,
+        my: 6,
         /*         bgcolor: purple[100],
         clipPath: "polygon(0 0, 100% 27%, 100% 100%, 0 75%)", */
       }}
