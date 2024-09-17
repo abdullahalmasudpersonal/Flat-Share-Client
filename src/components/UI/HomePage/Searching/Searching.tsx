@@ -26,7 +26,7 @@ const Searching = () => {
         }}
       >
         <TextField
-          sx={{ width: "40%" }}
+          sx={{width:{xs: '100%',sm: '60%', md: '50%',  lg: '40%', xl:'40%',}  }}
           id="outlined-basic"
           hiddenLabel
           size="medium"
@@ -44,8 +44,8 @@ const Searching = () => {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <FormControl sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', /* fontSize:{xs: '5px', sm: '10px', md: '10px',} */ }}>
+        <FormControl sx={{ display: 'flex' , fontSize:'5px'}}>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
