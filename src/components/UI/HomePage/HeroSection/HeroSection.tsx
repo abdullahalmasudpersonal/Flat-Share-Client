@@ -11,6 +11,7 @@ import "./HeroSection.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+
 const HeroSection = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
@@ -21,19 +22,19 @@ const HeroSection = () => {
       sx={(theme) => ({
         pt: { xs: 14, sm: 20 },
         width: "100%",
-        /*    backgroundImage:
-             theme.palette.mode === "light"
-               ? "linear-gradient(180deg, #efcefd, #FFF)"
-               : `linear-gradient(#02294F, ${alpha("#090E10", 0.0)})`,
-           backgroundSize: "100% 40%",
-           backgroundRepeat: "no-repeat", */
+        /*   backgroundImage:
+            theme.palette.mode === "light"
+              ? "linear-gradient(180deg, #efcefd, #FFF)"
+              : `linear-gradient(#02294F, ${alpha("#090E10", 0.0)})`,
+          backgroundSize: " 100%  40%",
+          backgroundRepeat: "no-repeat", */
       })}
     >
       <Container
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "center", color: 'white'
         }}
       >
         <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "90%" } }}>
@@ -67,7 +68,7 @@ const HeroSection = () => {
             sx={{
               mt: -2,
               mb: 2,
-              alignSelf: "center",
+              alignSelf: "center", color: 'white',
               width: { sm: "80%", md: "80%", fontFamily: "cursive" },
             }}
           >
@@ -94,7 +95,7 @@ const HeroSection = () => {
 
         </Stack>
       </Container>
-    </Box>
+    </Box >
   );
 };
 

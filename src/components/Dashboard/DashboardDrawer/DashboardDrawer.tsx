@@ -38,14 +38,14 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", fontFamily: 'serif' }}>
         <CssBaseline />
         <AppBar
           position="fixed"
           sx={{
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
-            background: "#D7A1F9",
+            background: "#713ABE",
             boxShadow: 0,
             borderBottom: "1px solid lightgray",
           }}
@@ -71,16 +71,15 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
               <Box>
                 <Typography
                   variant="body2"
-                  color="gray"
                   noWrap
                   component="div"
-                  sx={{ color: "rgba(11, 17, 52, 0.6)" }}
+                  sx={{ color: "White", fontWeight: 'bold', fontFamily: 'Monospace' }}
                 >
                   Hi, {isLoading ? "Loading..." : data?.name}
                 </Typography>
                 <Typography
                   variant="body2"
-                  color="primary.main"
+                  color="white"
                   noWrap
                   component="div"
                 >

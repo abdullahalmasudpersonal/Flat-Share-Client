@@ -4,12 +4,14 @@ import {
   Button,
   FormControl,
   FormControlLabel,
+  InputAdornment,
   Radio,
   RadioGroup,
   TextField,
 } from "@mui/material";
 import Aos from "aos";
 import { useEffect } from "react";
+import SearchIcon from '@mui/icons-material/Search';
 
 const Searching = () => {
   useEffect(() => {
@@ -26,16 +28,37 @@ const Searching = () => {
         }}
       >
         <TextField
-          sx={{ width: { xs: '100%', sm: '60%', md: '50%', lg: '30%', xl: '30%', } }}
-          id="outlined-basic"
-          hiddenLabel
-          size="medium"
-          variant="outlined"
-          aria-label="Enter your email address"
+          sx={{
+            width: { xs: '100%', sm: '60%', md: '50%', lg: '30%', xl: '30%', }, color: 'white', border: '1px solid white', borderRadius: '5px',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                border: 'none',
+              },
+            },
+            '& .MuiInputBase-input::placeholder': {
+              color: 'white', // এখানে placeholder এর রঙ সেট করো
+              opacity: 1, // এটি placeholder এর default opacity পরিবর্তন করে
+            },
+            '& .MuiInputBase-input': {
+              color: 'white',  // এখানে টেক্সটের রঙ নির্ধারণ করো
+            },
+          }}
+          //  id="outlined-basic"
+          // hiddenLabel
+          //   size="medium"
+          // variant="outlined"
+          //  aria-label="Enter your email address"
           placeholder="Find Your Flat..."
-          inputProps={{
-            autoComplete: "off",
-            "aria-label": "Enter your email address",
+          // inputProps={{
+          //   autoComplete: "off",
+          //   "aria-label": "Enter your email address",
+          // }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon sx={{ color: 'white' }} />
+              </InputAdornment>
+            ),
           }}
         />
         <Box ml={2} display="flex" alignItems="center">
@@ -53,6 +76,7 @@ const Searching = () => {
             name="row-radio-buttons-group"
             defaultValue="location"
             sx={{
+              color: 'white',
               '& .MuiSvgIcon-root': {
                 fontSize: 24,
               },
