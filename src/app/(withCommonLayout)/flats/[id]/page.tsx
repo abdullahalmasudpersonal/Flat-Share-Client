@@ -5,6 +5,7 @@ import {
   CardMedia,
   Container,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -17,6 +18,7 @@ import { useGetSingleFlatQuery } from "../../../../redux/api/flatApi";
 import { useGetBookingFlatQuery } from "../../../../redux/api/bookingApi";
 import { formatLocalTime } from "../../../../components/Shared/Date&Time/Date";
 import { getUserInfo } from "@/services/auth.services";
+import { useEffect, useState } from "react";
 
 type TParams = {
   params: {
@@ -26,7 +28,20 @@ type TParams = {
 
 const FlatDetailPage = ({ params }: TParams) => {
   const userInfo = getUserInfo();
-  const disabledRequest = !(userInfo?.role === "buyer");
+  const { data: bookingData } = useGetBookingFlatQuery({});
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const targetId = params?.id;
+
+  useEffect(() => {
+    if (targetId && bookingData && Array.isArray(bookingData)) {
+      const data = bookingData.filter(
+        (item: { flatId: string }) => item.flatId === targetId
+      );
+      setFilteredData(data);
+    }
+  }, [targetId, bookingData]);
+
+  const disabledRequest = (userInfo?.role === 'seller' || userInfo?.role === "admin") || filteredData?.length > 0
   const id = params?.id;
   const { data: flatData, isLoading } = useGetSingleFlatQuery(id);
 
@@ -112,9 +127,18 @@ const FlatDetailPage = ({ params }: TParams) => {
                   </Typography>
 
                   <Box mt="20px">
-                    <Button variant="contained" disabled={disabledRequest}>
-                      <Link href={`/flats/booking/${id}`}>Booking Request</Link>
-                    </Button>
+                    <Tooltip title={'Only Buyer Request'} arrow>
+                      <span>
+                        <Button variant="contained" disabled={disabledRequest} >
+                          <Link href={`/flats/booking/${id}`}>Booking Request</Link>
+                        </Button>
+                      </span>
+                    </Tooltip>
+                    {
+                      filteredData?.length>0 ? <Typography sx={{ fontSize: '13px', color: 'red' }}>
+                        <small>ALRADY BOOKED</small>
+                      </Typography> : ''
+                    }
                   </Box>
                   <Box mt="20px">
                     <FlatAccordian data={flatData} />
