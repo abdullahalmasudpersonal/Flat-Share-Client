@@ -17,6 +17,7 @@ import { formatLocalDate } from "../../../Shared/Date&Time/Date";
 import { it } from "node:test";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { gray } from "@/components/Shared/ThemeColor/getLPTheme";
 
 const HomeFlat = () => {
   const { data: flatData, isLoading } = useGetAllFlatQuery({});
@@ -27,9 +28,8 @@ const HomeFlat = () => {
   return (
     <Box
       sx={{
-        my: 6,
-        /*         bgcolor: purple[100],
-        clipPath: "polygon(0 0, 100% 27%, 100% 100%, 0 75%)", */
+        py: 6,
+        bgcolor: gray[100],
       }}
     >
       <Box>

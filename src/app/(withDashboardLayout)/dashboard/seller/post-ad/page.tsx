@@ -38,6 +38,7 @@ const PostAd = () => {
       console.log("catch", err);
     }
   };
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box

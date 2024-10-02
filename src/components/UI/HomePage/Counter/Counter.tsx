@@ -6,10 +6,14 @@ import { purple } from '@mui/material/colors';
 import PeopleIcon from '@mui/icons-material/People';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import { gray } from '@/components/Shared/ThemeColor/getLPTheme';
 
 const Counter = () => {
     return (
-        <Box>
+        <Box sx={{
+            py: 6,
+            bgcolor: gray[50],
+        }}>
             <Typography data-aos="fade-down"
                 textAlign="center"
                 variant="h3"

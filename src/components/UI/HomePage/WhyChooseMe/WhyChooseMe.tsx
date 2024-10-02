@@ -1,4 +1,5 @@
 'use client'
+import { gray } from "@/components/Shared/ThemeColor/getLPTheme";
 import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import Aos from "aos";
@@ -9,7 +10,10 @@ const WhyChooseMe = () => {
         Aos.init({ duration: 2000 });
     }, []);
     return (
-        <Box>
+        <Box sx={{
+            pb: 14,
+            pt: 3,
+        }}>
             <Typography
                 data-aos="fade-right"
                 textAlign="center"

@@ -8,6 +8,7 @@ import WelcomeImg from "../../../../assets/WhyUseSpace/Welcome.svg";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { gray } from "@/components/Shared/ThemeColor/getLPTheme";
 
 const WhyUseSpace = () => {
   useEffect(() => {
@@ -15,7 +16,10 @@ const WhyUseSpace = () => {
   }, []);
 
   return (
-    <>
+    <Box sx={{
+      pt: 4,
+      pb: 6,
+    }}>
       <Typography
         data-aos="fade-down"
         textAlign="center"
@@ -131,7 +135,7 @@ const WhyUseSpace = () => {
           </Grid>
         </Container>
       </Box>
-    </>
+    </Box>
   );
 };
 

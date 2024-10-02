@@ -9,40 +9,49 @@ import { Box } from "@mui/material";
 import backgroundImag from '../../assets/landing_page/atm-card.png';
 
 const HomePage = async () => {
+  const images = [
+    'https://i.ibb.co/4JwdPbh/joel-filipe-j-U9-VAZDGMzs-unsplash.jpg',
+    'https://i.ibb.co/2d4rGz8/nature-image-2.jpg',
+    'https://i.ibb.co/fMh7Ps3/nature-image-3.jpg',
+  ];
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
+
   return (
-    <Box /* sx={{ backgroundColor: '#fbeaff' }} */>
+    <Box>
       <Box
         sx={{
+          position: 'relative',
           width: '100%',
-          backgroundImage: `url(https://i.ibb.co.com/HhP4Z2S/image.jpg)`,
+          backgroundImage: `url(https://i.ibb.co.com/4JwdPbh/joel-filipe-j-U9-VAZDGMzs-unsplash.jpg)`,
           backgroundSize: 'cover', // ইমেজ পুরো ব্যাকগ্রাউন্ড কভার করবে
           backgroundPosition: 'center', // ইমেজ সেন্টারে থাকবে
           backgroundRepeat: 'no-repeat', // ইমেজ রিপিট হবে না
           backgroundColor: 'pink', // ব্যাকআপ পারপেল কালার
-          /*  animation: 'slideBackground 10s infinite linear',
-           '@keyframes slideBackground': {
-             '0%': { backgroundPosition: '0% 50%' },
-             '50%': { backgroundPosition: '100% 50%' },
-             '100%': { backgroundPosition: '0% 50%' },
-           }, */
         }}
-
-      // sx={{
-      //   width: '100%',
-      //   backgroundImage: `url(https://plus.unsplash.com/premium_photo-1670445490954-5fe846fbce07?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
-      //   backgroundSize: 'cover',
-      //   backgroundPosition: 'center',
-      //   backgroundRepeat: 'no-repeat',
-      //   backgroundColor: '#800080',
-      //   animation: 'slideBackground 10s infinite linear',
-      //   '@keyframes slideBackground': {
-      //     '0%': { backgroundPosition: '0% 50%' },
-      //     '50%': { backgroundPosition: '100% 50%' },
-      //     '100%': { backgroundPosition: '0% 50%' },
-      //   },
-      // }}
-
       >
+        <Box>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            }}
+          />
+        </Box>
+
         <HeroSection />
         {/* No Problems */}
         <Searching />
