@@ -16,7 +16,7 @@ import { userLogin } from "../../services/actions/userLogin";
 import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
-import Credential from "./credential";
+import Credential from "./Credential";
 
 const LoginPage = () => {
   const router = useRouter();
