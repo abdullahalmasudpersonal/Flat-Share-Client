@@ -16,7 +16,7 @@ import { userLogin } from "../../services/actions/userLogin";
 import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
-import AccordionUsage from "./credential";
+import Credential from "./credential";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -111,7 +111,7 @@ const LoginPage = () => {
         </Box>
       </Box>
       <Box sx={{ marginTop: 4 }}>
-        <AccordionUsage />
+        <Credential />
       </Box>
     </Container>
   );

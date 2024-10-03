@@ -45,7 +45,7 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
           sx={{
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             ml: { sm: `${drawerWidth}px` },
-            background: "#713ABE",
+            background: "linear-gradient(185deg, #8c1aff, #b366ff)",
             boxShadow: 0,
             borderBottom: "1px solid lightgray",
           }}

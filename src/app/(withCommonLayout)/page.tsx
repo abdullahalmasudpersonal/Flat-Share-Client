@@ -36,7 +36,7 @@ const HomePage = async () => {
           backgroundSize: 'cover', // ইমেজ পুরো ব্যাকগ্রাউন্ড কভার করবে
           backgroundPosition: 'center', // ইমেজ সেন্টারে থাকবে
           backgroundRepeat: 'no-repeat', // ইমেজ রিপিট হবে না
-          backgroundColor: 'pink', // ব্যাকআপ পারপেল কালার
+          // backgroundColor: 'pink', // ব্যাকআপ পারপেল কালার
         }}
       >
         <Box>
