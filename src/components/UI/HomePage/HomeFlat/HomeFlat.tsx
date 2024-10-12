@@ -28,14 +28,14 @@ const HomeFlat = () => {
   return (
     <Box
       sx={{
-        py: 6,
+        py: 8,
         bgcolor: gray[100],
       }}
     >
       <Box>
-        <Box mb={8}>
+        <Box mb={10}>
           <Typography
-            data-aos="fade-down"
+           /*  data-aos="fade-right" */
             fontFamily="serif"
             variant="h3"
             textAlign="center"

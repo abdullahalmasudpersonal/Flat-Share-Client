@@ -9,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "next/link";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { userLogin } from "../../services/actions/userLogin";
@@ -17,18 +16,28 @@ import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
 import Credential from "./Credential";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await userLogin(values);
       if (res?.data?.accessToken) {
         storeUserInfo({ accessToken: res?.data?.accessToken });
+        document.cookie = `isLoggedIn=true; path=/`;
         const { role } = getUserInfo();
         toast.success(res?.message);
-        router.push(`/dashboard/${role}`);
+        const callbackUrl =
+          searchParams.get("callbackUrl") || `/dashboard/${role}`;
+          console.log(callbackUrl,'masud')
+        if (callbackUrl) {
+          router.push(callbackUrl);
+        }
+        //  router.push(  `/dashboard/${role}`);
+        // router.push( callbackUrl || `/dashboard/${role}`);
       } else {
         setError(res.message);
       }

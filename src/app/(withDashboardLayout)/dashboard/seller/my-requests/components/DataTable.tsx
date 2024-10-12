@@ -8,38 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-/* interface bookingData {
-  id: string;
-  flatId: string;
-  userId: string;
-  flatOwnerId: string;
-  status: BookingStatus;
-  isDeleted: boolean;
-  user: {
-    username: string;
-    email: string;
-    role: string;
-    status: UserStatus;
-  };
-  flat: {
-    flatName: string;
-    userId: string;
-    squareFeet: number;
-    totalBedrooms: number;
-    totalRooms: number;
-    utilitiesDescription: string;
-    location: string;
-    description: string;
-    amenities: string;
-    rent: number;
-    advanceAmount: number;
-    availability: boolean;
-    flatPhoto: string;
-  };
-} */
-
-const DataTable = (data: any) => {
+const DataTable =  (data: any) => {
   const bookingData = data?.data;
+  const bookingUserprofileData = data?.data?.userProfileData;
 
   return (
     <TableContainer component={Paper}>
@@ -55,7 +26,7 @@ const DataTable = (data: any) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {bookingData?.map((data: any) => (
+         {bookingData?.map((data: any) => (
             <TableRow
               key={data?.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -64,11 +35,12 @@ const DataTable = (data: any) => {
                 {data?.flat?.flatName}
               </TableCell>
               <TableCell align="right">{data?.status}</TableCell>
-              <TableCell align="right">{data?.user?.username}</TableCell>
+              <TableCell align="right">{bookingUserprofileData?.name}</TableCell>
               <TableCell align="right">{data?.user?.email}</TableCell>
-              <TableCell align="right">{data?.protein}</TableCell>
+              <TableCell align="right">{bookingUserprofileData?.contactNumber}</TableCell>
+              <TableCell align="right">{bookingUserprofileData?.address}</TableCell>
             </TableRow>
-          ))}
+          ))} 
         </TableBody>
       </Table>
     </TableContainer>
