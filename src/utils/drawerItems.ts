@@ -88,6 +88,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           path: `${role}/my-requests`,
           icon: RequestPageIcon,
         },
+        {
+          title: "Payments",
+          path: `${role}/my-payments`,
+          icon: PaymentIcon,
+        },
       );
       break;
 

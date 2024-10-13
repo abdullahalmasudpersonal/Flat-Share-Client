@@ -29,7 +29,7 @@ const FlatsPage = () => {
       <Box sx={{ margin: "130px auto" }}>
         <Container >
           <Grid container gap={1} sx={{ display: 'flex', justifyContent: 'space-between' }} >
-            {flatData?.map((item: any) =>
+            {flatData?.filter((item:any) => item?.availability === true)?.map((item: any) =>
               item?.flatPhoto ? (
                 <Card
                   key={item.id}

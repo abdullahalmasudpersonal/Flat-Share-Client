@@ -35,10 +35,12 @@ type Inputs = {
 };
 
 const MyFlatDetailPage = ({ params }: TParams) => {
+  const flatId = params?.id;
   const { data: flatBookingData, isLoading } = useGetBookingFlatQuery({});
-  const [open, setOpen] = useState(false);
   const [updateConfirmBooking] = useUpdateConfirmBookingMutation(undefined);
+  const [open, setOpen] = useState(false);
   const [confirmBookingId, setConfirmBookingId]= useState('');
+
   const {
     register,
     handleSubmit,
@@ -54,11 +56,10 @@ const MyFlatDetailPage = ({ params }: TParams) => {
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
-    console.log(values);
     try {
       const res = await updateConfirmBooking({
         id: confirmBookingId,
-        body: values,
+        body: {values, flatId},
       });
       if (res?.data) {
         toast.success("Update Booking Flat!");

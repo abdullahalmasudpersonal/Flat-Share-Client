@@ -136,7 +136,7 @@ const FlatDetailPage = ({ params }: TParams) => {
                     </Tooltip>
                     {
                       filteredData?.length>0 ? <Typography sx={{ fontSize: '13px', color: 'red' }}>
-                        <small>ALRADY BOOKED</small>
+                        <small>ALRADY REQUEST</small>
                       </Typography> : ''
                     }
                   </Box>

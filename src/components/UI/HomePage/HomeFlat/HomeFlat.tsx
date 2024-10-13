@@ -35,11 +35,11 @@ const HomeFlat = () => {
       <Box>
         <Box mb={10}>
           <Typography
-           /*  data-aos="fade-right" */
+            /*  data-aos="fade-right" */
             fontFamily="serif"
             variant="h3"
             textAlign="center"
-            fontSize='clamp(2rem,8vw, 3rem)'
+            fontSize="clamp(2rem,8vw, 3rem)"
           >
             Our Latest{" "}
             <Box component="span" color="purple" fontFamily="serif">
@@ -47,84 +47,96 @@ const HomeFlat = () => {
             </Box>
           </Typography>
         </Box>
-        <Container >
-          <Grid container gap={1} sx={{ display: 'flex', justifyContent: 'space-between' }}  >
-            {flatData?.slice(0, 3)?.map((item: any) =>
-              item?.flatPhoto ? (
-                <Card
-                  data-aos="fade-down"
-                  key={item.id}
-                  sx={{ maxWidth: 345, margin: "auto", marginBottom: "20px", textAlign: "center" }}
-                >
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        sx={{ bgcolor: purple[700] }}
-                        aria-label="recipe"
-                      ></Avatar>
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={
-                      item?.flatName?.length > 28
-                        ? item?.flatName.substring(0, 28) + "..."
-                        : item?.flatName
-                    }
-                    subheader={formatLocalDate(item?.createdAt)}
-                  />
-                  <CardMedia
-                    component="img"
-                    height="194"
-                    image={item?.flatPhoto}
-                    alt="Paella dish"
-                  />
-                  <CardContent>
-                    <Tooltip title={item?.description} arrow>
-                      <Typography variant="body2" color="text.secondary">
-                        {item?.description?.length > 170
-                          ? item?.description.substring(0, 170) + "..."
-                          : item?.description}
-                      </Typography>
-                    </Tooltip>
-                  </CardContent>
-                  <Box margin="0" padding="0 10px">
-                    <Typography textAlign="start">
-                      Price: {item?.rent} TK
-                    </Typography>
-                    <Box>
-                      <Typography textAlign="start">
-                        Bedrooms: {item?.totalBedrooms}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    padding="0 10px 10px 5px"
+        <Container>
+          <Grid
+            container
+            gap={1}
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            {flatData
+              ?.filter((item: any) => item?.availability === true)
+              ?.slice(0, 3)
+              ?.map((item: any) =>
+                item?.flatPhoto ? (
+                  <Card
+                    data-aos="fade-down"
+                    key={item.id}
+                    sx={{
+                      maxWidth: 345,
+                      margin: "auto",
+                      marginBottom: "20px",
+                      textAlign: "center",
+                    }}
                   >
-                    <Box display="flex" alignItems="center">
-                      <LocationOnIcon />
-                      <Typography>{item?.location}</Typography>
+                    <CardHeader
+                      avatar={
+                        <Avatar
+                          sx={{ bgcolor: purple[700] }}
+                          aria-label="recipe"
+                        ></Avatar>
+                      }
+                      action={
+                        <IconButton aria-label="settings">
+                          <MoreVertIcon />
+                        </IconButton>
+                      }
+                      title={
+                        item?.flatName?.length > 28
+                          ? item?.flatName.substring(0, 28) + "..."
+                          : item?.flatName
+                      }
+                      subheader={formatLocalDate(item?.createdAt)}
+                    />
+                    <CardMedia
+                      component="img"
+                      height="194"
+                      image={item?.flatPhoto}
+                      alt="Paella dish"
+                    />
+                    <CardContent>
+                      <Tooltip title={item?.description} arrow>
+                        <Typography variant="body2" color="text.secondary">
+                          {item?.description?.length > 170
+                            ? item?.description.substring(0, 170) + "..."
+                            : item?.description}
+                        </Typography>
+                      </Tooltip>
+                    </CardContent>
+                    <Box margin="0" padding="0 10px">
+                      <Typography textAlign="start">
+                        Price: {item?.rent} TK
+                      </Typography>
+                      <Box>
+                        <Typography textAlign="start">
+                          Bedrooms: {item?.totalBedrooms}
+                        </Typography>
+                      </Box>
                     </Box>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      padding="0 10px 10px 5px"
+                    >
+                      <Box display="flex" alignItems="center">
+                        <LocationOnIcon />
+                        <Typography>{item?.location}</Typography>
+                      </Box>
 
-                    <Box>
-                      <Link href={`/flats/${item.id}`}>
-                        <Button variant="contained">Details</Button>
-                      </Link>
+                      <Box>
+                        <Link href={`/flats/${item.id}`}>
+                          <Button variant="contained">Details</Button>
+                        </Link>
+                      </Box>
                     </Box>
-                  </Box>
-                </Card>
-              ) : (
-                {}
-              )
-            )}
+                  </Card>
+                ) : (
+                  {}
+                )
+              )}
           </Grid>
         </Container>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

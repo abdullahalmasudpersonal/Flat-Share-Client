@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useGetBookingFlatQuery } from "../../../../../redux/api/bookingApi";
+import Link from "next/link";
 
 const MyRequest = () => {
   const { data, isLoading } = useGetBookingFlatQuery({});
@@ -58,12 +59,13 @@ const MyRequest = () => {
                   </TableCell>
                   <TableCell align="right">{data?.flat?.location}</TableCell>
                   <TableCell align="right">
-                    {data?.flat?.availability ? "Yes" : "NO"}
+                    {data?.flat?.availability ? "Yes" : "No"}
                   </TableCell>
                   <TableCell align="center">
-                    {/*   <Link href={`/dashboard/admin/all-buyer/${data?.id}`}> */}
+
+                     <Link href={`/dashboard/buyer/my-requests/${data?.flat?.id}`}> 
                     <Button variant="contained">Details</Button>
-                    {/* </Link> */}
+                     </Link> 
                   </TableCell>
                 </TableRow>
               ))}
