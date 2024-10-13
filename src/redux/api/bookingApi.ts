@@ -18,8 +18,16 @@ export const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.bookingFlat],
     }),
+    updateConfirmBooking: build.mutation({
+      query: (data) => ({
+        url: `/booking/booking-request/${data?.id}`,
+        method: "PATCH",
+        data: data?.body,
+      }),
+      invalidatesTags:[tagTypes.bookingFlat]
+    }),
   }),
 });
 
-export const { useCreateBookingFlatMutation, useGetBookingFlatQuery } =
+export const { useCreateBookingFlatMutation, useGetBookingFlatQuery, useUpdateConfirmBookingMutation } =
   bookingApi;

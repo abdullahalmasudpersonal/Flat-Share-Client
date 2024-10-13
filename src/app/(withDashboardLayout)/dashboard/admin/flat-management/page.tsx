@@ -37,7 +37,6 @@ const FlatManagementPage = () => {
   const [deleteSingleFlat] = useDeleteSingleFlatMutation();
   const [flatId, setFlatId] = useState("");
   const [open, setOpen] = React.useState(false);
-  console.log(flatData);
   const handleOpen = (id: string) => {
     setOpen(true);
     setFlatId(id);
@@ -82,7 +81,7 @@ const FlatManagementPage = () => {
               color="primary"
               sx={{ marginRight: "25px" }}
             >
-              Cancle
+              Cancel
             </Button>
             <Button
               autoFocus
@@ -90,7 +89,7 @@ const FlatManagementPage = () => {
               onClick={() => handleDeleteFlat(flatId)}
               color="warning"
             >
-              Save changes
+              Confirm
             </Button>
           </Box>
         </Box>

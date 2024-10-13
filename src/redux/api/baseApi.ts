@@ -8,7 +8,7 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
    // baseUrl: "https://assignment-09-server.vercel.app/api/v1",
-     baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}`,
+      baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_API_URL}`,
   }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,
