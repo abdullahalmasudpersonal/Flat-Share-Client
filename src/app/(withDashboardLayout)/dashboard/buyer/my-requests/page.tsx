@@ -62,10 +62,12 @@ const MyRequest = () => {
                     {data?.flat?.availability ? "Yes" : "No"}
                   </TableCell>
                   <TableCell align="center">
-
-                     <Link href={`/dashboard/buyer/my-requests/${data?.flat?.id}`}> 
-                    <Button variant="contained">Details</Button>
-                     </Link> 
+                    {/*  এখানে ফ্লাট আইডি দিয়ে পরবর্তী পেজে নির্দেশ করা হয়েছে, যাতে পরবর্তী পেজে ফ্লাট এর ডিটেইল দেখা যায় */}
+                    <Link
+                      href={`/dashboard/buyer/my-requests/${data?.flat?.id}`}
+                    >
+                      <Button variant="contained">Details</Button>
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}

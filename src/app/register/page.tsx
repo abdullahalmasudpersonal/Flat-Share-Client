@@ -42,7 +42,7 @@ const RegisterPage = () => {
       values.prifileData.gender = gender;
       const data = modifyPayload(values);
 
-      if (role === 'SELLER') {
+      if (role === 'seller') {
         const res = await registerSeller(data);
         if (res?.data.id) {
           toast.success(res?.message);
@@ -53,12 +53,12 @@ const RegisterPage = () => {
           });
           if (result?.data?.accessToken) {
             storeUserInfo({ accessToken: result?.data?.accessToken });
-            router.push("/dashboard");
+            router.push(`/dashboard/${role}`);
           }
         }
       }
 
-      if (role === 'BUYER') {
+      if (role === 'buyer') {
         const res = await registerBuyer(data);
         if (res?.data.id) {
           toast.success(res?.message);
@@ -69,7 +69,7 @@ const RegisterPage = () => {
           });
           if (result?.data?.accessToken) {
             storeUserInfo({ accessToken: result?.data?.accessToken });
-            router.push("/dashboard");
+            router.push(`/dashboard/${role}`);
           }
         }
       }
@@ -141,8 +141,8 @@ const RegisterPage = () => {
                 label="Purpose of opening account ?"
                 onChange={handleChangeRole}
               >
-                <MenuItem value="BUYER">BUYER</MenuItem>
-                <MenuItem value="SELLER">SELLER</MenuItem>
+                <MenuItem value="buyer">BUYER</MenuItem>
+                <MenuItem value="seller">SELLER</MenuItem>
               </Select>
             </FormControl>
             <FormControl sx={{ mb: "20px" }} fullWidth size="small">
