@@ -34,8 +34,8 @@ const HomeFlat = () => {
     >
       <Box>
         <Box mb={10}>
-          <Typography
-            /*  data-aos="fade-right" */
+          <Typography className='pt-10'
+              data-aos="fade-right" 
             fontFamily="serif"
             variant="h3"
             textAlign="center"
@@ -47,20 +47,17 @@ const HomeFlat = () => {
             </Box>
           </Typography>
         </Box>
-        <Container>
+         <Container>
           <Grid
             container
             gap={1}
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            {flatData
-              ?.filter((item: any) => item?.availability === true)
-              ?.slice(0, 3)
-              ?.map((item: any) =>
+            {flatData?.filter((item: any) => item?.availability === true)?.slice(0,3)?.map((item: any) =>
                 item?.flatPhoto ? (
                   <Card
                     data-aos="fade-down"
-                    key={item.id}
+                    key={item?.id}
                     sx={{
                       maxWidth: 345,
                       margin: "auto",
@@ -123,18 +120,19 @@ const HomeFlat = () => {
                       </Box>
 
                       <Box>
-                        <Link href={`/flats/${item.id}`}>
+                        <Link href={`/flats/${item?.id}`}>
                           <Button variant="contained">Details</Button>
                         </Link>
                       </Box>
                     </Box>
                   </Card>
                 ) : (
-                  {}
+                 ''
                 )
               )}
           </Grid>
-        </Container>
+        </Container> 
+
       </Box>
     </Box>
   );

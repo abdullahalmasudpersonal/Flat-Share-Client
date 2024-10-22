@@ -41,7 +41,8 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
         return !excludedFields.includes(key);
       })
     );
-
+    
+    console.log(updatedValues,'updatedvalues')
     try {
       updateSingleSeller({ body: updatedValues, id });
       await refetch();

@@ -40,15 +40,20 @@ const UpdateFlatModal = ({ open, setOpen, id }: TProps) => {
     values.rent = Number(values.rent);
     values.advanceAmount = Number(values.advanceAmount);
     values.availability = availabilityTrue;
+    // console.log(values, "values");
 
     const excludedFields: Array<keyof typeof values> = [
       "id",
+      "flatNo",
       "email",
+      "viewFlat",
       "profilePhoto",
       "isDeleted",
       "createdAt",
       "updatedAt",
       "user",
+      "booking",
+      "review",
     ];
 
     const updatedValues = Object.fromEntries(
@@ -56,6 +61,8 @@ const UpdateFlatModal = ({ open, setOpen, id }: TProps) => {
         return !excludedFields.includes(key);
       })
     );
+
+    console.log(updatedValues)
 
     try {
       updateFlat({ body: updatedValues, id });

@@ -64,9 +64,12 @@ const MyFlatDetailPage = ({ params }: TParams) => {
       if (res?.data) {
         toast.success("Update Booking Flat!");
         setOpen(false);
+      }else{
+        setOpen(false);
       }
     } catch (err: any) {
       console.log(err);
+      
     }
   };
 
