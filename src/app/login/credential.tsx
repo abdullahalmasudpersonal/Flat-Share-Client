@@ -38,7 +38,7 @@ const Credential = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Email: <span onClick={() => handleCopy('taki@gamil.com')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>taki@gamil.com</span>
+                        Email: <span onClick={() => handleCopy('kamrul@gmail.com')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>kamrul@gmail.com</span>
                     </Typography>
                     <Typography>
                         Password: <span onClick={() => handleCopy('123456')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>123456</span>
@@ -56,7 +56,7 @@ const Credential = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Email: <span onClick={() => handleCopy('kaium@gmail.com')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>kaium@gmail.com</span>
+                        Email: <span onClick={() => handleCopy('saki@gamil.com')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>saki@gamil.com</span>
                     </Typography>
                     <Typography>
                         Password: <span onClick={() => handleCopy('123456')} style={{ cursor: 'pointer', color: 'gray', textDecoration: 'none' }}>123456</span>

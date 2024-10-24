@@ -70,7 +70,7 @@ const BookingPage = ({ params }: TParams) => {
                 border="1px solid gray"
                 padding="20px"
                 width="350px"
-                height=""
+                borderRadius='3px'
               >
                 <Typography
                   textAlign="center"
