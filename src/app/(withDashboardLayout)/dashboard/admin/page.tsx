@@ -1,14 +1,13 @@
-import { Box, Card, Grid, Typography } from "@mui/material";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+"use client";
+import { Box } from "@mui/material";
 import TopCounter from "./components/topCounter/TopCounter";
+import BookingChart from "./components/bookingChart/BookingChart";
 
 const AdminPage = () => {
   return (
-    <Box /* sx={{ backgroundColor: '#dec9e9' }} */>
-      <TopCounter />
-      <Box>
-        {/*    <BookingChart /> */}
-      </Box>
+    <Box>
+      <TopCounter /> 
+      <Box> <BookingChart/> </Box>
     </Box>
   );
 };

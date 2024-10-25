@@ -1,3 +1,4 @@
+import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
 export const PaymentApi = baseApi.injectEndpoints({
@@ -7,12 +8,14 @@ export const PaymentApi = baseApi.injectEndpoints({
         url: `/payment/init-payment/${bookingId}`,
         method: "POST",
       }),
+      invalidatesTags: [tagTypes.paymentBookingFlat],
     }),
     getPayments: build.query({
       query: () => ({
         url: `/payment`,
         method: "GET",
       }),
+      providesTags: [tagTypes.paymentBookingFlat],
     }),
   }),
 });

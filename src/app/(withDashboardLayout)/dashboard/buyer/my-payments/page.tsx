@@ -26,7 +26,6 @@ const MyPayments = () => {
   const handleInitPayment = async (id: string) => {
     try {
       const res = await initPayment(id).unwrap();
-      console.log(res?.paymentUrl, "res");
       window.open(res?.paymentUrl, "_blank");
     } catch (error) {
       console.log(error);
