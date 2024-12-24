@@ -1,5 +1,5 @@
 {
-  "name": "assignment09-client",
+  "name": "flatshare",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "aos": "^2.3.4",
     "axios": "^1.6.8",
+    "date-fns": "^4.1.0",
     "jwt-decode": "^4.0.0",
     "next": "^14.2.16",
     "react": "^18.3.1",

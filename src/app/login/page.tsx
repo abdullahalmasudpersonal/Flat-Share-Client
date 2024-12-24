@@ -20,7 +20,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const handleLogin = async (values: FieldValues) => {
     try {
@@ -30,12 +30,11 @@ const LoginPage = () => {
         document.cookie = `isLoggedIn=true; path=/`;
         const { role } = getUserInfo();
         toast.success(res?.message);
-        const callbackUrl =
-          searchParams.get("callbackUrl") || `/dashboard/${role}`;
-          console.log(callbackUrl,'masud')
-        if (callbackUrl) {
-          router.push(callbackUrl);
-        }
+        router.push(`/dashboard/${role}`);
+        // const callbackUrl =  searchParams.get("callbackUrl") || `/dashboard/${role}`;
+        // if (callbackUrl) {
+        //   router.push(callbackUrl);
+        // }
         //  router.push(  `/dashboard/${role}`);
         // router.push( callbackUrl || `/dashboard/${role}`);
       } else {

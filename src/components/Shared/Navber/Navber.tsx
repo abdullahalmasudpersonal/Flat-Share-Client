@@ -174,7 +174,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
               <AuthButton />
             </Box>
 
-
             <Box sx={{ display: { sm: "", md: "none" } }}>
               <Button
                 variant="text"
@@ -220,7 +219,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     FAQ
                   </MenuItem> */}
                   <Divider />
-
 
                   <MenuItem>
                     <Button
@@ -269,7 +267,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                       Sign in
                     </Button>
                   </MenuItem>
-
                 </Box>
               </Drawer>
             </Box>
