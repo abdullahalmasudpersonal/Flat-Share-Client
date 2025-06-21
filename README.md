@@ -1,8 +1,32 @@
-# Flat Share (A9)
+# FlatShare - Find & Share Flats Easily
 
-## Front-end live link:- https://assignment-09-flat-share-client.vercel.app
+## live link:- https://flatshare.vercel.app
 
-## Back-end live link:- https://assignment-09-server.vercel.app
+### 🧩 Client Features
+
+🏠 Flat & Room Sharing Listings
+
+🔍 Location-based search and filters
+
+📸 Photos, descriptions and rent for each property
+
+👤 User login / signup 
+
+📱 Mobile-friendly design
+
+### 🛠️ Technologies Used
+
+- Framework: Next.js
+
+- Language: TypeScript
+
+- UI Library: MUI  
+
+- State Management: Redux
+
+- Deployment: Vercel
+
+
 
 #### 1. Home Page/Landing Page
 

@@ -51,12 +51,13 @@ const MyFlatDetailPage = ({ params }: TParams) => {
   const { data: flatDetail, isLoading } = useGetSingleFlatQuery(id);
   const [updateFlat, { isLoading: updating }] = useUpdateFlatMutation();
 
-  // const fileUploadHandler = (file: File) => {
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append("data", JSON.stringify({}));
-  //   updateFlat({ formData, id });
-  // };
+  const fileUploadHandler = (file: File) => {
+    console.log(file, "file");
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("data", JSON.stringify({}));
+    updateFlat({ formData, id });
+  };
 
   if (isLoading) {
     <p>Loading...</p>;
@@ -103,10 +104,10 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                   alt="User Photo"
                 />
               ) : (
-                ""
+                <>No Image</>
               )}
             </Box>
-            {/*    <Box my={3} display="flex" justifyContent="center">
+            <Box my={3} display="flex" justifyContent="center">
               {updating ? (
                 <p>Uploading...</p>
               ) : (
@@ -118,7 +119,7 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                   variant="outlined"
                 />
               )}
-            </Box> */}
+            </Box>
           </Grid>
           <Grid xs={12} md={8} padding="16px">
             <Stack
