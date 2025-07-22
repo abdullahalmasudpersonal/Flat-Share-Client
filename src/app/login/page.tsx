@@ -17,9 +17,8 @@ import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import logo from '@/assets/logo/flatShareLogo.png'
-import Credential from "./Credential";
-// import Credential from "./Credential";
+import logo from '@/assets/logo/flatShareLogo.png';
+import Credential from "@/utils/Credential";
 
 const LoginPage = () => {
   const router = useRouter();
