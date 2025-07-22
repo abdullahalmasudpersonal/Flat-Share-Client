@@ -1,12 +1,9 @@
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Snackbar, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Alert, Snackbar, Typography } from '@mui/material';
-import { useState } from 'react';
 
 const Credential = () => {
-    const [open, setOpen] = useState(false);
+        const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleCopy = (text: string) => {
@@ -25,7 +22,7 @@ const Credential = () => {
     };
 
     return (
-        <div>
+       <div>
             <Typography sx={{ textAlign: 'center', marginBottom: 1, fontWeight: 'bold' }}>Demo Credential</Typography>
 
             <Accordion>
@@ -94,3 +91,7 @@ const Credential = () => {
 };
 
 export default Credential;
+
+
+
+

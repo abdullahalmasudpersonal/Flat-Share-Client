@@ -118,7 +118,7 @@ const LoginPage = () => {
           </Form>
         </Box>
       </Box>
-      <Box sx={{ marginTop: 4 }}>
+      <Box sx={{ marginTop: 4, marginBottom:4 }}>
         <Credential />
       </Box>
     </Container>
