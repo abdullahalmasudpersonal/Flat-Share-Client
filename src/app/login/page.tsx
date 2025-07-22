@@ -119,7 +119,7 @@ const LoginPage = () => {
         </Box>
       </Box>
       <Box sx={{ marginTop: 4, marginBottom:4 }}>
-        <Credential />
+        {/* <Credential /> */}
       </Box>
     </Container>
   );
