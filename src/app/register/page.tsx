@@ -24,6 +24,8 @@ import { userLogin } from "../../services/actions/userLogin";
 import { storeUserInfo } from "../../services/auth.services";
 import Input from "../../components/Forms/Input";
 import Form from "../../components/Forms/Form";
+import Image from "next/image";
+import logo from '@/assets/logo/flatShareLogo.png'
 
 const RegisterPage = () => {
   const [role, setRole] = useState("");
@@ -89,10 +91,18 @@ const RegisterPage = () => {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        </Avatar> */}
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="flat image logo"
+            width={170}
+            style={{ cursor: 'pointer' }}
+          />
+        </Link>
+        <Typography sx={{ marginTop: 2 }} component="h1" variant="h5">
           Sign up With Flat Share
         </Typography>
 

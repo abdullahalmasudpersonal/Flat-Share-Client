@@ -18,6 +18,7 @@ import Input from "../../components/Forms/Input";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import logo from '@/assets/logo/flatShareLogo.png'
+import Credential from "./Credential";
 // import Credential from "./Credential";
 
 const LoginPage = () => {
@@ -129,7 +130,7 @@ const LoginPage = () => {
         </Box>
       </Box>
       <Box sx={{ marginTop: 4, marginBottom: 4 }}>
-        {/* <Credential /> */}
+        <Credential />
       </Box>
     </Container>
   );
