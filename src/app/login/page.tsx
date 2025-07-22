@@ -16,7 +16,9 @@ import { getUserInfo, storeUserInfo } from "../../services/auth.services";
 import Form from "../../components/Forms/Form";
 import Input from "../../components/Forms/Input";
 import { useRouter, useSearchParams } from "next/navigation";
-import Credential from "./Credential";
+import Image from "next/image";
+import logo from '@/assets/logo/flatShareLogo.png'
+// import Credential from "./Credential";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -55,10 +57,18 @@ const LoginPage = () => {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        </Avatar> */}
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="flat image logo"
+            width={170}
+            style={{ cursor: 'pointer' }}
+          />
+        </Link>
+        <Typography sx={{ marginTop: 2 }} component="h1" variant="h5">
           Sign in With Flat Share
         </Typography>
         <Box sx={{ mt: 2 }}>
@@ -118,7 +128,7 @@ const LoginPage = () => {
           </Form>
         </Box>
       </Box>
-      <Box sx={{ marginTop: 4, marginBottom:4 }}>
+      <Box sx={{ marginTop: 4, marginBottom: 4 }}>
         {/* <Credential /> */}
       </Box>
     </Container>
