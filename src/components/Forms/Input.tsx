@@ -8,7 +8,7 @@ type TInputProps = {
   size?: "small" | "medium";
   fullWidth?: boolean;
   sx?: SxProps;
-  placeholder?: string;
+  // placeholder?: string;
   required?: boolean;
 };
 
@@ -35,7 +35,7 @@ const Input = ({
           variant="outlined"
           size={size}
           fullWidth={fullWidth}
-          placeholder={label}
+          // placeholder={label}
           required={required}
           error={!!error?.message}
           helperText={error?.message}

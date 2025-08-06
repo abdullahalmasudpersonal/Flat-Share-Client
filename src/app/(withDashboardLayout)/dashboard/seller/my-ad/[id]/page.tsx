@@ -120,6 +120,7 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                 />
               )}
             </Box>
+            <Typography><small>Image size 800*533 Pixel</small></Typography>
           </Grid>
           <Grid xs={12} md={8} padding="16px">
             <Stack

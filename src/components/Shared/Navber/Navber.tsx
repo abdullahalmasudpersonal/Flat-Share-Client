@@ -154,9 +154,29 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                   onClick={() => scrollToSection("faq")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
+                  <Link href="/gallery">
+                    <Typography variant="body2" color="primary">
+                      Gallery
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => scrollToSection("faq")}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
+                >
                   <Link href="/about-us">
                     <Typography variant="body2" color="primary">
                       About Us
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => scrollToSection("faq")}
+                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
+                >
+                  <Link href="/connect">
+                    <Typography variant="body2" color="primary">
+                      Connect
                     </Typography>
                   </Link>
                 </MenuItem>

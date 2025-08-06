@@ -7,6 +7,7 @@ import WhyUseSpace from "../../components/UI/HomePage/WhyUseSpace/WhyUseSpace";
 import WhyChooseMe from "@/components/UI/HomePage/WhyChooseMe/WhyChooseMe";
 import { Box } from "@mui/material";
 import backgroundImag from '../../assets/landing_page/atm-card.png';
+import HomeGallery from "@/components/UI/HomePage/HomeGallery/HomeGallery";
 
 const HomePage = async () => {
   const images = [
@@ -67,6 +68,8 @@ const HomePage = async () => {
       < WhyChooseMe />
       {/* No Problems */}
       < SuccessStories />
+      {/* No Problems */}
+      < HomeGallery />
     </Box>
   );
 };
