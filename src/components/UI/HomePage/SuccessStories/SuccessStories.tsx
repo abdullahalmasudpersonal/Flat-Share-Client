@@ -8,7 +8,6 @@ import user2 from "../../../../assets/SuccesStories/user2.png";
 import user3 from "../../../../assets/SuccesStories/user3.png";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { gray } from "@/components/Shared/ThemeColor/getLPTheme";
 
 const SuccessStories = () => {
   useEffect(() => {
@@ -18,7 +17,6 @@ const SuccessStories = () => {
   return (
     <Box sx={{
       py: 6,
-      bgcolor: gray[50],
     }}>
       <Typography
         data-aos="fade-up"

@@ -12,17 +12,35 @@ const Counter = () => {
     return (
         <Box sx={{
             py: 6,
-            bgcolor: gray[50],
+             position: 'relative',
+            backgroundImage: 'url(https://img.freepik.com/free-vector/purple-watercolour-background-corners_78370-1873.jpg?t=st=1754571466~exp=1754575066~hmac=cfe9bad58fcdbe81e92b195fb6d702cf457c0f33e3e710ac16cf3e6ad214c5dd&w=1480)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            // bgcolor: gray[50],
         }}>
-            <Typography data-aos="fade-down"
-                textAlign="center"
-                variant="h3"
-                fontFamily="serif"
-                fontSize='clamp(2rem,8vw, 3rem)'
-                mb={10}>Flat Share Of
-                <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}> Numbers</Box>
-            </Typography>
+            <Box>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    }}
+                />
+            </Box>
+
             <Container sx={{ margin: "0px auto" }}>
+                <Typography data-aos="fade-down"
+                    textAlign="center"
+                    variant="h3"
+                    fontFamily="serif"
+                    fontSize='clamp(2rem,8vw, 3rem)' color='white'
+                    mb={10}>Flat Share Of
+                    <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}> Numbers</Box>
+                </Typography>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2} data-aos="zoom-in">
                         <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
@@ -32,8 +50,8 @@ const Counter = () => {
                                         <PeopleIcon sx={{ fontSize: '40px', color: 'purple' }} />
                                     </Box>
                                 </Box>
-                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px'><CountUp end={130} /></Typography>
-                                <Typography textAlign='center' color='gray'>Communities</Typography>
+                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px' color='white'><CountUp end={130} /></Typography>
+                                <Typography textAlign='center' color='white'>Communities</Typography>
                             </CardContent>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
@@ -43,8 +61,8 @@ const Counter = () => {
                                         <MapsHomeWorkIcon sx={{ fontSize: '40px', color: 'purple' }} />
                                     </Box>
                                 </Box>
-                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px'><CountUp end={1358} /></Typography>
-                                <Typography textAlign='center' color='gray'>Flats/Rooms</Typography>
+                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px' color='white'><CountUp end={1358} /></Typography>
+                                <Typography textAlign='center' color='white'>Flats/Rooms</Typography>
                             </CardContent>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4} lg={3} /* data-aos="zoom-in" */>
@@ -54,8 +72,8 @@ const Counter = () => {
                                         <PublicIcon sx={{ fontSize: '40px', color: 'purple' }} />
                                     </Box>
                                 </Box>
-                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px'><CountUp end={50} /></Typography>
-                                <Typography textAlign='center' color='gray'>Country</Typography>
+                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px' color='white'><CountUp end={50} /></Typography>
+                                <Typography textAlign='center' color='white'>Country</Typography>
                             </CardContent>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4} lg={3}/*  data-aos="zoom-in" */>
@@ -65,8 +83,8 @@ const Counter = () => {
                                         <VisibilityOutlinedIcon sx={{ fontSize: '40px', color: 'purple' }} />
                                     </Box>
                                 </Box>
-                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px'><CountUp end={500000} /></Typography>
-                                <Typography textAlign='center' color='gray'>Monthly visitors</Typography>
+                                <Typography textAlign='center' mt='10px' fontWeight='bold' fontSize='30px' color='white'><CountUp end={500000} /></Typography>
+                                <Typography textAlign='center' color='white'>Monthly visitors</Typography>
                             </CardContent>
                         </Grid>
                     </Grid>

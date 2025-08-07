@@ -8,6 +8,7 @@ import WhyChooseMe from "@/components/UI/HomePage/WhyChooseMe/WhyChooseMe";
 import { Box } from "@mui/material";
 import backgroundImag from '../../assets/landing_page/atm-card.png';
 import HomeGallery from "@/components/UI/HomePage/HomeGallery/HomeGallery";
+import Welcome from "@/components/UI/HomePage/Welcome/Welcome";
 
 const HomePage = async () => {
   const images = [
@@ -33,11 +34,13 @@ const HomePage = async () => {
         sx={{
           position: 'relative',
           width: '100%',
+          height: '600px',
           backgroundImage: `url(https://i.ibb.co.com/4JwdPbh/joel-filipe-j-U9-VAZDGMzs-unsplash.jpg)`,
-          backgroundSize: 'cover', // ইমেজ পুরো ব্যাকগ্রাউন্ড কভার করবে
-          backgroundPosition: 'center', // ইমেজ সেন্টারে থাকবে
-          backgroundRepeat: 'no-repeat', // ইমেজ রিপিট হবে না
-          // backgroundColor: 'pink', // ব্যাকআপ পারপেল কালার
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          // backgroundColor: 'pink', 
+          backgroundColor: 'gray'
         }}
       >
         <Box>
@@ -48,28 +51,20 @@ const HomePage = async () => {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+
             }}
           />
         </Box>
-
         <HeroSection />
-        {/* No Problems */}
         <Searching />
       </Box >
-
-      {/* No Problems */}
-      < HomeFlat />
-      {/* No Problems */}
-      < WhyUseSpace />
-      {/* No Problems */}
+      <WhyUseSpace />
+      <HomeFlat />
       < Counter />
-      {/* No Problems */}
-      < WhyChooseMe />
-      {/* No Problems */}
-      < SuccessStories />
-      {/* No Problems */}
-      < HomeGallery />
+      <WhyChooseMe />
+      <SuccessStories />
+      <Welcome />
     </Box>
   );
 };

@@ -29,7 +29,7 @@ const HomeFlat = () => {
     <Box
       sx={{
         py: 8,
-        bgcolor: gray[100],
+        // bgcolor: gray[100],
       }}
     >
       <Box>

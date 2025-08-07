@@ -5,6 +5,8 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: purple[500],
+      light:purple[100],
+      // contrastText:purple[200],
     },
     secondary: {
       main: purple[300],
