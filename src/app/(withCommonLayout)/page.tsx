@@ -61,10 +61,16 @@ const HomePage = async () => {
       </Box >
       <WhyUseSpace />
       <HomeFlat />
+      <Counter />
+      <WhyChooseMe />
+      <SuccessStories />
+       {/* <Welcome /> */}
+      {/* <WhyUseSpace />
+      <HomeFlat />
       < Counter />
       <WhyChooseMe />
       <SuccessStories />
-      <Welcome />
+      <Welcome /> */}
     </Box>
   );
 };

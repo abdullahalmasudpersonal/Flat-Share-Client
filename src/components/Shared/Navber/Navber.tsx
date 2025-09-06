@@ -106,22 +106,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                 <Image src={logo} style={logoStyle} alt="logo of Flat Share" />
               </Link>
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                {/* <MenuItem
-                  onClick={() => scrollToSection("features")}
-                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
-                >
-                  <Typography variant="body2" color="primary">
-                    Features
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection("testimonials")}
-                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
-                >
-                  <Typography variant="body2" color="primary">
-                    Testimonials
-                  </Typography>
-                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection("highlights")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
@@ -142,14 +126,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                {/*  <MenuItem
-                  onClick={() => scrollToSection("pricing")}
-                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
-                >
-                  <Typography variant="body2" color="primary">
-                    Pricing
-                  </Typography>
-                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection("faq")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
@@ -182,6 +158,7 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                 </MenuItem>
               </Box>
             </Box>
+
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -190,7 +167,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
               }}
             >
               {/* <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
-
               <AuthButton />
             </Box>
 
@@ -223,21 +199,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                   >
                     {/*    <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} /> */}
                   </Box>
-                  {/*   <MenuItem onClick={() => scrollToSection("features")}>
-                    Features
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("testimonials")}>
-                    Testimonials
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("highlights")}>
-                    Highlights
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("pricing")}>
-                    Pricing
-                  </MenuItem>
-                  <MenuItem onClick={() => scrollToSection("faq")}>
-                    FAQ
-                  </MenuItem> */}
                   <Divider />
 
                   <MenuItem>

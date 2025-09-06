@@ -20,6 +20,7 @@ import {
   useDeleteSingleFlatMutation,
   useGetAllFlatQuery,
 } from "../../../../../redux/api/flatApi";
+import Image from "next/image";
 
 const style = {
   position: "absolute" as "absolute",
@@ -103,6 +104,7 @@ const FlatManagementPage = () => {
               <TableRow>
                 <TableCell>SL</TableCell>
                 <TableCell>Flat Name</TableCell>
+                <TableCell>Image</TableCell>
                 <TableCell align="right">Availability</TableCell>
                 <TableCell align="right">Owner</TableCell>
                 <TableCell align="right">Booking Request</TableCell>
@@ -121,6 +123,9 @@ const FlatManagementPage = () => {
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {data?.flatName}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    <Image src={data?.flatPhoto || ''} width={70} height={70} alt="flat photo" />
                   </TableCell>
                   <TableCell align="right">
                     {data?.availability ? "Yes" : "No"}

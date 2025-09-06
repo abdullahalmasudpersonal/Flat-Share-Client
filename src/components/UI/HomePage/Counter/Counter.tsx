@@ -11,7 +11,7 @@ import { gray } from '@/components/Shared/ThemeColor/getLPTheme';
 const Counter = () => {
     return (
         <Box sx={{
-            py: 6,
+            py: 8,
              position: 'relative',
             backgroundImage: 'url(https://img.freepik.com/free-vector/purple-watercolour-background-corners_78370-1873.jpg?t=st=1754571466~exp=1754575066~hmac=cfe9bad58fcdbe81e92b195fb6d702cf457c0f33e3e710ac16cf3e6ad214c5dd&w=1480)',
             backgroundSize: 'cover',

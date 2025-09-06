@@ -91,9 +91,6 @@ const BookingChart = () => {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-        Last 30 Days Booking Requests
-      </Typography>
       <Box
         sx={{
           background:

@@ -8,8 +8,8 @@ import BookingTableData from "./components/bookingTable/BookingTableData";
 
 const AdminPage = () => {
   return (
-    <Box>
-      <TopCounter />
+    <Box>dfd
+      {/* <TopCounter /> */}
 
       {/* <Box>
         <Box sx={{ marginTop: "20px" }}>
@@ -20,26 +20,31 @@ const AdminPage = () => {
         </Box>
       </Box> */}
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ marginTop: "20px" }}>
+      {/* <Grid container spacing={2}>
+        <Grid xs={12} md={6} style={{border:'1px solid gray',padding:'0'}}>fgfg</Grid>
+        <Grid xs={12} md={6}  style={{border:'1px solid gray', padding:'0'}}>fgfg</Grid>
+      </Grid> */}
+
+      {/* <Grid container spacing={2}>
+        <Grid item sm={12} md={6}>
+          <Box>
             <BookingChart />
           </Box>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ marginTop: "20px" }}>
+        <Grid item sm={12} md={6}>
+          <Box>
             <PieChartBookingDetails />
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
 
-      <Box sx={{ marginTop: "20px" }}>
+      {/* <Box sx={{ marginTop: "20px" }}>
         <FlatPostChart />
-      </Box>
+      </Box> */}
 
-      <Box  sx={{ marginTop: "20px" }}>
+      {/* <Box  sx={{ marginTop: "20px" }}>
         <BookingTableData/>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
