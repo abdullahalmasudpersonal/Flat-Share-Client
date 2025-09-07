@@ -24,7 +24,8 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       {/*  <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
         <CssBaseline /> */}
-      <Navber /* mode={mode} toggleColorMode={toggleColorMode} */ />
+      <Navber/>
+      {/* <Navber mode={mode} toggleColorMode={toggleColorMode} /> */}
       <Box>{children}</Box>
       <Footer />
       {/*    </ThemeProvider> */}

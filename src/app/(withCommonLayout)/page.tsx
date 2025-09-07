@@ -39,7 +39,6 @@ const HomePage = async () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          // backgroundColor: 'pink', 
           backgroundColor: 'gray'
         }}
       >
@@ -64,13 +63,7 @@ const HomePage = async () => {
       <Counter />
       <WhyChooseMe />
       <SuccessStories />
-       {/* <Welcome /> */}
-      {/* <WhyUseSpace />
-      <HomeFlat />
-      < Counter />
-      <WhyChooseMe />
-      <SuccessStories />
-      <Welcome /> */}
+       <Welcome />
     </Box>
   );
 };
