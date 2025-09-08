@@ -28,8 +28,8 @@ const WhyUseSpace = () => {
 
 
   return (
-    <Container sx={{ background: 'gray' }}>
-      <Box sx={{ marginBottom: '100px' }}>
+    <Container>
+      <Box sx={{ marginBottom: '100px',marginTop:'70px' }}>
         <Typography
           data-aos="fade-down" textAlign="center" variant="h3" fontFamily="serif" fontSize='clamp(2rem,8vw, 3rem)' pb={8}>
           Why use Spare{" "}
@@ -37,18 +37,17 @@ const WhyUseSpace = () => {
         </Typography>
         <Grid container spacing={2}>
           {services.map((service, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} md={4} key={index}>
               <Card
                 data-aos="fade-right"
                 sx={{
                   maxWidth: 345,
-                  margin: "auto",
+                  margin: "auto", textAlign:'center',
                   padding: '20px',
                   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
                 }}
               >
                 <Box display="flex" justifyContent="center" height={110} >
-                  {" "}
                   <Image
                     src={service.img}
                     height="110"

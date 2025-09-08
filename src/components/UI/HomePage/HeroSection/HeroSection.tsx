@@ -1,21 +1,12 @@
 "use client";
-import React, { useEffect } from "react";
-import { alpha } from "@mui/material";
+import React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
 import "./HeroSection.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 
 const HeroSection = () => {
-  useEffect(() => {
-    AOS.init({ duration: 2000 });
-  }, []);
 
   return (
     <Box
