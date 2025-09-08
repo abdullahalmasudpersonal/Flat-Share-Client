@@ -6,13 +6,8 @@ import EveryThreeMinsImg from "../../../../assets/WhyUseSpace/EveryThreeMins.svg
 import KeysImg from "../../../../assets/WhyUseSpace/Keys.svg";
 import WelcomeImg from "../../../../assets/WhyUseSpace/Welcome.svg";
 import Image from "next/image";
-import AOS from "aos";
 
 const WhyUseSpace = () => {
-  useEffect(() => {
-    AOS.init({ duration: 2000 });
-  }, []);
-
   const services = [
     {
       img: EveryThreeMinsImg,
@@ -33,56 +28,54 @@ const WhyUseSpace = () => {
 
 
   return (
-    <Box py={10}>
-      <Typography
-        data-aos="fade-down" textAlign="center" variant="h3" fontFamily="serif" fontSize='clamp(2rem,8vw, 3rem)' pb={8}>
-        Why use Spare{" "}
-        <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}>Flat? </Box>
-      </Typography>
-      <Box sx={{ textAlign: "center" }}>
-        <Container>
-          <Grid container spacing={4}>
-            {services.map((service, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card
-                  data-aos="fade-right"
-                  sx={{
-                    maxWidth: 345,
-                    margin: "auto",
-                    padding: '20px',
-                    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
-                  }}
-                >
-                  <Box display="flex" justifyContent="center" height={110} >
-                    {" "}
-                    <Image
-                      src={service.img}
-                      height="110"
-                      width="110"
-                      alt=""
-                    />
-                  </Box>
-                  <Box>
-                    <Typography
-                      color="purple"
-                      fontWeight={700}
-                      variant="h6"
-                      fontFamily="serif"
-                      py={2}
-                    >
-                      {service.title}
-                    </Typography>
-                    <Typography fontFamily="serif">
-                      {service.des}
-                    </Typography>
-                  </Box>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+    <Container sx={{ background: 'gray' }}>
+      <Box sx={{ marginBottom: '100px' }}>
+        <Typography
+          data-aos="fade-down" textAlign="center" variant="h3" fontFamily="serif" fontSize='clamp(2rem,8vw, 3rem)' pb={8}>
+          Why use Spare{" "}
+          <Box fontFamily="serif" component="span" sx={{ color: purple[600] }}>Flat? </Box>
+        </Typography>
+        <Grid container spacing={2}>
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                data-aos="fade-right"
+                sx={{
+                  maxWidth: 345,
+                  margin: "auto",
+                  padding: '20px',
+                  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+                }}
+              >
+                <Box display="flex" justifyContent="center" height={110} >
+                  {" "}
+                  <Image
+                    src={service.img}
+                    height="110"
+                    width="110"
+                    alt=""
+                  />
+                </Box>
+                <Box>
+                  <Typography
+                    color="purple"
+                    fontWeight={700}
+                    variant="h6"
+                    fontFamily="serif"
+                    py={2}
+                  >
+                    {service.title}
+                  </Typography>
+                  <Typography fontFamily="serif">
+                    {service.des}
+                  </Typography>
+                </Box>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
