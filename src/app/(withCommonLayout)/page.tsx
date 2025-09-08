@@ -4,11 +4,11 @@ import HomeFlat from "../../components/UI/HomePage/HomeFlat/HomeFlat";
 import Searching from "../../components/UI/HomePage/Searching/Searching";
 import SuccessStories from "../../components/UI/HomePage/SuccessStories/SuccessStories";
 import WhyUseSpace from "../../components/UI/HomePage/WhyUseSpace/WhyUseSpace";
-import WhyChooseMe from "@/components/UI/HomePage/WhyChooseMe/WhyChooseMe";
 import { Box } from "@mui/material";
 import backgroundImag from '../../assets/landing_page/atm-card.png';
 import HomeGallery from "@/components/UI/HomePage/HomeGallery/HomeGallery";
 import Welcome from "@/components/UI/HomePage/Welcome/Welcome";
+import WhyChooseUs from "@/components/UI/HomePage/WhyChooseUs/WhyChooseUs";
 
 const HomePage = async () => {
   const images = [
@@ -61,7 +61,7 @@ const HomePage = async () => {
       <WhyUseSpace />
       <HomeFlat />
       <Counter />
-      <WhyChooseMe />
+      <WhyChooseUs />
       <SuccessStories />
        <Welcome />
     </Box>

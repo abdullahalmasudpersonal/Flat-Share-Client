@@ -27,7 +27,7 @@ const SuccessStories = () => {
           data-aos="fade-up"
           textAlign="center"
           variant="h3"
-          fontFamily="serif" mb={5}
+          fontFamily="serif" mb={8}
           fontSize='clamp(2rem,8vw, 3rem)'
         >
           Success_{" "}
@@ -38,8 +38,8 @@ const SuccessStories = () => {
         <Grid container spacing={2}>
           {
             suc_stories.map((item) => (
-              <Grid item xs={12} sm={6} md={4} key={item.id}>
-                <Card sx={{ margin: "auto", height: '100%' }}>
+              <Grid item xs={12} md={4} key={item.id} data-aos="fade-down" >
+                <Card sx={{ margin: "auto", height: '100%',boxShadow:'none' }}>
                   <Image
                     style={{
                       margin: '20px auto',
