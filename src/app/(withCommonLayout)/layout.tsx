@@ -32,7 +32,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
         <CssBaseline /> */}
       <Navber />
       {/* <Navber mode={mode} toggleColorMode={toggleColorMode} /> */}
-      <Box>{children}</Box>
+      <Box className='commonlayoutbgcolor'>{children}</Box>
       <Footer />
       {/*    </ThemeProvider> */}
     </>

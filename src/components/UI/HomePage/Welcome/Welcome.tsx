@@ -11,7 +11,7 @@ const Welcome = () => {
 
     return (
         <Container>
-            <Box sx={{marginBottom:'100px'}}>
+            <Box sx={{paddingBottom:'100px'}}>
                 <Grid container spacing={2} >
                     <Grid item xs={12} md={6} style={{ display: "flex", justifyContent: "center", alignItems: 'center' }} data-aos="fade-up">
                         <Box >

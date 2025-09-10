@@ -17,7 +17,7 @@ const FlatsPage = () => {
   if (error) return <Typography color="error">Failed to load flats</Typography>;
   return (
     <>
-      <Box sx={{ marginTop: '130px', marginBottom: "50px" }}>
+      <Box sx={{ paddingTop: '130px', paddingBottom: "50px" }}>
         <Container >
           <Grid container spacing={2}>
             {
