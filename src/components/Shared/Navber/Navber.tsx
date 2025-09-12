@@ -34,7 +34,7 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
   React.useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-  const userInfo = getUserInfo();
+  const userInfo = getUserInfo(); "@/UI/AuthButton/AuthButton"
   const AuthButton = dynamic(() => import("../../UI/AuthButton/AuthButton"), {
     ssr: false,
   });
@@ -146,16 +146,6 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection("faq")}
-                  sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
-                >
-                  <Link href="/connect">
-                    <Typography variant="body2" color="primary">
-                      Connect
-                    </Typography>
-                  </Link>
-                </MenuItem>
               </Box>
             </Box>
 
@@ -230,6 +220,18 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                       color="primary"
                       variant="outlined"
                       component="a"
+                      href="/gallery"
+                      sx={{ width: "100%" }}
+                    >
+                      Gallery
+                    </Button>
+                  </MenuItem>
+
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="outlined"
+                      component="a"
                       href="/about-us"
                       sx={{ width: "100%" }}
                     >
@@ -246,6 +248,18 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                       sx={{ width: "100%" }}
                     >
                       Sign in
+                    </Button>
+                  </MenuItem>
+
+                  <MenuItem>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      component="a"
+                      href="/register"
+                      sx={{ width: "100%" }}
+                    >
+                      Register
                     </Button>
                   </MenuItem>
                 </Box>

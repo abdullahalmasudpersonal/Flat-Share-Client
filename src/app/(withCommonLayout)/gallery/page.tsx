@@ -22,7 +22,7 @@ const Gallery = () => {
     return (
         <div>
             <Container sx={{ pb: 10, pt: 20 }}>
-                <Typography variant="h4" align="center" gutterBottom>
+                <Typography variant="h3" align="center" sx={{fontFamily:'serif', fontWeight:'700', marginBottom:'50px'}}>
                     Gallery
                 </Typography>
                 <Masonry

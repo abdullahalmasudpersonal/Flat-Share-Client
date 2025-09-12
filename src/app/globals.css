@@ -7,11 +7,39 @@
   padding: 0;
   margin: 0;
   box-sizing: 0;
-  font-family: "Roboto Condensed", sans-serif, 'Times New Roman', Times, serif;
+  font-family: "Roboto Condensed", sans-serif, "Times New Roman", Times, serif;
 }
 
-.commonlayoutbgcolor{
-background: #f8efff;
-background: -webkit-linear-gradient(to right, #ad74ee, #e5d5ff); 
-background: linear-gradient(to right, #fbf6ff, #f5eeff,#fbf6ff);
+/* common layout bg color */
+.commonlayoutbgcolor {
+  background: #f8efff;
+  background: -webkit-linear-gradient(to right, #ad74ee, #e5d5ff);
+  background: linear-gradient(to right, #fdfbff, #f7f2ff, #fdfbff);
+}
+
+/* dashboard css */
+.dashboardnavberbgcolor {
+  background: linear-gradient(
+    90deg,
+    rgb(34, 12, 49) 0%,
+    rgb(18, 10, 63) 51%,
+    rgb(18, 7, 49) 100%
+  ) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+.dashboarbgcolor {
+  padding: 20px 10px;
+  min-height: calc(100vh - 64px);
+    background: linear-gradient(
+    90deg,
+    rgb(27, 4, 43) 0%,
+    rgb(31, 0, 80) 51%,
+    rgb(36, 2, 68) 100%
+  );
+}
+
+.test{
+  color: rgb(224, 224, 224);
+  background: rgb(39, 104, 179)
 }

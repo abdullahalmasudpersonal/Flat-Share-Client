@@ -23,16 +23,16 @@ const SideBerItem = ({ item }: IProps) => {
         sx={{
           ...(pathName === linkPath
             ? {
-                borderRight: "3px solid #1586FD",
-                "& svg": { color: "#1586FD" },
+                borderRight: "3px solid purple",
+                "& svg": { color: "rgb(230, 186, 255)" }, color:'rgb(230, 186, 255)'
               }
             : {}),
           mb: 1,
         }}
       >
         <ListItemButton>
-          <ListItemIcon>{item.icon && <item.icon />}</ListItemIcon>
-          <ListItemText primary={item.title} />
+          <ListItemIcon>{item.icon && <item.icon sx={{color:'white'}} />}</ListItemIcon>
+          <ListItemText primary={item.title}  />
         </ListItemButton>
       </ListItem>
     </Link>

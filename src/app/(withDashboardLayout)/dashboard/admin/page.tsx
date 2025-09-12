@@ -8,9 +8,8 @@ import BookingTableData from "./components/bookingTable/BookingTableData";
 
 const AdminPage = () => {
   return (
-    <Box>dfd
-      {/* <TopCounter /> */}
-
+    <Box>
+      <TopCounter />
       {/* <Box>
         <Box sx={{ marginTop: "20px" }}>
           <BookingChart />
@@ -19,11 +18,6 @@ const AdminPage = () => {
           <PieChartBookingDetails />
         </Box>
       </Box> */}
-
-      {/* <Grid container spacing={2}>
-        <Grid xs={12} md={6} style={{border:'1px solid gray',padding:'0'}}>fgfg</Grid>
-        <Grid xs={12} md={6}  style={{border:'1px solid gray', padding:'0'}}>fgfg</Grid>
-      </Grid> */}
 
       {/* <Grid container spacing={2}>
         <Grid item sm={12} md={6}>

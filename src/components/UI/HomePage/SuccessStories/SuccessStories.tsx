@@ -39,7 +39,7 @@ const SuccessStories = () => {
           {
             suc_stories.map((item) => (
               <Grid item xs={12} md={4} key={item.id} data-aos="fade-down" >
-                <Card sx={{ margin: "auto", height: '100%',boxShadow:'none' }}>
+                <Card sx={{ margin: "auto", height: '100%',boxShadow:'none',background:'none' }}>
                   <Image
                     style={{
                       margin: '20px auto',

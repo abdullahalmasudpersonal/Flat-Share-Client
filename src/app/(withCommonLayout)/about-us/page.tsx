@@ -15,7 +15,7 @@ import TwitterIcon from "@mui/icons-material/X";
 
 const AboutUsPage = () => {
   return (
-    <Box marginTop="130px" minHeight="80vh">
+    <Box paddingTop="130px" minHeight="80vh">
       <Container>
         <Typography
           fontSize="24px"

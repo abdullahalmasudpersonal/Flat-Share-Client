@@ -8,13 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Avatar, Badge, Stack } from "@mui/material";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Avatar, Stack } from "@mui/material";
 import SideBer from "../SideBer/SideBer";
 import AccountMenu from "../AccountMenu/AccountMenu";
 import { useGetMYProfileQuery } from "../../../redux/api/myProfile";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -37,118 +36,108 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <>
-      <Box sx={{ display: "flex", fontFamily: 'serif' }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
-            background: "linear-gradient(90deg, rgba(198,123,255,1) 0%, rgba(201,125,255,1) 51%, rgba(150,112,255,1) 100%)",
-            boxShadow: 0,
-            borderBottom: "1px solid lightgray",
-          }}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" }, color: "primary.main" }}
-            >
-              <MenuIcon sx={{ color: "primary.main" }} />
-            </IconButton>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <Box>
-                <Typography
-                  variant="body2"
-                  noWrap
-                  component="div"
-                  sx={{ color: "White", fontWeight: 'bold', fontFamily: 'Monospace' }}
-                >
-                  Hi, {isLoading ? "Loading..." : data?.name}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="white"
-                  noWrap
-                  component="div"
-                >
-                  Welcome to Flat Share
-                </Typography>
-              </Box>
-              <Stack direction="row" gap={3}>
-                <Badge badgeContent={1} color="primary">
-                  <IconButton sx={{ background: "#ffffff" }}>
-                    <NotificationsNoneIcon color="action" />
-                  </IconButton>
-                </Badge>
-                <Avatar alt={data?.name} src={data?.profilePhoto} />
-                <AccountMenu />
-              </Stack>
+    <Box sx={{ display: "flex", fontFamily: 'serif' }}>
+      <CssBaseline />
+      <AppBar className="dashboardnavberbgcolor"
+        position="fixed"
+        sx={{
+          width: { md: `calc(100% - ${drawerWidth}px)` },
+          ml: { md: `${drawerWidth}px` },
+        }}
+      >
+        <Toolbar sx={{ minHeight:'64px'}}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <Box>
+              <Typography
+                variant="body2"
+                noWrap
+                component="div"
+                sx={{ color: "White", fontWeight: 'bold', fontFamily: 'Monospace' }}
+              >
+                Hi, {isLoading ? "Loading..." : data?.name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="white"
+                noWrap
+                component="div"
+              >
+                Welcome to Flat Share
+              </Typography>
             </Box>
-          </Toolbar>
-        </AppBar>
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
-        >
-          <Drawer
-            //    container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onTransitionEnd={handleDrawerTransitionEnd}
-            onClose={handleDrawerClose}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            <SideBer />
-          </Drawer>
-          <Drawer
-            variant="permanent"
-            sx={{
-              display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-            open
-          >
-            <SideBer />
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
+            <Stack direction="row" gap={3}>
+              <Avatar alt={data?.name} src={data?.profilePhoto} />
+              <AccountMenu />
+            </Stack>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <Box
+        component="nav"
+        sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+        aria-label="mailbox folders"
+      >
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
           sx={{
-            flexGrow: 1,
-            p: 3,
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            display: { xs: "block", md: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth, background: " rgb(18, 7, 49) 100% ", color: 'white', boxShadow: 'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+            },
           }}
         >
-          <Toolbar />
-          <Box>{children}</Box>
-        </Box>
+          <SideBer />
+        </Drawer>
+        <Drawer className="sideberbgcolor"
+          variant="permanent"
+          sx={{
+            display: { xs: "none", md: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth, background: "rgb(13, 1, 26)", color: 'white'
+            },
+          }}
+          open
+        >
+          <SideBer />
+        </Drawer>
       </Box>
-    </>
+
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          width: { md: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar sx={{minHeight:'64px'}}  />
+        <Box className='dashboarbgcolor'>{children}</Box>
+      </Box>
+    </Box>
   );
 };
 
