@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   Avatar,
   Button,
@@ -110,70 +110,71 @@ const LoginPage = () => {
 
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <FormProvider {...methods}>
-        <Box
-          sx={{
-            marginTop: 16,
-            marginBottom: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Link href="/">
-            <Image
-              src={logo}
-              alt="flat image logo"
-              width={170}
-              style={{ cursor: 'pointer', marginBottom: '15px', }}
-            />
-          </Link>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <FormProvider {...methods}>
+          <Box
+            sx={{
+              marginTop: 16,
+              marginBottom: 10,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="flat image logo"
+                width={170}
+                style={{ cursor: 'pointer', marginBottom: '15px', }}
+              />
+            </Link>
 
-          <Typography component="h1" variant="h5">
-            Sign in With Flat Share
-          </Typography>
+            <Typography component="h1" variant="h5">
+              Sign in With Flat Share
+            </Typography>
 
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
-            {/* Email */}
-            <Controller
-              name="email"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  margin="normal"
-                  fullWidth
-                  label="Email Address"
-                  autoComplete="email"
-                  autoFocus
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                />
-              )}
-            />
+            <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
+              {/* Email */}
+              <Controller
+                name="email"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    margin="normal"
+                    fullWidth
+                    label="Email Address"
+                    autoComplete="email"
+                    autoFocus
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
+              />
 
-            {/* Password */}
-            <Controller
-              name="password"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  margin="normal"
-                  fullWidth
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                />
-              )}
-            />
+              {/* Password */}
+              <Controller
+                name="password"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    margin="normal"
+                    fullWidth
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    error={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
+              />
 
-            {/* Remember Me */}
-            {/* <Controller
+              {/* Remember Me */}
+              {/* <Controller
                 name="remember"
                 control={control}
                 render={({ field }) => (
@@ -181,53 +182,55 @@ const LoginPage = () => {
                 )}
               /> */}
 
-            {/* Submit */}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
-            </Button>
+              {/* Submit */}
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                Sign In
+              </Button>
 
-            {/* Links */}
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              {/* Links */}
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="/register" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
 
-            {/* Demo Credentials */}
-            <Box sx={{ display: "flex", gap: 1, justifyContent: "center", mt: 3 }}>
-              <Button size="small" variant="outlined" onClick={() => fillCredentials("buyer")}>
-                Buyer
-              </Button>
-              <Button size="small" variant="outlined" onClick={() => fillCredentials("seller")}>
-                Seller
-              </Button>
-              <Button size="small" variant="outlined" onClick={() => fillCredentials("admin")}>
-                Admin
-              </Button>
+              {/* Demo Credentials */}
+              <Box sx={{ display: "flex", gap: 1, justifyContent: "center", mt: 3 }}>
+                <Button size="small" variant="outlined" onClick={() => fillCredentials("buyer")}>
+                  Buyer
+                </Button>
+                <Button size="small" variant="outlined" onClick={() => fillCredentials("seller")}>
+                  Seller
+                </Button>
+                <Button size="small" variant="outlined" onClick={() => fillCredentials("admin")}>
+                  Admin
+                </Button>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </FormProvider>
+        </FormProvider>
 
-      {/* Snackbar */}
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
-    </Container>
+        {/* Snackbar */}
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={3000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
+      </Container>
+    </Suspense>
+
   );
 }
 

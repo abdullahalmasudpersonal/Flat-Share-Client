@@ -69,7 +69,7 @@ const rows = [
 
 const ResentBooking = () => {
     const { data: allBooking } = useGetAllBookingQuery({});
-    console.log(allBooking, 'allBooking')
+    // console.log(allBooking, 'allBooking')
     return (
         <TableContainer component={Paper} >
             <Table aria-label="simple table">
@@ -129,16 +129,19 @@ const ResentBooking = () => {
                             </TableRow>
                         );
                     })} */}
-                    {
-                        allBooking?.map((item: TBooking) => (
+                    {allBooking && allBooking.length > 0 ? (
+                        allBooking.map((item: TBooking) => (
                             <TableRow key={item.id}>
                                 <TableCell>{item.flat.flatName}</TableCell>
                                 <TableCell>{item.user.buyer.name}</TableCell>
                                 <TableCell>{item.flat.user.seller.name}</TableCell>
                                 <TableCell>{item.status}</TableCell>
                                 <TableCell>{item.paymentStatus}</TableCell>
-                            </TableRow>))
-                    }
+                            </TableRow>
+                        ))
+                    ) : (
+                        <p>No bookings available</p>
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>

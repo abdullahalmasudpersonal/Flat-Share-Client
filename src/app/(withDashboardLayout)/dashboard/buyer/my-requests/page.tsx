@@ -11,11 +11,11 @@ import {
   TableRow,
 } from "@mui/material";
 import React from "react";
-import { useGetBookingFlatQuery } from "../../../../../redux/api/bookingApi";
 import Link from "next/link";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 
 const MyRequest = () => {
-  const { data, isLoading } = useGetBookingFlatQuery({});
+  const { data, isLoading } = useGetAllBookingQuery({});
 
   return (
     <>

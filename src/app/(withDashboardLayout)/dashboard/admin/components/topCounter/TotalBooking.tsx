@@ -2,12 +2,12 @@
 import { Box, Card, Grid, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useGetAllFlatQuery } from "@/redux/api/flatApi";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
 import { topCounterFunction } from "@/utils/topCounterFunction";
 import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 
 const TotalBooking = () => {
-  const { data: bookingData, isLoading } = useGetBookingFlatQuery({});
+  const { data: bookingData, isLoading } = useGetAllBookingQuery({});
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>

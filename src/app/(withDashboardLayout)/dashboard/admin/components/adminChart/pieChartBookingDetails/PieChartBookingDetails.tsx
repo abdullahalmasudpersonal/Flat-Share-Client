@@ -1,4 +1,5 @@
-import { useGetBookingFlatQuery } from '@/redux/api/bookingApi';
+
+import { useGetAllBookingQuery } from '@/redux/api/bookingApi';
 import { useGetAllFlatQuery } from '@/redux/api/flatApi';
 import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +8,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const PieChartBookingDetails = () => {
-    const { data: bookingData } = useGetBookingFlatQuery({});
+    const { data: bookingData } = useGetAllBookingQuery({});
     const { data: flatData } = useGetAllFlatQuery({});
     const [chartData, setChartData] = useState<any[]>([]);
 

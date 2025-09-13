@@ -17,7 +17,7 @@ const SingleFlat = ({ item }: { item: TFlat }) => {
             },
         }}>
             <Image
-                src={item?.flatPhoto}
+                src={item?.flatPhoto || ''}
                 alt={item?.flatName || "Flat photo"}
                 width={600}
                 height={400}

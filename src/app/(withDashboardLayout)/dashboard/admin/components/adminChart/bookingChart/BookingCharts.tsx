@@ -1,12 +1,12 @@
 "use client";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { subDays, format } from "date-fns";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 
 const BookingCharts = () => {
-  const { data: bookingData } = useGetBookingFlatQuery({});
+  const { data: bookingData } = useGetAllBookingQuery({});
   const [chartData, setChartData] = useState<any[]>([]);
 
   // useEffect(() => {

@@ -1,5 +1,5 @@
 "use client";
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 import { useGetAllFlatQuery } from "@/redux/api/flatApi";
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ import {
 } from "recharts";
 
 const FlatPostChart = () => {
-  const { data: bookingData } = useGetBookingFlatQuery({});
+  const { data: bookingData } = useGetAllBookingQuery({});
   const { data: flatData } = useGetAllFlatQuery({});
   const [chartData, setChartData] = useState<any[]>([]);
 
