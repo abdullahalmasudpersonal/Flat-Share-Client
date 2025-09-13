@@ -1,4 +1,5 @@
-import { useGetBookingFlatQuery } from "@/redux/api/bookingApi";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
+import { TBooking } from "@/types/booking.types";
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -67,8 +68,8 @@ const rows = [
 ];
 
 const ResentBooking = () => {
- const {data:flatlist} = useGetBookingFlatQuery({});
- console.log(flatlist,'flat list')
+    const { data: allBooking } = useGetAllBookingQuery({});
+    console.log(allBooking, 'allBooking')
     return (
         <TableContainer component={Paper} >
             <Table aria-label="simple table">
@@ -95,12 +96,24 @@ const ResentBooking = () => {
                             </TableCell>
                         ))} */}
                         <TableCell>
-                            Flat Name
+                            Flat
+                        </TableCell>
+                        <TableCell>
+                            Buyer
+                        </TableCell>
+                        <TableCell>
+                            Seller
+                        </TableCell>
+                        <TableCell>
+                            Booking
+                        </TableCell>
+                        <TableCell>
+                            Payment
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => {
+                    {/*  {rows.map((row) => {
                         return (
                             <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                 {columns.map((column) => {
@@ -115,7 +128,17 @@ const ResentBooking = () => {
                                 })}
                             </TableRow>
                         );
-                    })}
+                    })} */}
+                    {
+                        allBooking?.map((item: TBooking) => (
+                            <TableRow key={item.id}>
+                                <TableCell>{item.flat.flatName}</TableCell>
+                                <TableCell>{item.user.buyer.name}</TableCell>
+                                <TableCell>{item.flat.user.seller.name}</TableCell>
+                                <TableCell>{item.status}</TableCell>
+                                <TableCell>{item.paymentStatus}</TableCell>
+                            </TableRow>))
+                    }
                 </TableBody>
             </Table>
         </TableContainer>

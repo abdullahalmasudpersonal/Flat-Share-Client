@@ -16,7 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  useGetBookingFlatQuery,
+  useGetAllBookingQuery,
   useUpdateConfirmBookingMutation,
 } from "@/redux/api/bookingApi";
 import React, { useState } from "react";
@@ -36,7 +36,7 @@ type Inputs = {
 
 const MyFlatDetailPage = ({ params }: TParams) => {
   const flatId = params?.id;
-  const { data: flatBookingData, isLoading } = useGetBookingFlatQuery({});
+  const { data: flatBookingData, isLoading } = useGetAllBookingQuery({});
   const [updateConfirmBooking] = useUpdateConfirmBookingMutation(undefined);
   const [open, setOpen] = useState(false);
   const [confirmBookingId, setConfirmBookingId]= useState('');

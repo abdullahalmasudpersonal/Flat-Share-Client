@@ -14,10 +14,10 @@ import React, { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { useGetSingleFlatQuery } from "../../../../../redux/api/flatApi";
-import { useCreateBookingFlatMutation } from "../../../../../redux/api/bookingApi";
 import { useGetMYProfileQuery } from "../../../../../redux/api/myProfile";
 import { getUserInfo, isLogedIn } from "../../../../../services/auth.services";
 import Form from "../../../../../components/Forms/Form";
+import { useCreateBookingMutation } from "@/redux/api/bookingApi";
 
 type TParams = {
   params: {
@@ -30,7 +30,7 @@ const BookingPage = ({ params }: TParams) => {
   const { userId, role } = getUserInfo();
   const id = params?.id;
   const { data: flatData } = useGetSingleFlatQuery(id);
-  const [bookingFlat] = useCreateBookingFlatMutation();
+  const [bookingFlat] = useCreateBookingMutation();
   const { data: userData, isLoading } = useGetMYProfileQuery(undefined);
 
   const router = useRouter();

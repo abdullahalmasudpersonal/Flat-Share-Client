@@ -3,20 +3,20 @@ import { baseApi } from "./baseApi";
 
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    createBookingFlat: build.mutation({
+    createBooking: build.mutation({
       query: (bookingData) => ({
-        url: `/booking`,
+        url: `/booking/create-booking`,
         method: "POST",
         data: bookingData,
       }),
-      invalidatesTags: [tagTypes.bookingFlat],
+      invalidatesTags: [tagTypes.booking],
     }),
-    getBookingFlat: build.query({
+    getAllBooking: build.query({
       query: () => ({
-        url: "/booking",
+        url: "/booking/all-booking",
         method: "GET",
       }),
-      providesTags: [tagTypes.bookingFlat],
+      providesTags: [tagTypes.booking],
     }),
     updateConfirmBooking: build.mutation({
       query: (data) => ({
@@ -24,10 +24,10 @@ export const bookingApi = baseApi.injectEndpoints({
         method: "PATCH",
         data: data?.body,
       }),
-      invalidatesTags:[tagTypes.bookingFlat]
+      invalidatesTags:[tagTypes.booking]
     }),
   }),
 });
 
-export const { useCreateBookingFlatMutation, useGetBookingFlatQuery, useUpdateConfirmBookingMutation } =
+export const { useCreateBookingMutation, useGetAllBookingQuery, useUpdateConfirmBookingMutation } =
   bookingApi;

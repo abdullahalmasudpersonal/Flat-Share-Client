@@ -14,25 +14,24 @@ import NewFlat from "./components/adminTable/NewFlat";
 
 const AdminPage = () => {
 
-
   return (
     <Box>
       <TopCounter />
-      <Grid container spacing={3} sx={{ marginTop: '0px' }} >
+      {/* <Grid container spacing={3} sx={{ marginTop: '0px' }} >
         <Grid item xs={12} md={6}>
           <BookingChart />
         </Grid>
         <Grid item xs={12} md={6}>
           <EarningChart />
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <Grid container spacing={3} sx={{ marginTop: '0px' }} >
         <Grid item xs={12} md={6}>
          <ResentBooking/>
         </Grid>
         <Grid item xs={12} md={6}>
-          <NewFlat />
+          {/* <NewFlat /> */}
         </Grid>
       </Grid>
 
@@ -50,9 +49,9 @@ const AdminPage = () => {
         <FlatPostChart />
       </Box> */}
 
-      <Box  sx={{ marginTop: "20px" }}>
+      {/* <Box  sx={{ marginTop: "20px" }}>
         <BookingTableData/>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

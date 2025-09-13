@@ -15,10 +15,10 @@ import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import FlatAccordian from "../components/FlatAccordion";
 import Link from "next/link";
 import { useGetSingleFlatQuery } from "../../../../redux/api/flatApi";
-import { useGetBookingFlatQuery } from "../../../../redux/api/bookingApi";
 import { formatLocalTime } from "../../../../components/Shared/Date&Time/Date";
 import { getUserInfo } from "@/services/auth.services";
 import { useEffect, useState } from "react";
+import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 
 type TParams = {
   params: {
@@ -28,7 +28,7 @@ type TParams = {
 
 const FlatDetailPage = ({ params }: TParams) => {
   const userInfo = getUserInfo();
-  const { data: bookingData } = useGetBookingFlatQuery({});
+  const { data: bookingData } = useGetAllBookingQuery({});
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const targetId = params?.id;
 
