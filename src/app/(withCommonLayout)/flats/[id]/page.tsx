@@ -46,7 +46,7 @@ const FlatDetailPage = ({ params }: TParams) => {
   const { data: flatData, isLoading } = useGetSingleFlatQuery(id);
 
   return (
-    <Box marginTop="120px" marginBottom="120px">
+    <Box paddingTop="120px" paddingBottom="60px">
       <Container>
         <Box sx={{ flexGrow: 1 }}>
           <Grid

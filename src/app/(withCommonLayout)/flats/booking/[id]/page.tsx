@@ -61,7 +61,7 @@ const BookingPage = ({ params }: TParams) => {
   return (
     <>
       <Container>
-        <Box my="120px" display="flex" justifyContent="center">
+        <Box pt="120px" pb='60px' display="flex" justifyContent="center">
           {isLoading ? (
             "Loading..."
           ) : (

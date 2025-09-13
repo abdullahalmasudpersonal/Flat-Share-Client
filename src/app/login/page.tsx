@@ -25,7 +25,7 @@ import logo from '@/assets/logo/flatShareLogo.png';
 import { userLogin } from "@/services/actions/userLogin";
 import { getUserInfo, storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // ==================== Validation Schema ====================
 const validationSchema = Yup.object({
@@ -47,7 +47,8 @@ const defaultTheme = createTheme();
 
 const LoginPage = () => {
   const router = useRouter();
-    const [error, setError,] = useState("");
+  const searchParams = useSearchParams();
+  const [error, setError,] = useState("");
   const methods = useForm<LoginFormInputs>({
     resolver: yupResolver(validationSchema),
     defaultValues: {
@@ -78,13 +79,11 @@ const LoginPage = () => {
         document.cookie = `isLoggedIn=true; path=/`;
         const { role } = getUserInfo();
         toast.success(res?.message);
-        router.push(`/dashboard/${role}`);
-        // const callbackUrl =  searchParams.get("callbackUrl") || `/dashboard/${role}`;
-        // if (callbackUrl) {
-        //   router.push(callbackUrl);
-        // }
-        //  router.push(  `/dashboard/${role}`);
-        // router.push( callbackUrl || `/dashboard/${role}`);
+        // router.push(`/dashboard/${role}`);
+        const callbackUrl = searchParams.get("callbackUrl") || `/dashboard/${role}`;
+        if (callbackUrl) {
+          router.push(callbackUrl);
+        }
       } else {
         setError(res.message);
       }

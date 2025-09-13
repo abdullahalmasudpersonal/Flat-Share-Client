@@ -1,15 +1,16 @@
 "use client";
 import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from "@mui/material";
 import TopCounter from "./components/topCounter/TopCounter";
-import FlatPostChart from "./components/flatPostChart/FlatPostChart";
-import PieChartBookingDetails from "./components/pieChartBookingDetails/PieChartBookingDetails";
-import BookingTableData from "./components/bookingTable/BookingTableDatas";
+import FlatPostChart from "./components/adminChart/flatPostChart/FlatPostChart";
+import PieChartBookingDetails from "./components/adminChart/pieChartBookingDetails/PieChartBookingDetails";
+import BookingTableData from "./components/adminTable/bookingTable/BookingTableDatas";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import ReactApexChart from "react-apexcharts";
-import BookingChart from "./components/bookingChart/BookingChart";
-import EarningChart from "./components/earningChart/EarningChart";
+import BookingChart from "./components/adminChart/bookingChart/BookingChart";
+import EarningChart from "./components/adminChart/earningChart/EarningChart";
 import { useState } from "react";
 import ResentBooking from "./components/adminTable/ResentBooking";
+import NewFlat from "./components/adminTable/NewFlat";
 
 const AdminPage = () => {
 
@@ -31,7 +32,7 @@ const AdminPage = () => {
          <ResentBooking/>
         </Grid>
         <Grid item xs={12} md={6}>
-          <EarningChart />
+          <NewFlat />
         </Grid>
       </Grid>
 
@@ -45,26 +46,13 @@ const AdminPage = () => {
         </Box>
       </Box> */}
 
-      {/* <Grid container spacing={2}>
-        <Grid item sm={12} md={6}>
-          <Box>
-            <BookingChart />
-          </Box>
-        </Grid>
-        <Grid item sm={12} md={6}>
-          <Box>
-            <PieChartBookingDetails />
-          </Box>
-        </Grid>
-      </Grid> */}
-
       {/* <Box sx={{ marginTop: "20px" }}>
         <FlatPostChart />
       </Box> */}
 
-      {/* <Box  sx={{ marginTop: "20px" }}>
+      <Box  sx={{ marginTop: "20px" }}>
         <BookingTableData/>
-      </Box> */}
+      </Box>
     </Box>
   );
 };
