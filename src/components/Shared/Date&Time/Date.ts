@@ -2,7 +2,7 @@ export const formatLocalTime = (utcDateString: string): string => {
   const date = new Date(utcDateString);
   return date.toLocaleString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",

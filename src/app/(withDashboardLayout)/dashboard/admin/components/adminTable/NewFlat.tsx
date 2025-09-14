@@ -1,119 +1,67 @@
-import { useState } from "react";
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from "@mui/material";
-
-interface Column {
-    id: 'name' | 'code' | 'population' | 'size' | 'density';
-    label: string;
-    minWidth?: number;
-    align?: 'right';
-    format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-    {
-        id: 'population',
-        label: 'Population',
-        minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'size',
-        label: 'Size\u00a0(km\u00b2)',
-        minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'density',
-        label: 'Density',
-        minWidth: 170,
-        align: 'right',
-        format: (value: number) => value.toFixed(2),
-    },
-];
-
-
-interface Data {
-    name: string;
-    code: string;
-    population: number;
-    size: number;
-    density: number;
-}
-
-function createData(
-    name: string,
-    code: string,
-    population: number,
-    size: number,
-): Data {
-    const density = population / size;
-    return { name, code, population, size, density };
-}
-
-const rows = [
-    createData('India', 'IN', 1324171354, 3287263),
-    createData('China', 'CN', 1403500365, 9596961),
-    createData('Italy', 'IT', 60483973, 301340),
-    createData('United States', 'US', 327167434, 9833520),
-    createData('Canada', 'CA', 37602103, 9984670),
-    createData('Australia', 'AU', 25475400, 7692024),
-    createData('Germany', 'DE', 83019200, 357578),
-    createData('Ireland', 'IE', 4857000, 70273),
-];
+import { Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { useGetAllFlatQuery } from "@/redux/api/flatApi";
+import { TFlat } from "@/types/flat.types";
+import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import Image from "next/image";
 
 const NewFlat = () => {
+    const { data: flatlist, isLoading } = useGetAllFlatQuery({});
 
     return (
-        <TableContainer component={Paper} >
-            <Table stickyHeader aria-label="sticky table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell
-                            colSpan={columns.length}
-                            sx={{
-                                fontWeight: "bold",
-                                fontSize: "18px",
-                            }}
-                        >
-                            New Flats
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        {columns.map((column) => (
-                            <TableCell
-                                key={column.id}
-                                align={column.align}
-                                style={{ minWidth: column.minWidth }}
-                            >
-                                {column.label}
-                            </TableCell>
-                        ))}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => {
-                        return (
-                            <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                {columns.map((column) => {
-                                    const value = row[column.id];
-                                    return (
-                                        <TableCell key={column.id} align={column.align}>
-                                            {column.format && typeof value === 'number'
-                                                ? column.format(value)
-                                                : value}
-                                        </TableCell>
-                                    );
-                                })}
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <>
+            <TableContainer component={Paper} sx={{ height: '100%' }}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell colSpan={6} sx={{ fontWeight: "bold", fontSize: "18px", }} >New Flats</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Date</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Owner</TableCell>
+                            <TableCell>Rent</TableCell>
+                            <TableCell>Availability</TableCell>
+                            <TableCell>Views</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {isLoading ?
+                            (
+                                [...Array(5)].map((_, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                                        <TableCell><Skeleton variant="text" width={130} /></TableCell>
+                                        <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                                        <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                                        <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                                        <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                                    </TableRow>
+                                ))
+                            )
+                            :
+                            flatlist && flatlist.length > 0 ? flatlist?.map((item: TFlat) => (
+                                <TableRow key={item.id}>
+                                    <TableCell>{formatLocalDate(item.createdAt)}</TableCell>
+                                    <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item.flatPhoto || ''} width={60} height={60} alt='flat img' />}{item.flatName.length > 50 ? item.flatName.slice(0, 50) + ' ...' : item.flatName}</TableCell>
+                                    <TableCell>{item.user.seller.name}</TableCell>
+                                    <TableCell>{item.rent}</TableCell>
+                                    <TableCell>  {item.availability ? "Available" : "Not Available"}</TableCell>
+                                    <TableCell>{item.viewFlat}</TableCell>
+                                </TableRow>
+                            )) : (
+                                <TableRow>
+                                    <TableCell colSpan={6} align="center">
+                                        No Flat Data
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+
+        </>
+
     );
 };
 

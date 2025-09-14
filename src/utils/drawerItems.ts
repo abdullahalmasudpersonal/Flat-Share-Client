@@ -54,6 +54,11 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: DashboardIcon,
         },
         {
+          title: "Flat Management",
+          path: `${role}/flat-management`,
+          icon: ManageHistoryIcon,
+        },
+        {
           title: "All Seller",
           path: `${role}/all-seller`,
           icon: ManageAccountsIcon,
@@ -62,12 +67,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "All Buyer",
           path: `${role}/all-buyer`,
           icon: ManageAccountsIcon,
-        },
-        {
-          title: "Flat Management",
-          path: `${role}/flat-management`,
-          icon: ManageHistoryIcon,
-        },
+        }
         /* {
           title: "Reviews",
           path: `${role}/reviews`,
@@ -92,7 +92,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "Payments",
           path: `${role}/my-payments`,
           icon: PaymentIcon,
-        },
+        }
       );
       break;
 
@@ -117,7 +117,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           title: "My Requests",
           path: `${role}/my-requests`,
           icon: RequestPageIcon,
-        },
+        }
       );
       break;
 

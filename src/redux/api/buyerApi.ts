@@ -5,7 +5,7 @@ export const buyerApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllBuyer: build.query({
       query: () => ({
-        url: "/buyer",
+        url: "/buyer/all-buyer",
         method: "GET",
       }),
       providesTags: [tagTypes.buyer],

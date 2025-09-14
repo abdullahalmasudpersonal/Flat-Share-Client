@@ -14,7 +14,7 @@ export const flatApi = baseApi.injectEndpoints({
     getAllFlat: build.query({
       query: () => {
         return {
-          url: "/flat",
+          url: "/flat/all-flat",
           method: "GET",
         };
       },
