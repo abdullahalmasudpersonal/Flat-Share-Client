@@ -1,5 +1,5 @@
 import { tagTypes } from "../tag-types";
-import { baseApi } from "./baseApi";
+import { baseApi } from "../baseApi/baseApi";
 
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

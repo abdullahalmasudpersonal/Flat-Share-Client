@@ -1,11 +1,11 @@
 import { tagTypes } from "../tag-types";
-import { baseApi } from "./baseApi";
+import { baseApi } from "../baseApi/baseApi";
 
 export const sellerApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllSeller: build.query({
       query: () => ({
-        url: "/seller",
+        url: "/seller/all-seller",
         method: "GET",
       }),
       providesTags: [tagTypes.seller],

@@ -1,4 +1,4 @@
-import { baseApi } from "./baseApi";
+import { baseApi } from "../baseApi/baseApi";
 import { tagTypes } from "../tag-types";
 
 export const profileAPi = baseApi.injectEndpoints({
