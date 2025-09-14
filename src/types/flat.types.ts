@@ -21,4 +21,7 @@ export type TFlat = {
   createdAt: string;
   updatedAt: string;
   user: TUser;
+  _count?: {
+    booking: number;
+  };
 };

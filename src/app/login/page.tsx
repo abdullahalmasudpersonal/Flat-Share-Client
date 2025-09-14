@@ -1,12 +1,9 @@
 "use client";
 import React, { Suspense, useState } from "react";
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Link,
   Grid,
   Box,
@@ -15,8 +12,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { useForm, Controller, SubmitHandler, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -25,7 +21,7 @@ import logo from '@/assets/logo/flatShareLogo.png';
 import { userLogin } from "@/services/actions/userLogin";
 import { getUserInfo, storeUserInfo } from "@/services/auth.services";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // ==================== Validation Schema ====================
 const validationSchema = Yup.object({
@@ -47,7 +43,7 @@ const defaultTheme = createTheme();
 
 const LoginPage = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [error, setError,] = useState("");
   const methods = useForm<LoginFormInputs>({
     resolver: yupResolver(validationSchema),
@@ -79,11 +75,11 @@ const LoginPage = () => {
         document.cookie = `isLoggedIn=true; path=/`;
         const { role } = getUserInfo();
         toast.success(res?.message);
-        // router.push(`/dashboard/${role}`);
-        const callbackUrl = searchParams.get("callbackUrl") || `/dashboard/${role}`;
-        if (callbackUrl) {
-          router.push(callbackUrl);
-        }
+        router.push(`/dashboard/${role}`);
+        // const callbackUrl = searchParams.get("callbackUrl") || `/dashboard/${role}`;
+        // if (callbackUrl) {
+        //   router.push(callbackUrl);
+        // }
       } else {
         setError(res.message);
       }

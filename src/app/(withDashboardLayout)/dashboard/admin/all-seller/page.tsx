@@ -1,6 +1,5 @@
 "use client";
 import {
-  Button,
   IconButton,
   Paper,
   Skeleton,
@@ -28,7 +27,7 @@ const AllSellerPage = () => {
   return (
     <>
       <TableContainer component={Paper}>
-        <Table aria-label="simple table">
+        <Table aria-label="seller list table">
           <TableHead>
             <TableRow>
               <TableCell colSpan={8} sx={{ fontWeight: "bold", fontSize: "18px", }} >All Seller ({sellerlist?.length})</TableCell>

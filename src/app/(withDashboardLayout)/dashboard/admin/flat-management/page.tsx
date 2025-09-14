@@ -3,8 +3,11 @@ import {
   Box,
   Button,
   DialogActions,
+  IconButton,
   Modal,
   Paper,
+  Skeleton,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -21,6 +24,11 @@ import {
   useGetAllFlatQuery,
 } from "../../../../../redux/api/flatApi";
 import Image from "next/image";
+import { TFlat } from "@/types/flat.types";
+import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from "@mui/icons-material/Edit";
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,7 +42,7 @@ const style = {
 };
 
 const FlatManagementPage = () => {
-  const { data: flatData, isLoading } = useGetAllFlatQuery({});
+  const { data: flatlist, isLoading } = useGetAllFlatQuery({});
   const [deleteSingleFlat] = useDeleteSingleFlatMutation();
   const [flatId, setFlatId] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -95,71 +103,78 @@ const FlatManagementPage = () => {
           </Box>
         </Box>
       </Modal>
-      {isLoading ? (
-        "Loading..."
-      ) : (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>SL</TableCell>
-                <TableCell>Flat Name</TableCell>
-                <TableCell>Image</TableCell>
-                <TableCell align="right">Availability</TableCell>
-                <TableCell align="right">Owner</TableCell>
-                <TableCell align="right">Booking Request</TableCell>
-                <TableCell align="center">Details</TableCell>
-                <TableCell align="center">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {flatData?.map((data: any, index: number) => (
+
+      <TableContainer component={Paper}>
+        <Table aria-label="flat list table">
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={8} sx={{ fontWeight: "bold", fontSize: "18px", }} >All Flat ({flatlist?.length})</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Flat Name</TableCell>
+              <TableCell>Flat NO</TableCell>
+              <TableCell>Owner</TableCell>
+              <TableCell>Availability</TableCell>
+              <TableCell align="center">Booking Request</TableCell>
+              <TableCell align="center">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {isLoading ? (
+              [...Array(5)].map((_, index) => (
+                <TableRow key={index}>
+                  <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={120} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                  <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                </TableRow>
+              ))
+            ) : (
+              flatlist && flatlist.length > 0 ? flatlist?.map((data: TFlat) => (
                 <TableRow
                   key={data?.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {index + 1}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {data?.flatName}
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <Image src={data?.flatPhoto || ''} width={70} height={70} alt="flat photo" />
-                  </TableCell>
-                  <TableCell align="right">
+                  <TableCell>{formatLocalDate(data.createdAt)}</TableCell>
+                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Image width={60} height={60} src={data.flatPhoto || ''} alt="Buyer Image" />{data.flatName.length > 50 ? data.flatName.slice(0, 50) + ' ...' : data.flatName}</TableCell>
+                  <TableCell>{data.flatNo}</TableCell>
+                  <TableCell>{data?.user.seller.name}</TableCell>
+                  <TableCell align="center">
                     {data?.availability ? "Yes" : "No"}
                   </TableCell>
-                  <TableCell align="right">{data?.user?.email}</TableCell>
-                  <TableCell align="right">{data?.booking?.length}</TableCell>
-                  <TableCell align="center">
-                    <Link href={`/dashboard/admin/flat-management/${data?.id}`}>
-                      <Button variant="contained">Details</Button>
-                    </Link>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    <Button
-                      onClick={() => handleOpen(data?.id)}
-                      variant="contained"
-                      sx={{
-                        backgroundColor: "warning.main",
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "warning.dark",
-                          color: "#e2e2e2",
-                        },
-                      }}
-                    >
-                      Delete
-                    </Button>
+                  <TableCell align="center">{data?._count?.booking}</TableCell>
+                  <TableCell>
+                    <Stack direction="row" spacing={1} justifyContent="center">
+                       <Link href={`/dashboard/admin/flat-management/${data?.id}`}>
+                        <IconButton aria-label="view flat" color="info">
+                          <VisibilityIcon />
+                        </IconButton>
+                      </Link>
+                      <IconButton aria-label="edit flat" color="success">
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton  onClick={() => handleOpen(data?.id)} aria-label="delete flat" color="error">
+                        <DeleteIcon />
+                      </IconButton>
+                    </Stack>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
+              )) : (
+                <TableRow>
+                  <TableCell colSpan={8} align="center">
+                    No Flat Data
+                  </TableCell>
+                </TableRow>
+              )
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
