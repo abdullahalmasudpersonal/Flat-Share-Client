@@ -1,3 +1,4 @@
+"use client";
 import { Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useGetAllFlatQuery } from "@/redux/api/flatApi";
 import { TFlat } from "@/types/flat.types";

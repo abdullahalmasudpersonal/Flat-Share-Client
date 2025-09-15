@@ -1,10 +1,12 @@
 "use client";
 import { Box, Grid, } from "@mui/material";
 import TopCounter from "./components/topCounter/TopCounter";
-import BookingChart from "./components/adminChart/bookingChart/BookingChart";
-import EarningChart from "./components/adminChart/earningChart/EarningChart";
 import ResentBooking from "./components/adminTable/ResentBooking";
 import NewFlat from "./components/adminTable/NewFlat";
+import dynamic from "next/dynamic";
+
+const BookingChart = dynamic(() => import("./components/adminChart/bookingChart/BookingChart"), { ssr: false });
+const EarningChart = dynamic(() => import("./components/adminChart/earningChart/EarningChart"), { ssr: false });
 
 const AdminPage = () => {
 

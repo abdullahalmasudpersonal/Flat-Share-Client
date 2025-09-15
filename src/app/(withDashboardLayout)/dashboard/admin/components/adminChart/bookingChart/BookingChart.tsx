@@ -1,5 +1,8 @@
+"use client";
 import { Box, Typography } from "@mui/material";
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const BookingChart = () => {
     const days = Array.from({ length: 14 }, (_, i) => `Day ${i + 1}`);

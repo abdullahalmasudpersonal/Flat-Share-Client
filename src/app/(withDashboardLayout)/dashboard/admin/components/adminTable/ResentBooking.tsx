@@ -1,3 +1,4 @@
+"use client";
 import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
 import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 import { TBooking } from "@/types/booking.types";

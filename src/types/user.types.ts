@@ -14,3 +14,19 @@ export type TUser = {
   seller: TSeller;
   buyer: TBuyer;
 };
+
+export type TProfile = {
+  id:string;
+  name:string;
+  role:string;
+  email:string;
+  bio?:string;
+  profession:string;
+  contactNumber:string;
+  address:string;
+  gender:string;
+  profilePhoto?:string;
+  averageRating:string;
+  status:string;
+  createdAt:string;
+}
