@@ -20,23 +20,24 @@ export type TAdminProfile = {
   name: string;
   role?: string;
   email?: string;
+  status?:string;
   contactNumber?: string;
   profilePhoto?: string;
-  createdAt?:string;
+  createdAt?: string;
 };
 
 export type TProfile = {
-  id: string;
+  id?: string;
   name: string;
-  role: string;
-  email: string;
+  role?: string;
+  email?: string;
   bio?: string;
   profession?: string;
   contactNumber?: string;
   address?: string;
-  gender: string;
+  gender?: string;
   profilePhoto?: string;
-  averageRating: string;
-  status: string;
-  createdAt: string;
+  averageRating?: string;
+  status?: string;
+  createdAt?: string;
 };

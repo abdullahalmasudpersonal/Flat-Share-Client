@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import profileAltLogo from "../../../../../assets/profile/person-icon.png";
 import { useGetMYProfileQuery, } from "../../../../../redux/api/myProfile";
 import EditIcon from "@mui/icons-material/Edit";
-import { TProfile } from "@/types/user.types";
+import { TAdminProfile } from "@/types/user.types";
 import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
 import UpdateMyProfile from "./components/UpdateMyProfile";
 
@@ -13,7 +13,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(false);
   const { data, isLoading } = useGetMYProfileQuery({});
 
-  const { name, email, role, profilePhoto, contactNumber, status, createdAt }: TProfile = data || {};
+  const { name, email, role, profilePhoto, contactNumber, status, createdAt, }: TAdminProfile = data || {};
 
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
@@ -24,7 +24,7 @@ const Profile = () => {
     { label: "Role", value: role || "-" },
     { label: "Contact", value: contactNumber || "-" },
     { label: "Status", value: status || "-" },
-    { label: "Join", value: formatLocalDate(createdAt) || "-" },
+    { label: "Join", value: formatLocalDate(createdAt || '') || "-" },
   ];
 
   const chunkedRows = [];
