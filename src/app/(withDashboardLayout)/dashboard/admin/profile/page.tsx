@@ -1,21 +1,9 @@
 "use client";
-import { Box, Button, Card, CardContent, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import ProfileUpdateModal from "./components/ProfileUpdateModal";
-import UserProfileInfo from "./components/UserProfileInfo";
-import Link from "next/link";
-import LockResetIcon from "@mui/icons-material/LockReset";
-//import profileAltLogo from "@/assets/profile/person-icon.png";
 import profileAltLogo from "../../../../../assets/profile/person-icon.png";
-import {
-  useGetMYProfileQuery,
-  useUpdateMYProfileMutation,
-} from "../../../../../redux/api/myProfile";
-import AutoFileUploader from "../../../../../components/Forms/AutoFileUploader";
+import { useGetMYProfileQuery, } from "../../../../../redux/api/myProfile";
 import EditIcon from "@mui/icons-material/Edit";
 import { TProfile } from "@/types/user.types";
 import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
@@ -23,25 +11,9 @@ import UpdateMyProfile from "./components/UpdateMyProfile";
 
 const Profile = () => {
   const [edit, setEdit] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { data, isLoading } = useGetMYProfileQuery({});
-  const [updateMYProfile, { isLoading: updating }] =
-    useUpdateMYProfileMutation();
 
-  const fileUploadHandler = (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("data", JSON.stringify({}));
-
-    updateMYProfile(formData);
-  };
-
-  if (isLoading) {
-    <p>Loading...</p>;
-  }
-
-  const { name, email, role, bio, profession, profilePhoto, contactNumber, address, gender, status, createdAt }: TProfile = data || {};
+  const { name, email, role, profilePhoto, contactNumber, status, createdAt }: TProfile = data || {};
 
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,11 +22,7 @@ const Profile = () => {
     { label: "Name", value: name || "-" },
     { label: "Email", value: email || "-" },
     { label: "Role", value: role || "-" },
-    { label: "Bio", value: bio || "-" },
-    { label: "Profession", value: profession || "-" },
     { label: "Contact", value: contactNumber || "-" },
-    { label: "Address", value: address || "-" },
-    { label: "Gender", value: gender ? gender.charAt(0).toUpperCase() + gender.slice(1) : "-" },
     { label: "Status", value: status || "-" },
     { label: "Join", value: formatLocalDate(createdAt) || "-" },
   ];
@@ -79,45 +47,47 @@ const Profile = () => {
       </Box>
 
       {
-        edit ? <UpdateMyProfile/> :
-          <>      <Box sx={{ height: { xs: 300, md: 340 }, position: "relative", background: 'rgb(36, 12, 73)' }}>
-            <Box sx={{ position: "relative", width: "100%", minHeight: { xs: 200, md: 250 } }}>
-              <Image
-                src="https://mahsez.vercel.app/assets/coverPhoto-2-Crg-MWh0.avif"
-                alt="Cover Photo"
-                fill
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </Box>
-            <Box sx={{
-              position: "absolute",
-              bottom: { xs: 50, md: 30 },
-              left: { xs: "50%", md: "24px" },
-              transform: { xs: "translateX(-50%)", md: "none" },
-              width: { xs: 150, md: 180 },
-              height: { xs: 150, md: 180 },
-              borderRadius: { xs: "50%", md: '4px' },
-              border: "2px solid white",
-              overflow: "hidden", background: 'gray'
-            }}>
-              <Image
-                src={profilePhoto || profileAltLogo}
-                alt="Profile Picture"
-                fill style={{ objectFit: "cover" }}
-                priority
-              />
-            </Box>
-            <Box sx={{
-              position: "absolute",
-              bottom: { xs: 10, md: 100 },
-              left: { xs: "50%", md: "215px" },
-              transform: { xs: "translateX(-50%)", md: "none" },
-            }}>
-              <Typography sx={{ color: 'white', fontSize: '25px', fontWeight: '900' }}>{name}</Typography>
-            </Box>
+        edit ? <UpdateMyProfile onSuccess={() => setEdit(false)} />
+          :
+          <>
+            <Box sx={{ height: { xs: 300, md: 340 }, position: "relative", background: 'rgb(36, 12, 73)' }}>
+              <Box sx={{ position: "relative", width: "100%", minHeight: { xs: 200, md: 250 } }}>
+                <Image
+                  src="https://mahsez.vercel.app/assets/coverPhoto-2-Crg-MWh0.avif"
+                  alt="Cover Photo"
+                  fill
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </Box>
+              <Box sx={{
+                position: "absolute",
+                bottom: { xs: 50, md: 30 },
+                left: { xs: "50%", md: "24px" },
+                transform: { xs: "translateX(-50%)", md: "none" },
+                width: { xs: 150, md: 180 },
+                height: { xs: 150, md: 180 },
+                borderRadius: { xs: "50%", md: '4px' },
+                border: "2px solid white",
+                overflow: "hidden", background: 'gray'
+              }}>
+                <Image
+                  src={profilePhoto || profileAltLogo}
+                  alt="Profile Picture"
+                  fill style={{ objectFit: "cover" }}
+                  priority
+                />
+              </Box>
+              <Box sx={{
+                position: "absolute",
+                bottom: { xs: 10, md: 100 },
+                left: { xs: "50%", md: "215px" },
+                transform: { xs: "translateX(-50%)", md: "none" },
+              }}>
+                <Typography sx={{ color: 'white', fontSize: '25px', fontWeight: '900' }}>{name}</Typography>
+              </Box>
 
-          </Box>
+            </Box>
 
             <Box sx={{ mt: 3 }}>
               <TableContainer
@@ -161,7 +131,6 @@ const Profile = () => {
                           </React.Fragment>
                         ))}
 
-                        {/* যদি দুইটা না হয়, ফাকা cell রাখব */}
                         {!isSmall && pair.length === 1 && (
                           <>
                             <TableCell sx={{ border: "1px solid rgb(50, 21, 97)", backgroundColor: "rgb(36, 12, 73)" }} />
@@ -176,81 +145,6 @@ const Profile = () => {
             </Box>
           </>
       }
-
-
-      {/* <ProfileUpdateModal
-        open={isModalOpen}
-        setOpen={setIsModalOpen}
-        id={data?.id}
-      />
-      <Container sx={{ mt: 4 }}>
-        <Grid container spacing={4}>
-          <Grid xs={12} md={4}>
-            <Box
-              sx={{
-                height: 300,
-                width: "100%",
-                overflow: "hidden",
-                borderRadius: 1,
-                boxShadow:
-                  "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
-              }}
-            >
-              {data?.profilePhoto ? (
-                <Image
-                  height={300}
-                  width={400}
-                  src={data?.profilePhoto}
-                  alt="User Photo"
-                />
-              ) : (
-                <Image
-                  height={300}
-                  width={400}
-                  src={profileAltLogo}
-                  alt="User Photo"
-                />
-              )}
-            </Box>
-            <Box my={3} display="flex" justifyContent="center">
-              {updating ? (
-                <p>Uploading...</p>
-              ) : (
-                <AutoFileUploader
-                  name="file"
-                  label="Choose Your Profile Photo"
-                  icon={<CloudUploadIcon />}
-                  onFileUpload={fileUploadHandler}
-                  variant="outlined"
-                />
-              )}
-            </Box>
-
-            <Button
-              variant="contained"
-              fullWidth
-              endIcon={<ModeEditIcon />}
-              onClick={() => setIsModalOpen(true)}
-            >
-              Edit Profile
-            </Button>
-            <Box my={3}>
-              <Link href="/dashboard/change-password">
-                <Button
-                  variant="contained"
-                  fullWidth
-                  endIcon={<LockResetIcon />}
-                >
-                  Change password
-                </Button>
-              </Link>
-            </Box>
-          </Grid>
-          <Grid xs={12} md={8}>
-            <UserProfileInfo data={data} />
-          </Grid>
-        </Grid>
-      </Container> */}
     </>
   );
 };
