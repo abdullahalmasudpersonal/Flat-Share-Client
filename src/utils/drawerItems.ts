@@ -104,12 +104,12 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
           icon: DashboardIcon,
         },
         {
-          title: "Post Ad",
-          path: `${role}/post-ad`,
+          title: "Create Flat",
+          path: `${role}/create-flat`,
           icon: PostAddIcon,
         },
         {
-          title: "My Ad",
+          title: "My Flat",
           path: `${role}/my-ad`,
           icon: SignpostIcon,
         },

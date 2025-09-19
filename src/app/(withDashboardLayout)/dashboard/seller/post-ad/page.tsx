@@ -8,13 +8,13 @@ import { useRouter } from "next/navigation";
 import Form from "../../../../../components/Forms/Form";
 import Input from "../../../../../components/Forms/Input";
 import { getUserInfo } from "../../../../../services/auth.services";
-import { usePostFlatMutation } from "../../../../../redux/api/flatApi";
 import { modifyPayload } from "../../../../../utils/modifyPayload";
+import { useCreateFlatMutation } from "@/redux/api/flatApi";
 
 const PostAd = () => {
   const { userId } = getUserInfo();
   const router = useRouter();
-  const [postFlat, { isLoading: updating }] = usePostFlatMutation();
+  const [postFlat, { isLoading: updating }] = useCreateFlatMutation();
 
   const handleSubmit = async (values: FieldValues) => {
     values.userId = userId;
