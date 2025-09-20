@@ -61,8 +61,18 @@ const UpdateFlat = ({ params }: TParams) => {
                 toast.error("File size must be under 2MB");
                 return;
             }
-            setFile(selectedFile);
-            setPreview(URL.createObjectURL(selectedFile));
+
+            const img = new Image();
+            img.src = URL.createObjectURL(selectedFile);
+
+            img.onload = () => {
+                if (img.width === 800 && img.height === 535) {
+                    setFile(selectedFile);
+                    setPreview(URL.createObjectURL(selectedFile));
+                } else {
+                    toast.error("Image must be 800×535 pixels!");
+                }
+            };
         }
     };
 
@@ -76,18 +86,18 @@ const UpdateFlat = ({ params }: TParams) => {
 
         try {
             const payload = new FormData();
-            const jsonData = { ...formData };
-
+            const flatData = { ...formData };
             if (!file && preview) {
-                jsonData.flatPhoto = preview;
+                flatData.flatPhoto = preview;
             }
 
-            payload.append("data", JSON.stringify(jsonData));
+            payload.append("data", JSON.stringify(flatData));
             if (file) {
                 payload.append("file", file);
             }
 
-            const res = await updateFlat(payload);
+            ///// এখাকে অবশ্যই formData নামে প্যারামিটার রাখতে হবে এবং এপিআইতে formData নামে প্যারামিটার পাঠাতে হবে, অন্য নাম ব্যাবহার করলে কাজ করবে না।
+            const res = await updateFlat({ id, formData: payload });
             toast.success("Profile updated successfully!");
             router.push('/dashboard/seller/my-flat')
 

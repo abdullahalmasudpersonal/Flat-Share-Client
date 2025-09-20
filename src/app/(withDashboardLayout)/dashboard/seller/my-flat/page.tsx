@@ -24,8 +24,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from "@mui/icons-material/Edit";
 import { useRouter } from "next/navigation";
 
-const MyAd = () => {
-   const router = useRouter();
+const MyFlat = () => {
+  const router = useRouter();
   const { data: flatlist, isLoading } = useGetSellerFlatsQuery({});
   console.log(flatlist, 'flatlist')
 
@@ -97,19 +97,12 @@ const MyAd = () => {
                   <TableCell align="right">
                     {data?.availability ? "Yes" : "No"}
                   </TableCell>
-                  <TableCell align="center">
-                    <Link href={`/dashboard/seller/my-ad/${data?.id}`}>
-                      <Button variant="contained">Details</Button>
-                    </Link>
-                  </TableCell> 
                   <TableCell>
                     <Stack direction="row" spacing={1} justifyContent="center">
-                      <Link href={`/dashboard/seller/flat-management/${data?.id}`}>
-                        <IconButton aria-label="view flat" color="info">
-                          <VisibilityIcon />
-                        </IconButton>
-                      </Link>
-                      <IconButton onClick={()=> router.push(`/dashboard/seller/my-flat/update-flat/${data?.id}`)} aria-label="edit flat" color="success">
+                      <IconButton onClick={() => router.push(`/dashboard/seller/my-flat/${data?.id}`)} aria-label="view flat" color="info">
+                        <VisibilityIcon />
+                      </IconButton>
+                      <IconButton onClick={() => router.push(`/dashboard/seller/my-flat/update-flat/${data?.id}`)} aria-label="edit flat" color="success">
                         <EditIcon />
                       </IconButton>
                       <IconButton aria-label="delete flat" color="error">
@@ -127,62 +120,6 @@ const MyAd = () => {
                 </TableRow>
               )
             }
-
-            {/* {flatlist?.map((data: any) => (
-              <TableRow
-                key={data?.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {data?.flatName}
-                </TableCell>
-                <TableCell align="right">{data?.squareFeet}</TableCell>
-                <TableCell align="right">{data?.totalBedrooms}</TableCell>
-                <TableCell align="right">{data?.totalRooms}</TableCell>
-                <TableCell align="right">{data?.location}</TableCell>
-                <TableCell align="right">{data?.rent}</TableCell>
-                <TableCell align="right">{data?.advanceAmount}</TableCell>
-                <TableCell align="right">
-                  {data?.flatPhoto ? (
-                    <Image
-                      width={100}
-                      height={100}
-                      src={data?.flatPhoto}
-                      alt="flat image"
-                    />
-                  ) : (
-                    "Please upload image & get public"
-                  )}
-                </TableCell>
-                <TableCell align="right">
-                  {data?.flatPhoto ? (
-                    <>
-                      {"Yes"}&nbsp;
-                      <CheckCircleIcon
-                        fontSize="small"
-                        sx={{ color: "green" }}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      {"No"}&nbsp;
-                      <DoNotDisturbIcon
-                        fontSize="small"
-                        sx={{ color: "red" }}
-                      />
-                    </>
-                  )}
-                </TableCell>
-                <TableCell align="right">
-                  {data?.availability ? "Yes" : "No"}
-                </TableCell>
-                <TableCell align="center">
-                  <Link href={`/dashboard/seller/my-ad/${data?.id}`}>
-                    <Button variant="contained">Details</Button>
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))} */}
           </TableBody>
         </Table>
       </TableContainer>
@@ -190,4 +127,4 @@ const MyAd = () => {
   );
 };
 
-export default MyAd;
+export default MyFlat;

@@ -140,10 +140,10 @@ const FlatManagementPage = () => {
                   key={data?.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell>{formatLocalDate(data.createdAt)}</TableCell>
+                  <TableCell>{formatLocalDate(data?.createdAt || '')}</TableCell>
                   <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Image width={60} height={60} src={data.flatPhoto || ''} alt="Buyer Image" />{data.flatName.length > 50 ? data.flatName.slice(0, 50) + ' ...' : data.flatName}</TableCell>
                   <TableCell>{data.flatNo}</TableCell>
-                  <TableCell>{data?.user.seller.name}</TableCell>
+                  <TableCell>{data?.user?.seller?.name}</TableCell>
                   <TableCell align="center">
                     {data?.availability ? "Yes" : "No"}
                   </TableCell>
@@ -158,7 +158,7 @@ const FlatManagementPage = () => {
                       <IconButton aria-label="edit flat" color="success">
                         <EditIcon />
                       </IconButton>
-                      <IconButton  onClick={() => handleOpen(data?.id)} aria-label="delete flat" color="error">
+                      <IconButton  onClick={() => handleOpen(data?.id || '')} aria-label="delete flat" color="error">
                         <DeleteIcon />
                       </IconButton>
                     </Stack>

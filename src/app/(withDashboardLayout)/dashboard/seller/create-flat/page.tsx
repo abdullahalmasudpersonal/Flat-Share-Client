@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
+const MAX_FILE_SIZE = 2 * 1024 * 1024;
+
 const CreateFlat = () => {
     const [postFlat, { isLoading: updating }] = useCreateFlatMutation();
-    const [file, setFlie] = useState<File | null>(null);
+    const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
     const router = useRouter();
     const [formData, setFormData] = useState<any>({
@@ -24,17 +26,22 @@ const CreateFlat = () => {
     });
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
+        const selectedFile = e.target.files?.[0];
+        if (selectedFile) {
+            if (selectedFile.size > MAX_FILE_SIZE) {
+                toast.error("File size must be under 2MB");
+                return;
+            }
+
             const img = new Image();
-            img.src = URL.createObjectURL(file);
+            img.src = URL.createObjectURL(selectedFile);
 
             img.onload = () => {
-                if (img.width === 800 && img.height === 533) {
-                    setFlie(file);
-                    setPreview(URL.createObjectURL(file));
+                if (img.width === 800 && img.height === 535) {
+                    setFile(selectedFile);
+                    setPreview(URL.createObjectURL(selectedFile));
                 } else {
-                    toast.error("Image must be 800×533 pixels!");
+                    toast.error("Image must be 800×535 pixels!");
                 }
             };
         }
@@ -60,9 +67,10 @@ const CreateFlat = () => {
             }
 
             const res = await postFlat(data).unwrap();
+            console.log(res,'res')
             if (res?.id) {
                 toast.success("Flat created successfully ✅");
-                router.push('/dashboard/seller/my-ad')
+                router.push('/dashboard/seller/my-flat')
             }
         } catch (err: any) {
             toast.error(err?.data?.message || "Something went wrong");
@@ -168,7 +176,7 @@ const CreateFlat = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography sx={{ color: 'white' }}>Image size 800*533 Pixel</Typography>
+                            <Typography sx={{ color: 'white' }}>Image size 800*535 Pixel</Typography>
                             <Button
                                 variant="contained"
                                 component="label"

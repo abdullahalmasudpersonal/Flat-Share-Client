@@ -38,11 +38,13 @@ export const flatApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.flat],
     }),
     updateFlat: build.mutation({
-      query: (data) => {
+      ///// এখাকে অবশ্যই formData নামে প্যারামিটার রাখতে হবে এবং এপিআইতে formData নামে প্যারামিটার পাঠাতে হবে, অন্য নাম ব্যাবহার করলে কাজ করবে না।
+      query: ({id, formData}) => {
         return {
-          url: `/flat/update-flat/${data?.id}`,
+          url: `/flat/update-flat/${id}`,
           method: "PATCH",
-          data: data?.body,
+          data:formData,
+          contentType: "multipart/form-data",
         };
       },
       invalidatesTags: [tagTypes.flat],
