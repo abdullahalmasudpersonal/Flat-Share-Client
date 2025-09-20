@@ -110,7 +110,7 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         },
         {
           title: "My Flat",
-          path: `${role}/my-ad`,
+          path: `${role}/my-flat`,
           icon: SignpostIcon,
         },
         {

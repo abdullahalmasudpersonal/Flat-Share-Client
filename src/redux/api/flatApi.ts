@@ -4,15 +4,6 @@ import { baseApi } from "../baseApi/baseApi";
 export const flatApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createFlat: build.mutation({
-      // query: (data) => {
-      //   console.log(data?.file,'flatdata')
-      //   return {
-      //     url: `/flat/create-flat`,
-      //     method: "POST",
-      //     data,
-      //     contentType: "multipart/form-data",
-      //   };
-      // },
       query: (data) => ({
         url: `/flat/create-flat`,
         method: "POST",
@@ -41,7 +32,7 @@ export const flatApi = baseApi.injectEndpoints({
 
     getSingleFlat: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/flat/${id}`,
+        url: `/flat/single-flat/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.flat],
@@ -49,7 +40,7 @@ export const flatApi = baseApi.injectEndpoints({
     updateFlat: build.mutation({
       query: (data) => {
         return {
-          url: `/flat/${data?.id}`,
+          url: `/flat/update-flat/${data?.id}`,
           method: "PATCH",
           data: data?.body,
         };

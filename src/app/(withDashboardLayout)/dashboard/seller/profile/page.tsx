@@ -8,6 +8,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { TProfile } from "@/types/user.types";
 import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
 import UpdateSellerProfile from "./components/UpdateSellerProfile";
+import coverPhoto from '../../../../../assets/profile/coverphoto.jpg';
 
 const Profile = () => {
   const [edit, setEdit] = useState(false);
@@ -56,7 +57,7 @@ const Profile = () => {
             <Box sx={{ height: { xs: 300, md: 340 }, position: "relative", background: 'rgb(36, 12, 73)' }}>
               <Box sx={{ position: "relative", width: "100%", minHeight: { xs: 200, md: 250 } }}>
                 <Image
-                  src="https://mahsez.vercel.app/assets/coverPhoto-2-Crg-MWh0.avif"
+                  src={coverPhoto}
                   alt="Cover Photo"
                   fill
                   style={{ objectFit: "cover" }}
