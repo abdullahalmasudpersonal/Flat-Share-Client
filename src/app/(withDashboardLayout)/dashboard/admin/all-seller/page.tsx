@@ -1,5 +1,6 @@
 "use client";
 import {
+  Avatar,
   IconButton,
   Paper,
   Skeleton,
@@ -14,7 +15,6 @@ import {
 import Link from "next/link";
 import React from "react";
 import { useGetAllSellerQuery } from "../../../../../redux/api/sellerApi";
-import Image from "next/image";
 import { TSeller } from "@/types/seller.types";
 import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -60,7 +60,8 @@ const AllSellerPage = () => {
             ) : (
               sellerlist && sellerlist.length > 0 ? sellerlist?.map((data: TSeller) => (
                 <TableRow key={data?.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Image style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} width={60} height={60} src={data.profilePhoto || ''} alt="Buyer Image" />{data?.name}</TableCell>
+                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} >
+                    <Avatar style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} src={data.profilePhoto || ''} alt="Buyer Image" />{data?.name}</TableCell>
                   <TableCell>{data?.email}</TableCell>
                   <TableCell> {data?.profession}</TableCell>
                   <TableCell>{data?.address}</TableCell>

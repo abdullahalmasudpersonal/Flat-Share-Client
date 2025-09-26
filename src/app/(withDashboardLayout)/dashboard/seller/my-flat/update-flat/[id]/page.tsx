@@ -17,9 +17,10 @@ const UpdateFlat = ({ params }: TParams) => {
     const id = params?.id;
     const router = useRouter();
     const [file, setFile] = useState<File | null>(null);
+    const [loading,setLoading] = useState(false);
     const [preview, setPreview] = useState<string>("");
     const { data: flatData, refetch } = useGetSingleFlatQuery(id);
-    const [updateFlat, { isLoading: isUpdating }] = useUpdateFlatMutation();
+    const [updateFlat] = useUpdateFlatMutation();
     const [formData, setFormData] = useState<TFlat>({
         flatName: "",
         flatNo: "",
@@ -31,7 +32,7 @@ const UpdateFlat = ({ params }: TParams) => {
         advanceAmount: 0,
         description: '',
         utilitiesDescription: '',
-        amenities: ''
+        amenities: '',
     });
 
     useEffect(() => {
@@ -66,11 +67,21 @@ const UpdateFlat = ({ params }: TParams) => {
             img.src = URL.createObjectURL(selectedFile);
 
             img.onload = () => {
-                if (img.width === 800 && img.height === 535) {
+                const minWidth = 800;
+                const maxWidth = 820;
+                const minHeight = 525;
+                const maxHeight = 545;
+
+                if (
+                    img.width >= minWidth &&
+                    img.width <= maxWidth &&
+                    img.height >= minHeight &&
+                    img.height <= maxHeight
+                ) {
                     setFile(selectedFile);
                     setPreview(URL.createObjectURL(selectedFile));
                 } else {
-                    toast.error("Image must be 800×535 pixels!");
+                    toast.error(`Image must be between ${minWidth}×${minHeight} and ${maxWidth}×${maxHeight} pixels!`);
                 }
             };
         }
@@ -78,10 +89,17 @@ const UpdateFlat = ({ params }: TParams) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData((prev) => ({
+            ...prev,
+            [name]:
+                ["squareFeet", "totalRooms", "totalBedrooms", "rent", "advanceAmount"].includes(name)
+                    ? Number(value)
+                    : value,
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
+        setLoading(true)
         e.preventDefault();
 
         try {
@@ -97,13 +115,21 @@ const UpdateFlat = ({ params }: TParams) => {
             }
 
             ///// এখাকে অবশ্যই formData নামে প্যারামিটার রাখতে হবে এবং এপিআইতে formData নামে প্যারামিটার পাঠাতে হবে, অন্য নাম ব্যাবহার করলে কাজ করবে না।
-            const res = await updateFlat({ id, formData: payload });
-            toast.success("Profile updated successfully!");
-            router.push('/dashboard/seller/my-flat')
+            const res = await updateFlat({ id, formData: payload }).unwrap();
+            console.log(res, 'res')
+            if (res?.id) {
+                toast.success("Flat updated successfully!");
+                router.push('/dashboard/seller/my-flat')
+            }else{
+              toast.error("Flat update failed!");   
+            }
 
         } catch (err: any) {
             console.error("Update failed:", err);
-            toast.error("Profile update failed!");
+            toast.error("Flat update failed!");
+        }
+        finally{
+            setLoading(false)
         }
     };
 
@@ -250,8 +276,8 @@ const UpdateFlat = ({ params }: TParams) => {
                 </Grid>
 
                 <Box sx={{ textAlign: "center", mt: 3 }}>
-                    <Button type="submit" variant="contained" color="primary" disabled={isUpdating}>
-                        {isUpdating ? "Updating..." : "Update Flat"}
+                    <Button type="submit" variant="contained" color="primary" disabled={loading}>
+                        {loading ? "Flat Updating..." : "Update Flat"}
                     </Button>
                 </Box>
             </Box>

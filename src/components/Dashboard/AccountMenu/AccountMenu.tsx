@@ -11,7 +11,8 @@ import Logout from "@mui/icons-material/Logout";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRouter } from "next/navigation";
 import { getUserInfo } from "@/services/auth.services";
-import Link from "next/link";
+import LockResetIcon from "@mui/icons-material/LockReset";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const menuStyles = {
   paper: {
@@ -61,36 +62,12 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip
-          title="Account settings"
-          componentsProps={{
-            tooltip: {
-              sx: {
-                bgcolor: "#cdd1da5c",
-                color: "primary.main", // Change text color if necessary
-              },
-            },
-          }}
-        >
-          <IconButton
-            onClick={handleClick}
-            aria-controls={open ? "account-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            //   size='small'
-            sx={{
-              background: "#ffffff",
-              "& svg": {
-                color: "primary.main",
-              },
-            }}
-          >
+        <Tooltip title="Account settings">
+          <IconButton onClick={handleClick} aria-controls={open ? "account-menu" : undefined} aria-haspopup="true" aria-expanded={open ? "true" : undefined} sx={{ border: '1px solid gray', color: "#fff", "&:hover": { backgroundColor: "rgba(255,255,255,0.1)", cursor: 'pointer' } }} >
             <KeyboardArrowDownIcon />
           </IconButton>
         </Tooltip>
-        
-      </Box>
-
+      </Box >
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -103,15 +80,22 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Link href={`${role}/profile`}>
-        <MenuItem>
-          <Avatar sx={{ background: "transparent", color: "primary.main" }} />
+        <Box>
+
+        </Box>
+        <MenuItem onClick={() => router.push(`/dashboard/${role}/profile`)}>
+          <ListItemIcon>
+             <AccountCircleIcon sx={{ color: "primary.main" }} />
+          </ListItemIcon>
           Profile
         </MenuItem>
-        </Link>
-
+        <MenuItem onClick={() => router.push(`/dashboard/change-password`)}>
+          <ListItemIcon sx={{ color: "primary.main" }}>
+              <LockResetIcon />
+          </ListItemIcon>
+          Change Password
+        </MenuItem>
         <Divider />
-
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" sx={{ color: "error.main" }} />
@@ -119,6 +103,6 @@ export default function AccountMenu() {
           Logout
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </React.Fragment >
   );
 }

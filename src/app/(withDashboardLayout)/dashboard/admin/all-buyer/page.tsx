@@ -1,7 +1,6 @@
 "use client";
 import {
-  Button,
-  ButtonGroup,
+  Avatar,
   IconButton,
   Paper,
   Skeleton,
@@ -15,7 +14,6 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useGetAllBuyerQuery } from "../../../../../redux/api/buyerApi";
-import Image from "next/image";
 import { TBuyer } from "@/types/buyer.types";
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -61,7 +59,7 @@ const AllBuyerPage = () => {
             ) :
               buyerlist && buyerlist.length > 0 ? buyerlist?.map((data: TBuyer) => (
                 <TableRow key={data?.id} >
-                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Image style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} width={60} height={60} src={data.profilePhoto || ''} alt="Buyer Image" />{data?.name}</TableCell>
+                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Avatar style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} src={data.profilePhoto || ''} alt="Buyer Image" />{data?.name}</TableCell>
                   <TableCell>{data?.email}</TableCell>
                   <TableCell>{data?.profession}</TableCell>
                   <TableCell>{data?.address}</TableCell>

@@ -44,9 +44,9 @@ const ResentBooking = () => {
                                 bookinglist.map((item: TBooking) => (
                                     <TableRow key={item.id}>
                                         <TableCell>{formatLocalTime(item.createdAt)}</TableCell>
-                                        <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item.flat.flatPhoto || ''} width={60} height={60} alt='flat img' />}{item.flat.flatName.length > 40 ? item.flat.flatName.slice(0, 40) + ' ...' : item.flat.flatName}</TableCell>
+                                        <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}{item.flat.flatName.length > 40 ? item.flat.flatName.slice(0, 40) + ' ...' : item.flat.flatName}</TableCell>
                                         <TableCell>{item.user.buyer.name}</TableCell>
-                                        <TableCell>{item.flat.user.seller.name}</TableCell>
+                                        <TableCell>{item?.flat?.user?.seller?.name}</TableCell>
                                         <TableCell>{item.status}</TableCell>
                                         <TableCell>{item.paymentStatus}</TableCell>
                                     </TableRow>
