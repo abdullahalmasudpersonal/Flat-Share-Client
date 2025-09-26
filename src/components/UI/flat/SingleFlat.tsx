@@ -1,6 +1,6 @@
 "use client";
 import { formatLocalDate } from '@/components/Shared/Date&Time/Date';
-import { Box, Button, Card, CardMedia, Typography } from '@mui/material';
+import { Box, Button, Card,  Typography } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -24,12 +24,11 @@ const SingleFlat = ({ item }: { item: TFlat }) => {
                 style={{ width: "100%", height: "220px", objectFit: "cover" }}
             />
             <Box sx={{ padding: '15px', fontFamily: 'serif' }} textAlign={'center'}>
-
                 <Typography sx={{ fontWeight: '700' }}>{item?.flatName?.length > 30 ? item?.flatName.substring(0, 30) + "..." : item?.flatName}</Typography>
-                <Typography sx={{ fontSize: '14px' }}>{formatLocalDate(item?.createdAt)}</Typography>
+                <Typography sx={{ fontSize: '14px' }}>{formatLocalDate(item?.createdAt || '')}</Typography>
 
                 <Typography textAlign="justify" variant="body2" color="text.secondary" sx={{ py: 1 }}>
-                    {item?.description?.length > 140 ? item?.description.substring(0, 140) + "..." : item?.description}
+                    {item?.description && item.description.length >  140 ? item?.description.substring(0, 140) + "..." : item?.description}
                 </Typography>
 
                 <Typography textAlign="start" sx={{ fontSize: '15px', }}> Price: {item?.rent} TK</Typography>
@@ -41,7 +40,6 @@ const SingleFlat = ({ item }: { item: TFlat }) => {
                         <Button size="small" variant="contained">Details</Button>
                     </Link>
                 </Box>
-
             </Box>
         </Card>
     );

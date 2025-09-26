@@ -42,9 +42,9 @@ const NewFlat = () => {
                             :
                             flatlist && flatlist.length > 0 ? flatlist?.map((item: TFlat) => (
                                 <TableRow key={item.id}>
-                                    <TableCell>{formatLocalDate(item.createdAt)}</TableCell>
+                                    <TableCell>{formatLocalDate(item?.createdAt || '')}</TableCell>
                                     <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item.flatPhoto || ''} width={60} height={60} alt='flat img' />}{item.flatName.length > 50 ? item.flatName.slice(0, 50) + ' ...' : item.flatName}</TableCell>
-                                    <TableCell>{item.user.seller.name}</TableCell>
+                                    <TableCell>{item?.user?.seller.name}</TableCell>
                                     <TableCell>{item.rent}</TableCell>
                                     <TableCell>  {item.availability ? "Available" : "Not Available"}</TableCell>
                                     <TableCell>{item.viewFlat}</TableCell>
