@@ -7,6 +7,7 @@ import {
   MenuItem,
   Paper,
   Select,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -21,9 +22,12 @@ import {
 } from "@/redux/api/bookingApi";
 import React, { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import  { BootstrapDialog } from "@/components/Shared/Modal/Modal";
+import { BootstrapDialog } from "@/components/Shared/Modal/Modal";
 import { toast } from "sonner";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
+import { TBooking } from "@/types/booking.types";
+import Image from "next/image";
 type TParams = {
   params: {
     id: string;
@@ -36,40 +40,39 @@ type Inputs = {
 
 const MyFlatDetailPage = ({ params }: TParams) => {
   const flatId = params?.id;
-  const { data: flatBookingData, isLoading } = useGetAllBookingQuery({});
+  const { data: bookinglist, isLoading } = useGetAllBookingQuery({});
   const [updateConfirmBooking] = useUpdateConfirmBookingMutation(undefined);
   const [open, setOpen] = useState(false);
-  const [confirmBookingId, setConfirmBookingId]= useState('');
+  const [loading, setLoading] = useState(false);
+  const [confirmBookingId, setConfirmBookingId] = useState('');
+  const { register, handleSubmit } = useForm<Inputs>();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-
-  const handleClickOpen = (id:string) => {
+  const handleClickOpen = (id?: string) => {
+    if (!id) return;
     setOpen(true);
-    setConfirmBookingId(id)
+    setConfirmBookingId(id);
   };
   const handleClose = () => {
     setOpen(false);
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
+    setLoading(true);
     try {
-      const res = await updateConfirmBooking({
-        id: confirmBookingId,
-        body: {values, flatId},
-      });
+      const res = await updateConfirmBooking({ id: confirmBookingId });
+
       if (res?.data) {
-        toast.success("Update Booking Flat!");
+        toast.success("Confirm Booking Successfully!");
         setOpen(false);
-      }else{
-        setOpen(false);
+      } else {
+        toast.error("Confirm Booking Faliled!");
+        // setOpen(false);
       }
     } catch (err: any) {
       console.log(err);
-      
+      toast.error(err || 'Confirm Booking Faliled!');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -102,7 +105,7 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                 >
                   <MenuItem value="PENDING">PENDING</MenuItem>
                   <MenuItem value="BOOKED">BOOKED</MenuItem>
-                  <MenuItem value="REJECTED">REJECTED</MenuItem>
+                  {/* <MenuItem value="REJECTED">REJECTED</MenuItem> */}
                 </Select>
               </FormControl>
             </Box>
@@ -117,8 +120,8 @@ const MyFlatDetailPage = ({ params }: TParams) => {
               <Button variant="outlined" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button variant="contained" type="submit">
-                Confirm
+              <Button variant="contained" type="submit" disabled={loading}>
+                {loading ? 'Confirming...' : 'Confirm'}
               </Button>
             </Box>
           </Box>
@@ -126,51 +129,57 @@ const MyFlatDetailPage = ({ params }: TParams) => {
       </BootstrapDialog>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="booking table">
           <TableHead>
             <TableRow>
-              <TableCell>Flat Name</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Contact Number</TableCell>
-              <TableCell align="right">Address</TableCell>
-              <TableCell align="right">Confirm Booking</TableCell>
+              <TableCell colSpan={7} sx={{ fontWeight: "bold", fontSize: "18px", }} >Booking Requests</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Date </TableCell>
+              <TableCell>Flat </TableCell>
+              <TableCell align="center">Buyer </TableCell>
+              <TableCell align="center">Contact </TableCell>
+              <TableCell align="center">Booking</TableCell>
+              <TableCell align="center">Payment</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {flatBookingData
-              ?.filter((data: any) => data?.flatId === params?.id)
-              ?.map((data: any) => (
-                <TableRow
-                  key={data?.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {data?.flat?.flatName}
+            {isLoading ?
+              (
+                [...Array(7)].map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={130} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                    <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                  </TableRow>
+                ))
+              )
+              : bookinglist && bookinglist.length > 0 ? (bookinglist?.filter((data: TBooking) => data?.flatId === flatId).map((item: TBooking) => (
+                <TableRow key={item.id}>
+                  <TableCell sx={{ whiteSpace: "nowrap", width: "max-content" }}>{formatLocalTime(item?.createdAt || '')}</TableCell>
+                  <TableCell>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
+                      {item?.flat?.flatName && item?.flat?.flatName.length > 40 ? item?.flat?.flatName.slice(0, 40) + ' ...' : item?.flat?.flatName}
+                    </Box>
                   </TableCell>
-                  <TableCell align="right">{data?.status}</TableCell>
-                  <TableCell align="right">{data?.user?.buyer?.name}</TableCell>
-                  <TableCell align="right">{data?.user?.email}</TableCell>
-                  <TableCell align="right">
-                    {data?.user?.buyer?.contactNumber}
-                  </TableCell>
-                  <TableCell align="right">
-                    {data?.user?.buyer?.address}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      endIcon={<ModeEditIcon />}
-                      onClick={() =>handleClickOpen(data?.id)}
-                  
-                    >
-                      Update
-                    </Button>
-                  </TableCell>
+                  <TableCell align="center">{item?.user?.buyer?.email}</TableCell>
+                  <TableCell align="center">{item?.user?.buyer?.contactNumber}</TableCell>
+                  <TableCell align="center">{item?.status}</TableCell>
+                  <TableCell align="center">{item?.paymentStatus}</TableCell>
+                  <TableCell align="center"> <Button onClick={() => handleClickOpen(item?.id!)} variant="outlined" size="small" startIcon={<ModeEditIcon />}>Confirm</Button></TableCell>
                 </TableRow>
-              ))}
+              ))) : <TableRow>
+                <TableCell colSpan={6} align="center">
+                  No Booking Data
+                </TableCell>
+              </TableRow>
+            }
           </TableBody>
         </Table>
       </TableContainer>

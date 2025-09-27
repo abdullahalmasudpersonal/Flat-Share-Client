@@ -11,9 +11,10 @@ import React from "react";
 import CardContent from "@mui/material/CardContent";
 import { useGetAllFlatQuery } from "../../../redux/api/flatApi";
 import SingleFlat from "@/components/UI/flat/SingleFlat";
+import { TFlat } from "@/types/flat.types";
 
 const FlatsPage = () => {
-   const { data: flatData, isLoading, error } = useGetAllFlatQuery({});
+  const { data: flatData, isLoading, error } = useGetAllFlatQuery({});
   if (error) return <Typography color="error">Failed to load flats</Typography>;
   return (
     <>
@@ -36,9 +37,10 @@ const FlatsPage = () => {
                   </Card>
                 </Grid>
               )) : <>
-                {flatData?.filter((item: any) => item.availability === true && item.flatPhoto)?.map((item: any) => <Grid item key={item.id} xs={12} md={4} data-aos="fade-down">
+                 {flatData?.filter((item: any) => item.availability === true && item.flatPhoto)?.map((item: any) => <Grid item key={item.id} xs={12} md={4} data-aos="fade-down">
                   <SingleFlat item={item} />
-                </Grid>)}
+                </Grid>)} 
+                
               </>
             }
           </Grid>

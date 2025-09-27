@@ -1,6 +1,7 @@
 "use client";
 import {
   Avatar,
+  Box,
   IconButton,
   Paper,
   Skeleton,
@@ -59,7 +60,11 @@ const AllBuyerPage = () => {
             ) :
               buyerlist && buyerlist.length > 0 ? buyerlist?.map((data: TBuyer) => (
                 <TableRow key={data?.id} >
-                  <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} ><Avatar style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} src={data.profilePhoto || ''} alt="Buyer Image" />{data?.name}</TableCell>
+                  <TableCell>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }} >
+                      <Avatar style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid gray' }} src={data?.profilePhoto || ''} alt="Buyer Image" />{data?.name}
+                    </Box>
+                  </TableCell>
                   <TableCell>{data?.email}</TableCell>
                   <TableCell>{data?.profession}</TableCell>
                   <TableCell>{data?.address}</TableCell>
