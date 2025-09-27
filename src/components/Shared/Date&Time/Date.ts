@@ -22,3 +22,12 @@ export const formatLocalDate = (utcDateString: string): string => {
     hour12: true, // for 12-hour clock
   });
 };
+export const formatLocalDateWithShortMonth = (utcDateString: string): string => {
+  const date = new Date(utcDateString);
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour12: true, // for 12-hour clock
+  });
+};

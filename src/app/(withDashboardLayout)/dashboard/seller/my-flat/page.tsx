@@ -17,7 +17,7 @@ import React from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 import Image from "next/image";
-import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import { formatLocalDateWithShortMonth } from "@/components/Shared/Date&Time/Date";
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from "@mui/icons-material/Edit";
@@ -28,10 +28,11 @@ const MyFlat = () => {
   const router = useRouter();
   const { data: flatlist, isLoading } = useGetSellerFlatsQuery({});
   const [deleteFlat] = useDeleteSingleFlatMutation();
+  console.log(flatlist, 'flat list ')
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650, }} aria-label="flat table">
+      <Table sx={{ minWidth: 650, tableLayout: "auto" }} aria-label="flat table">
         <TableHead>
           <TableRow>
             <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >All Flat ({flatlist?.length})</TableCell>
@@ -39,12 +40,10 @@ const MyFlat = () => {
           <TableRow>
             <TableCell align="left">Date</TableCell>
             <TableCell align="left">Flat Name</TableCell>
-            <TableCell align="center">SquareFeet</TableCell>
-            {/* <TableCell align="center">Address</TableCell> */}
-            <TableCell align="center">Rent</TableCell>
-            <TableCell align="center">Advanced</TableCell>
+            <TableCell align="center">Booking</TableCell>
             <TableCell align="center">Public</TableCell>
             <TableCell align="center">Availability</TableCell>
+            <TableCell align="center">Request</TableCell>
             <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -53,14 +52,12 @@ const MyFlat = () => {
             ([...Array(5)].map((_, index) => (
               <TableRow key={index}>
                 <TableCell><Skeleton variant="text" width={100} /></TableCell>
-                <TableCell><Skeleton variant="text" width={120} /></TableCell>
+                <TableCell><Skeleton variant="text" width={150} /></TableCell>
                 <TableCell><Skeleton variant="text" width={100} /></TableCell>
                 <TableCell><Skeleton variant="text" width={80} /></TableCell>
                 <TableCell><Skeleton variant="text" width={80} /></TableCell>
-                <TableCell><Skeleton variant="text" width={60} /></TableCell>
-                <TableCell><Skeleton variant="text" width={60} /></TableCell>
-                <TableCell><Skeleton variant="text" width={60} /></TableCell>
-                <TableCell><Skeleton variant="text" width={60} /></TableCell>
+                <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                <TableCell><Skeleton variant="text" width={120} /></TableCell>
               </TableRow>
             )))
             :
@@ -68,31 +65,17 @@ const MyFlat = () => {
               <TableRow
                 key={data?.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }} >
-                <TableCell align="center">{formatLocalDate(data.createdAt)}</TableCell>
+                <TableCell sx={{ whiteSpace: "nowrap", width: "max-content" }}>{formatLocalDateWithShortMonth(data.createdAt)}</TableCell>
                 <TableCell align="center"><Box display="flex" alignItems="center" gap={1}><Image width={60} height={60} src={data.flatPhoto || ''} alt="Img" />{data.flatName.length > 50 ? data.flatName.slice(0, 50) + ' ...' : data.flatName}</Box></TableCell>
-                <TableCell align="center">{data?.squareFeet}</TableCell>
-                {/* <TableCell align="center">{data?.location}</TableCell> */}
-                <TableCell align="center">{data?.rent}</TableCell>
-                <TableCell align="center">{data?.advanceAmount}</TableCell>
+                <TableCell align="center">{data?.booking?.length}</TableCell>
                 <TableCell align="center">
-                  {data?.flatPhoto ? (
-                    <>
-                      <CheckCircleIcon
-                        fontSize="small"
-                        sx={{ color: "green" }}
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <DoNotDisturbIcon
-                        fontSize="small"
-                        sx={{ color: "red" }}
-                      />
-                    </>
-                  )}
+                  {data?.flatPhoto ? (<CheckCircleIcon fontSize="small" sx={{ color: "green" }} />) : (<DoNotDisturbIcon fontSize="small" sx={{ color: "red" }} />)}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   {data?.availability ? "Yes" : "No"}
+                </TableCell>
+                <TableCell align="center">
+                  <Button variant="outlined" size="small" disabled={data?.booking?.length < 1} onClick={()=>router.push(`/dashboard/seller/my-requests/${data?.id}`)}>View</Button>
                 </TableCell>
                 <TableCell>
                   <Stack direction="row" spacing={1} justifyContent="center">

@@ -2,7 +2,7 @@
 import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
 import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
 import { TBooking } from "@/types/booking.types";
-import { Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from "@mui/material";
+import { Box, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from "@mui/material";
 import Image from "next/image";
 
 const ResentBooking = () => {
@@ -41,11 +41,14 @@ const ResentBooking = () => {
                             ))
                         ) :
                             bookinglist && bookinglist.length > 0 ? (
-                                bookinglist.map((item: TBooking) => (
+                                bookinglist.slice(0,5).map((item: TBooking) => (
                                     <TableRow key={item.id}>
-                                        <TableCell>{formatLocalTime(item.createdAt)}</TableCell>
-                                        <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}{item.flat.flatName.length > 40 ? item.flat.flatName.slice(0, 40) + ' ...' : item.flat.flatName}</TableCell>
-                                        <TableCell>{item.user.buyer.name}</TableCell>
+                                        <TableCell>{formatLocalTime(item?.createdAt || '')}</TableCell>
+                                        <TableCell><Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                            {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
+                                            {item?.flat?.flatName && item?.flat?.flatName.length > 40 ? item?.flat?.flatName.slice(0, 40) + ' ...' : item?.flat?.flatName}
+                                            </Box></TableCell>
+                                        <TableCell>{item?.user?.buyer.name}</TableCell>
                                         <TableCell>{item?.flat?.user?.seller?.name}</TableCell>
                                         <TableCell>{item.status}</TableCell>
                                         <TableCell>{item.paymentStatus}</TableCell>
