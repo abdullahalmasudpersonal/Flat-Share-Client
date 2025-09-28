@@ -28,7 +28,7 @@
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
 }
-.dashboarbgcolor {
+.dashboardbgcolor {
   padding: 20px 10px;
   min-height: calc(100vh - 64px);
     background: linear-gradient(

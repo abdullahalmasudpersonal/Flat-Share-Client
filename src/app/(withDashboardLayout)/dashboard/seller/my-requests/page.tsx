@@ -11,7 +11,7 @@ const MyRequest = () => {
   return (
     <>
       <TableContainer component={Paper} sx={{ height: '100%' }}>
-        <Table sx={{ minWidth: 650 }} aria-label="my request table">
+        <Table sx={{ minWidth:"max-content" }} aria-label="my request table">
           <TableHead>
             <TableRow>
               <TableCell colSpan={7} sx={{ fontWeight: "bold", fontSize: "18px", }} >Booking Requests</TableCell>
@@ -23,7 +23,6 @@ const MyRequest = () => {
               <TableCell align="center">Contact </TableCell>
               <TableCell align="center">Booking</TableCell>
               <TableCell align="center">Payment</TableCell>
-              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -54,7 +53,6 @@ const MyRequest = () => {
                   <TableCell align="center">{item?.user?.buyer?.contactNumber}</TableCell>
                   <TableCell align="center">{item?.status}</TableCell>
                   <TableCell align="center">{item?.paymentStatus}</TableCell>
-                  <TableCell align="center"> <Button variant="outlined" size="small" >Confirm</Button></TableCell>
                 </TableRow>
               ))) : <TableRow>
                 <TableCell colSpan={6} align="center">

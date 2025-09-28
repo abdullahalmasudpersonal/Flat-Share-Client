@@ -1,21 +1,33 @@
 "use client";
-import BookingChart from "@/components/UI/Dashboard/SellerDashboard/Bookingrequest";
-import { Box, Card, CardMedia, Grid, Typography } from "@mui/material";
-import { LineChart, Line, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
-
-const data = [
-  { name: 'Jan', daily: 30, weekly: 210, monthly: 900, yearly: 10800, total: 10800 },
-  { name: 'Feb', daily: 28, weekly: 196, monthly: 784, yearly: 9408, total: 20208 },
-  // অন্যান্য মাসের ডেটা
-];
+import { Box, Grid } from "@mui/material";
+import EarningChart from "./components/adminChart/earningChart/EarningChart";
+import ResentBooking from "./components/sellerTable/ResentBooking";
+import NewFlat from "./components/sellerTable/NewFlat";
+import BookingChart from "./components/adminChart/bookingChart/BookingChart";
 
 const SellerPage = () => {
   return (
-    <Box sx={{ backgroundColor: '#dec9e9' }}>
-      <Box sx={{ flexGrow: 1, padding: 2 }}>
+    <Box>
+      <Grid container spacing={3} sx={{ marginTop: '0px' }} >
+        <Grid item xs={12} md={6}>
+          <BookingChart />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <EarningChart />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3} sx={{ marginTop: '0px' }} >
+        <Grid item xs={12} md={6}>
+          <ResentBooking />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <NewFlat />
+        </Grid>
+      </Grid>
+
+
+      {/* <Box sx={{ flexGrow: 1, padding: 2 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4} lg={3}>
             <Card sx={{ maxWidth: 345, padding: 2, backgroundColor: '#FFFFFF' }}>
@@ -54,10 +66,7 @@ const SellerPage = () => {
             </Card>
           </Grid>
         </Grid>
-      </Box>
-      <Box>
-        {/*    <BookingChart /> */}
-      </Box>
+      </Box> */}
     </Box>
   );
 };

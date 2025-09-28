@@ -28,14 +28,13 @@ const MyFlat = () => {
   const router = useRouter();
   const { data: flatlist, isLoading } = useGetSellerFlatsQuery({});
   const [deleteFlat] = useDeleteSingleFlatMutation();
-  console.log(flatlist, 'flat list ')
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, tableLayout: "auto" }} aria-label="flat table">
         <TableHead>
           <TableRow>
-            <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >All Flat ({flatlist?.length})</TableCell>
+            <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >My Flat ({flatlist?.length})</TableCell>
           </TableRow>
           <TableRow>
             <TableCell align="left">Date</TableCell>

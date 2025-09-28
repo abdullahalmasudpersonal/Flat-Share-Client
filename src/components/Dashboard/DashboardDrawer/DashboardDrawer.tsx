@@ -135,7 +135,7 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
         }}
       >
         <Toolbar sx={{minHeight:'64px'}}  />
-        <Box className='dashboarbgcolor'>{children}</Box>
+        <Box className='dashboardbgcolor'>{children}</Box>
       </Box>
     </Box>
   );
