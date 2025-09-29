@@ -18,9 +18,16 @@ export const bookingApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.booking],
     }),
+    getSingleBooking: build.query({
+      query: (id) => {
+        return {
+          url: `/booking/single-booking/${id}`,
+        };
+      },
+    }),
     updateConfirmBooking: build.mutation({
       query: (data) => {
-        console.log(data,'data')
+        console.log(data, "data");
         return {
           url: `/booking/booking-request/${data?.id}`,
           method: "PATCH",
@@ -34,5 +41,6 @@ export const bookingApi = baseApi.injectEndpoints({
 export const {
   useCreateBookingMutation,
   useGetAllBookingQuery,
+  useGetSingleBookingQuery,
   useUpdateConfirmBookingMutation,
 } = bookingApi;

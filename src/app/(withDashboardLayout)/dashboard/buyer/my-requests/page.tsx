@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -11,72 +12,71 @@ import {
   TableRow,
 } from "@mui/material";
 import React from "react";
-import Link from "next/link";
 import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
+import { TBooking } from "@/types/booking.types";
+import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const MyRequest = () => {
-  const { data, isLoading } = useGetAllBookingQuery({});
+const BuyerRequest = () => {
+  const router = useRouter();
+  const { data: bookinglist, isLoading } = useGetAllBookingQuery({});
 
   return (
-    <>
-      {isLoading ? (
-        "Loading..."
-      ) : (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Flat Name</TableCell>
-                <TableCell align="right">Status</TableCell>
-                <TableCell align="right">SquareFeet</TableCell>
-                <TableCell align="right">Total Bedroom</TableCell>
-                <TableCell align="right">Total Room</TableCell>
-                <TableCell align="right">Rent</TableCell>
-                <TableCell align="right">Advance Amount</TableCell>
-                <TableCell align="right">Address</TableCell>
-                <TableCell align="right">Availability</TableCell>
-                <TableCell align="center">Details</TableCell>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 'max-content', tableLayout: "auto" }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >My Request </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Flat</TableCell>
+            <TableCell align="center">Owner</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Availability</TableCell>
+            <TableCell align="center">Action</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {isLoading ?
+            ([...Array(5)].map((_, index) => (
+              <TableRow key={index}>
+                <TableCell><Skeleton variant="text" width={100} /></TableCell>
+                <TableCell><Skeleton variant="text" width={150} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={100} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.map((data: any) => (
-                <TableRow
-                  key={data?.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {data?.flat?.flatName}
-                  </TableCell>
-                  <TableCell align="right">{data?.status}</TableCell>
-                  <TableCell align="right">{data?.flat?.squareFeet}</TableCell>
-                  <TableCell align="right">
-                    {data?.flat?.totalBedrooms}
-                  </TableCell>
-                  <TableCell align="right">{data?.flat?.totalRooms}</TableCell>
-                  <TableCell align="right">{data?.flat?.rent}</TableCell>
-                  <TableCell align="right">
-                    {data?.flat?.advanceAmount}
-                  </TableCell>
-                  <TableCell align="right">{data?.flat?.location}</TableCell>
-                  <TableCell align="right">
-                    {data?.flat?.availability ? "Yes" : "No"}
-                  </TableCell>
-                  <TableCell align="center">
-                    {/*  এখানে ফ্লাট আইডি দিয়ে পরবর্তী পেজে নির্দেশ করা হয়েছে, যাতে পরবর্তী পেজে ফ্লাট এর ডিটেইল দেখা যায় */}
-                    <Link
-                      href={`/dashboard/buyer/my-requests/${data?.flat?.id}`}
-                    >
-                      <Button variant="contained">Details</Button>
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </>
+            )))
+            :
+            (bookinglist && bookinglist?.length > 0 ? (bookinglist?.map((item: TBooking) => (
+              <TableRow key={item.id}>
+                <TableCell sx={{ whiteSpace: "nowrap", }}>{formatLocalTime(item?.createdAt || '')}</TableCell>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
+                    {item?.flat?.flatName && item?.flat?.flatName.length > 40 ? item?.flat?.flatName.slice(0, 40) + ' ...' : item?.flat?.flatName}
+                  </Box>
+                </TableCell>
+                <TableCell align="center">{item?.flat?.user?.seller?.email}</TableCell>
+                <TableCell align="center">{item?.status}</TableCell>
+                <TableCell align="center">{item?.flat?.availability === true ? 'Yes':"No"}</TableCell>
+                <TableCell align="center"><Button variant="outlined" size="small" onClick={()=> router.push(`/dashboard/buyer/my-requests/${item?.id}`)}>Details</Button></TableCell>
+              </TableRow>
+            )))
+              :
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  No Booking Data
+                </TableCell>
+              </TableRow>
+            )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
-export default MyRequest;
+export default BuyerRequest;

@@ -116,16 +116,16 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     </Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem
+                {/* <MenuItem
                   onClick={() => scrollToSection("highlights")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
                 >
-                  <Link href={`/dashboard/seller/post-ad`}>
+                  <Link href={`/dashboard/seller/create-flat`}>
                     <Typography variant="body2" color="primary">
-                      Post Ad
+                      Post Flat
                     </Typography>
                   </Link>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                   onClick={() => scrollToSection("faq")}
                   sx={{ py: "6px", px: "12px", borderRadius: "20px" }}
@@ -203,7 +203,7 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     </Button>
                   </MenuItem>
 
-                  <MenuItem>
+                  {/* <MenuItem>
                     <Button
                       color="primary"
                       variant="outlined"
@@ -213,7 +213,7 @@ const Navber = (/* { mode, toggleColorMode }: AppAppBarProps */) => {
                     >
                       Post Ad
                     </Button>
-                  </MenuItem>
+                  </MenuItem> */}
 
                   <MenuItem>
                     <Button
