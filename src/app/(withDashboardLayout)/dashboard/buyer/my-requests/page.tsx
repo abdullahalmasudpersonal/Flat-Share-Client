@@ -27,7 +27,7 @@ const BuyerRequest = () => {
       <Table sx={{ minWidth: 'max-content', tableLayout: "auto" }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >My Request </TableCell>
+            <TableCell colSpan={9} sx={{ fontWeight: "bold", fontSize: "18px", }} >My Request ({bookinglist?.length})</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Date</TableCell>
