@@ -43,7 +43,7 @@ const NewFlat = () => {
                                 <TableCell>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                                         {<Image src={item.flatPhoto || ''} width={60} height={60} alt='flat img' />}
-                                        {item.flatName.length > 30 ? item.flatName.slice(0, 30) + ' ...' : item.flatName}
+                                        {item.flatName.length > 25 ? item.flatName.slice(0, 25) + ' ...' : item.flatName}
                                     </Box>
                                 </TableCell>
                                 <TableCell>{item.rent}</TableCell>

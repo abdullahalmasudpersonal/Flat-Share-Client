@@ -42,6 +42,7 @@ type LoginFormInputs = {
 const defaultTheme = createTheme();
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   // const searchParams = useSearchParams();
   const [error, setError,] = useState("");
@@ -68,6 +69,7 @@ const LoginPage = () => {
 
   // ==================== Submit Handler ====================
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    setLoading(true);
     try {
       const res = await userLogin(data);
       if (res?.data?.accessToken) {
@@ -87,6 +89,8 @@ const LoginPage = () => {
       //    setError(err.message);
       // console.log(err.message);
       setSnackbar({ open: true, message: "Something went wrong!", severity: "error" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -179,8 +183,8 @@ const LoginPage = () => {
               /> */}
 
               {/* Submit */}
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                Sign In
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={loading}>
+                {loading ? "Signing..." : "Sign In"}
               </Button>
 
               {/* Links */}

@@ -31,13 +31,13 @@ const BuyerBookingRequest = ({ params }: TParams) => {
     { label: "SquareFeet", value: flat?.squareFeet || "-" },
     { label: "Total Room", value: flat?.totalRooms || "-" },
     { label: "Total Bedroom", value: flat?.totalBedrooms || "-" },
-    { label: "rent", value: flat?.rent || "-" },
+    { label: "Rent", value: flat?.rent || "-" },
     { label: "AdvanceAmount", value: flat?.advanceAmount || "-" },
     { label: "Request", value: formatLocalTime(createdAt || '') || "-" },
     { label: "Payment Status", value: paymentStatus || "-" },
-    { label: "description", value: flat?.description || "-" },
-    { label: "utilitiesDescription", value: flat?.utilitiesDescription || "-" },
-    { label: "amenities", value: flat?.amenities || "-" },
+    { label: "Description", value: flat?.description || "-" },
+    { label: "Utilities Description", value: flat?.utilitiesDescription || "-" },
+    { label: "Amenities", value: flat?.amenities || "-" },
     { label: "View Flat", value: flat?.viewFlat || "-" },
   ];
 

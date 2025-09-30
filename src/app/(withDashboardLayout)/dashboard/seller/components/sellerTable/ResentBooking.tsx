@@ -10,7 +10,7 @@ const ResentBooking = () => {
 
     return (
         <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto', }}>
-            <Table sx={{ minWidth: 900, tableLayout: 'auto' }}>
+            <Table sx={{ minWidth: 'max-content', tableLayout: 'auto' }}>
                 <TableHead>
                     <TableRow>
                         <TableCell colSpan={6} sx={{ fontWeight: "bold", fontSize: "18px", }}>
@@ -21,7 +21,6 @@ const ResentBooking = () => {
                         <TableCell>Date </TableCell>
                         <TableCell>Flat </TableCell>
                         <TableCell>Buyer </TableCell>
-                        <TableCell>Seller</TableCell>
                         <TableCell>Booking</TableCell>
                         <TableCell>Payment</TableCell>
                     </TableRow>
@@ -46,11 +45,10 @@ const ResentBooking = () => {
                                     <TableCell sx={{}}>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                                             {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
-                                            {item?.flat?.flatName && item?.flat?.flatName.length > 40 ? item?.flat?.flatName.slice(0, 40) + ' ...' : item?.flat?.flatName}
+                                            {item?.flat?.flatName && item?.flat?.flatName.length > 25 ? item?.flat?.flatName.slice(0, 25) + ' ...' : item?.flat?.flatName}
                                         </Box>
                                     </TableCell>
                                     <TableCell>{item?.user?.buyer.name}</TableCell>
-                                    <TableCell>{item?.flat?.user?.seller?.name}</TableCell>
                                     <TableCell>{item.status}</TableCell>
                                     <TableCell>{item.paymentStatus}</TableCell>
                                 </TableRow>

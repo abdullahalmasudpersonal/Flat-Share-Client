@@ -12,7 +12,7 @@ export const PaymentApi = baseApi.injectEndpoints({
     }),
     getPayments: build.query({
       query: () => ({
-        url: `/payment`,
+        url: `/payment/all-payment`,
         method: "GET",
       }),
       providesTags: [tagTypes.paymentBookingFlat],

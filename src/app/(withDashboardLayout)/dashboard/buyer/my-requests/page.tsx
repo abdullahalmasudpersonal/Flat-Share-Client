@@ -33,6 +33,7 @@ const BuyerRequest = () => {
             <TableCell>Date</TableCell>
             <TableCell>Flat</TableCell>
             <TableCell align="center">Owner</TableCell>
+            <TableCell align="center">Amount</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Availability</TableCell>
             <TableCell align="center">Action</TableCell>
@@ -61,6 +62,7 @@ const BuyerRequest = () => {
                   </Box>
                 </TableCell>
                 <TableCell align="center">{item?.flat?.user?.seller?.email}</TableCell>
+                {/* <TableCell align="center">{item?.}</TableCell> */}
                 <TableCell align="center">{item?.status}</TableCell>
                 <TableCell align="center">{item?.flat?.availability === true ? 'Yes':"No"}</TableCell>
                 <TableCell align="center"><Button variant="outlined" size="small" onClick={()=> router.push(`/dashboard/buyer/my-requests/${item?.id}`)}>Details</Button></TableCell>
