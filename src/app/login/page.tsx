@@ -97,7 +97,7 @@ const LoginPage = () => {
   // ==================== Fill Demo Credentials ====================
   const fillCredentials = (role: string) => {
     if (role === "buyer") {
-      setValue("email", "kamrul@gmail.com");
+      setValue("email", "hasan@gmail.com");
       setValue("password", "123456");
     } else if (role === "seller") {
       setValue("email", "saki@gmail.com");

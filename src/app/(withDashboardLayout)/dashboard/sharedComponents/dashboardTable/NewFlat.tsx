@@ -1,15 +1,15 @@
 "use client";
-import { Box, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useGetSellerFlatsQuery } from "@/redux/api/flatApi";
+import { Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { useGetAllFlatQuery } from "@/redux/api/flatApi";
 import { TFlat } from "@/types/flat.types";
-import { formatLocalDate } from "@/components/Shared/Date&Time/Date";
+import { formatLocalDateWithShortMonth } from "@/components/Shared/Date&Time/Date";
 import Image from "next/image";
 
 const NewFlat = () => {
-    const { data: flatlist, isLoading } = useGetSellerFlatsQuery({});
+    const { data: flatlist, isLoading } = useGetAllFlatQuery({});
 
     return (
-        <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto', }}>
+        <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto',  }}>
             <Table sx={{ minWidth: 'max-content', tableLayout: 'auto' }}>
                 <TableHead>
                     <TableRow>
@@ -18,9 +18,10 @@ const NewFlat = () => {
                     <TableRow>
                         <TableCell>Date</TableCell>
                         <TableCell>Name</TableCell>
-                        <TableCell>Rent</TableCell>
-                        <TableCell>Availability</TableCell>
-                        <TableCell>Views</TableCell>
+                        <TableCell align="center">Owner</TableCell>
+                        <TableCell align="center">Rent</TableCell>
+                        <TableCell align="center">Availability</TableCell>
+                        <TableCell align="center">Views</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -32,6 +33,7 @@ const NewFlat = () => {
                                     <TableCell><Skeleton variant="text" width={130} /></TableCell>
                                     <TableCell><Skeleton variant="text" width={100} /></TableCell>
                                     <TableCell><Skeleton variant="text" width={80} /></TableCell>
+                                    <TableCell><Skeleton variant="text" width={80} /></TableCell>
                                     <TableCell><Skeleton variant="text" width={60} /></TableCell>
                                 </TableRow>
                             ))
@@ -39,16 +41,12 @@ const NewFlat = () => {
                         :
                         flatlist && flatlist.length > 0 ? flatlist.slice(0, 5)?.map((item: TFlat) => (
                             <TableRow key={item.id}>
-                                <TableCell>{formatLocalDate(item?.createdAt || '')}</TableCell>
-                                <TableCell>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                        {<Image src={item.flatPhoto || ''} width={60} height={60} alt='flat img' />}
-                                        {item.flatName.length > 25 ? item.flatName.slice(0, 25) + ' ...' : item.flatName}
-                                    </Box>
-                                </TableCell>
-                                <TableCell>{item.rent}</TableCell>
-                                <TableCell>  {item.availability ? "Available" : "Not Available"}</TableCell>
-                                <TableCell>{item.viewFlat}</TableCell>
+                                <TableCell>{formatLocalDateWithShortMonth(item?.createdAt || '')}</TableCell>
+                                <TableCell sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>{<Image src={item.flatPhoto || ''} width={60} height={40.31} alt='' />}{item.flatName.length > 20 ? item.flatName.slice(0, 20) + ' ...' : item.flatName}</TableCell>
+                                <TableCell align="center">{item?.user?.seller.name}</TableCell>
+                                <TableCell align="center">{item.rent}</TableCell>
+                                <TableCell align="center">  {item.availability ? "Available" : "Not Available"}</TableCell>
+                                <TableCell align="center">{item.viewFlat}</TableCell>
                             </TableRow>
                         )) : (
                             <TableRow>

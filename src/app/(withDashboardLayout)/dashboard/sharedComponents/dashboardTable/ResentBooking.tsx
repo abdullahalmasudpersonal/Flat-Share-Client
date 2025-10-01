@@ -1,12 +1,20 @@
 "use client";
 import { formatLocalTime } from "@/components/Shared/Date&Time/Date";
 import { useGetAllBookingQuery } from "@/redux/api/bookingApi";
+import { getUserInfo } from "@/services/auth.services";
 import { TBooking } from "@/types/booking.types";
 import { Box, Paper, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, } from "@mui/material";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const ResentBooking = () => {
     const { data: bookinglist, isLoading } = useGetAllBookingQuery({});
+    const [role, setRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        const { role } = getUserInfo();
+        setRole(role);
+    }, []);
 
     return (
         <TableContainer component={Paper} sx={{ height: '100%', width: '100%', overflowX: 'auto', }}>
@@ -17,13 +25,20 @@ const ResentBooking = () => {
                             Latest Bookings
                         </TableCell>
                     </TableRow>
-                    <TableRow>
-                        <TableCell>Date </TableCell>
+                    {role && <TableRow>
+                        {role !== 'admin' &&<TableCell>Date</TableCell>}
                         <TableCell>Flat </TableCell>
-                        <TableCell>Buyer </TableCell>
-                        <TableCell>Booking</TableCell>
-                        <TableCell>Payment</TableCell>
-                    </TableRow>
+                        {role === "seller" && <TableCell align='center'>Buyer </TableCell>}
+                        {role === "buyer" && <TableCell align='center'>Seller </TableCell>}
+                        {role === "admin" && (
+                            <>
+                                <TableCell align="center">Buyer</TableCell>
+                                <TableCell align="center">Seller</TableCell>
+                            </>
+                        )}
+                        <TableCell align='center'>Booking</TableCell>
+                        <TableCell align='center'>Payment</TableCell>
+                    </TableRow>}
                 </TableHead>
                 <TableBody>
                     {isLoading ? (
@@ -34,23 +49,29 @@ const ResentBooking = () => {
                                 <TableCell><Skeleton variant="text" width={100} /></TableCell>
                                 <TableCell><Skeleton variant="text" width={80} /></TableCell>
                                 <TableCell><Skeleton variant="text" width={80} /></TableCell>
-                                <TableCell><Skeleton variant="text" width={60} /></TableCell>
                             </TableRow>
                         ))
                     ) :
                         bookinglist && bookinglist.length > 0 ? (
                             bookinglist.slice(0, 5).map((item: TBooking) => (
                                 <TableRow key={item.id}>
-                                    <TableCell>{formatLocalTime(item?.createdAt || '')}</TableCell>
+                                     {role !== 'admin' &&<TableCell>{formatLocalTime(item?.createdAt || '')}</TableCell>}
                                     <TableCell sx={{}}>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
-                                            {item?.flat?.flatName && item?.flat?.flatName.length > 25 ? item?.flat?.flatName.slice(0, 25) + ' ...' : item?.flat?.flatName}
+                                            {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='Img' />}
+                                            {item?.flat?.flatName && item?.flat?.flatName.length > 20 ? item?.flat?.flatName.slice(0, 20) + ' ...' : item?.flat?.flatName}
                                         </Box>
                                     </TableCell>
-                                    <TableCell>{item?.user?.buyer.name}</TableCell>
-                                    <TableCell>{item.status}</TableCell>
-                                    <TableCell>{item.paymentStatus}</TableCell>
+                                    {role === "seller" && <TableCell align="center">{item?.user?.buyer?.name}</TableCell>}
+                                    {role === "buyer" && <TableCell align="center">{item?.flat?.user?.seller?.name}</TableCell>}
+                                    {role === "admin" && (
+                                        <>
+                                            <TableCell align="center">{item?.user?.buyer?.name}</TableCell>
+                                            <TableCell align="center">{item?.flat?.user?.seller?.name}</TableCell>
+                                        </>
+                                    )}
+                                    <TableCell align='center'>{item.status}</TableCell>
+                                    <TableCell align='center'>{item.paymentStatus}</TableCell>
                                 </TableRow>
                             ))
                         ) : (

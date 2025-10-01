@@ -40,12 +40,18 @@ type Inputs = {
 
 const MyFlatDetailPage = ({ params }: TParams) => {
   const flatId = params?.id;
+  const [allDisabled, setAllDisabled] = useState(true);
   const { data: bookinglist, isLoading } = useGetAllBookingQuery({});
   const [updateConfirmBooking] = useUpdateConfirmBookingMutation(undefined);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [confirmBookingId, setConfirmBookingId] = useState('');
   const { register, handleSubmit } = useForm<Inputs>();
+
+
+const filteredBookingList = bookinglist?.filter((data: TBooking) => data?.flatId === flatId);
+const hasPaid = filteredBookingList?.some((item: TBooking) => item?.paymentStatus === 'PAID');
+
 
   const handleClickOpen = (id?: string) => {
     if (!id) return;
@@ -172,7 +178,7 @@ const MyFlatDetailPage = ({ params }: TParams) => {
                   <TableCell align="center">{item?.user?.buyer?.contactNumber}</TableCell>
                   <TableCell align="center">{item?.status}</TableCell>
                   <TableCell align="center">{item?.paymentStatus}</TableCell>
-                  <TableCell align="center"> <Button onClick={() => handleClickOpen(item?.id!)} variant="outlined" size="small" startIcon={<ModeEditIcon />}>Confirm</Button></TableCell>
+                  <TableCell align="center"> <Button onClick={() => handleClickOpen(item?.id!)} disabled={hasPaid} variant="outlined" size="small" startIcon={<ModeEditIcon />}>Confirm</Button></TableCell>
                 </TableRow>
               ))) : <TableRow>
                 <TableCell colSpan={6} align="center">

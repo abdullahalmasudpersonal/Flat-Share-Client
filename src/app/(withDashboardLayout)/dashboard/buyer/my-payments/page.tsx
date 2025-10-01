@@ -70,21 +70,24 @@ const MyPayments = () => {
                   <TableCell>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                       {item?.booking?.flat?.flatPhoto && <Image width={50} height={50} src={item?.booking?.flat?.flatPhoto || ''} alt="flat photo" />}
-                      {item?.booking?.flat?.flatName && item?.booking?.flat?.flatName.length > 40 ? item?.booking?.flat?.flatName.slice(0, 40) + '...' : item?.booking?.flat?.flatName}
+                      {item?.booking?.flat?.flatName && item?.booking?.flat?.flatName.length > 30 ? item?.booking?.flat?.flatName.slice(0, 30) + '...' : item?.booking?.flat?.flatName}
                     </Box>
                   </TableCell>
                   <TableCell align="center">{item?.booking?.flat?.flatNo} </TableCell>
                   <TableCell align="center">{item?.booking?.flat?.email} </TableCell>
                   <TableCell align="center">{item?.amount} </TableCell>
                   <TableCell align="center">{item?.transactionId} </TableCell>
-                  <TableCell align="center">{item?.payStatus} </TableCell>
+                  <TableCell align="center">{item?.payStatus === 'PAID' ? <span style={{background:'green', padding:'4px 8px', color:'white', borderRadius:'2px'}}>PAID</span>:<span style={{background:'rgb(255, 173, 51)', padding:'4px 8px', color:'white', borderRadius:'2px'}}>UNPAID</span>} </TableCell>
                   <TableCell align="center">
-                    <Button disabled={loading}
-                      variant="contained"
-                      onClick={() => handleInitPayment(item?.bookingId!)}
-                    >
-                      {loading ? 'Checkout...' : "Checkout"}
-                    </Button>
+                    {item?.payStatus === 'PAID' ?
+                      <Button variant="contained" color="success" disabled >PAID</Button>
+                      :
+                      <Button disabled={loading}
+                        variant="contained"
+                        onClick={() => handleInitPayment(item?.bookingId!)}
+                      >
+                        {loading ? 'Checkout...' : "Checkout"}
+                      </Button>}
                   </TableCell>
                 </TableRow>
               ))
@@ -94,35 +97,6 @@ const MyPayments = () => {
                 </TableCell>
               </TableRow>)
           }
-
-          {paymentList?.map((data: any) => (
-            <TableRow
-              key={data?.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="center">
-                {/* {data?.payStatus === "PAID" ? (
-                  <Button
-                    disabled
-                    sx={{ color: "white", backgroundColor: "gray" }}
-                  >
-                    PAID
-                  </Button>
-                ) : (
-                  // <Link
-                  //   href={`/dashboard/buyer/my-requests/${data?.flat?.id}`}
-                  // >
-                  <Button
-                    variant="contained"
-                    onClick={() => handleInitPayment(data?.bookingId)}
-                  >
-                    Checkout
-                  </Button>
-                  // </Link>
-                )} */}
-              </TableCell>
-            </TableRow>
-          ))}
         </TableBody>
       </Table>
     </TableContainer>

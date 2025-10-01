@@ -11,7 +11,7 @@ type UpdateMyProfileProps = {
 };
 
 const UpdateSellerProfile = ({ onSuccess }: UpdateMyProfileProps) => {
-    const { data, isLoading } = useGetMYProfileQuery({});
+    const { data, } = useGetMYProfileQuery({});
     const [updateMyProfileData, { isLoading: isUpdating }] = useUpdateMYProfileMutation();
     const [file, setFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string>("");

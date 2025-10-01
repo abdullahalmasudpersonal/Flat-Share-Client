@@ -14,7 +14,7 @@ type TParams = {
 
 const BuyerBookingRequest = ({ params }: TParams) => {
   const id = params?.id;
-  const { data: bookingDetails, isLoading } = useGetSingleBookingQuery(id);
+  const { data: bookingDetails,  } = useGetSingleBookingQuery(id);
   const { flat, status, createdAt,paymentStatus } = bookingDetails as TBooking || '';
 
   const theme = useTheme();

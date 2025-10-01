@@ -34,6 +34,7 @@ const BuyerRequest = () => {
             <TableCell>Flat</TableCell>
             <TableCell align="center">Owner</TableCell>
             <TableCell align="center">Amount</TableCell>
+            <TableCell align="center">Advanced</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Availability</TableCell>
             <TableCell align="center">Action</TableCell>
@@ -49,6 +50,8 @@ const BuyerRequest = () => {
                 <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
                 <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
                 <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
+                <TableCell align="center"><Skeleton variant="text" width={80} /></TableCell>
               </TableRow>
             )))
             :
@@ -58,11 +61,12 @@ const BuyerRequest = () => {
                 <TableCell>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                     {item?.flat?.flatPhoto && <Image src={item?.flat?.flatPhoto || ''} width={60} height={60} alt='flat img' />}
-                    {item?.flat?.flatName && item?.flat?.flatName.length > 40 ? item?.flat?.flatName.slice(0, 40) + ' ...' : item?.flat?.flatName}
+                    {item?.flat?.flatName && item?.flat?.flatName.length > 30 ? item?.flat?.flatName.slice(0, 30) + ' ...' : item?.flat?.flatName}
                   </Box>
                 </TableCell>
                 <TableCell align="center">{item?.flat?.user?.seller?.email}</TableCell>
-                {/* <TableCell align="center">{item?.}</TableCell> */}
+                <TableCell align="center">{item?.flat?.rent}</TableCell>
+                <TableCell align="center">{item?.flat?.advanceAmount}</TableCell>
                 <TableCell align="center">{item?.status}</TableCell>
                 <TableCell align="center">{item?.flat?.availability === true ? 'Yes':"No"}</TableCell>
                 <TableCell align="center"><Button variant="outlined" size="small" onClick={()=> router.push(`/dashboard/buyer/my-requests/${item?.id}`)}>Details</Button></TableCell>

@@ -1,4 +1,5 @@
 import { TFlat } from "./flat.types";
+import { TPayment } from "./pyament.types";
 import { TUser } from "./user.types";
 
 export type TBooking = {
@@ -12,4 +13,5 @@ export type TBooking = {
   updatedAt?: string;
   flat?:TFlat;
   user?:TUser;
+  payment?:TPayment;
 }
